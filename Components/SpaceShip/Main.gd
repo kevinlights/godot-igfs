@@ -1,0 +1,119 @@
+extends KinematicBody
+
+var _initial_position
+var _initial_rotation
+var _rot_x = 0
+var _rot_y = 0
+var _rot_z = 0
+
+signal position(content) 
+
+var speed = 0.1
+
+func _ready():
+#    set_physics_process(true)
+#    set_gravity_scale(1)
+    # pass
+    _initial_position = get_global_transform().origin
+    _initial_rotation = get_global_transform().basis
+    # while ( true ):
+    #     yield( get_tree().create_timer(0.4), "timeout" )
+    #     # EventManager.emit("ship_position",translation)       
+    #     emit_signal("position",translation) 
+
+# func _physics_process(delta):
+#     var bodies = get_colliding_bodies()
+
+#     for curBody in bodies:
+#         print( "collision :" + curBody.get_name() )
+
+#     if Input.is_key_pressed(KEY_E):
+#         speed = speed + .1
+#     if Input.is_key_pressed(KEY_Q):
+#         speed = speed - .1
+#     if Input.is_key_pressed(KEY_S):
+#         rotate_object_local(Vector3(1, 0, 0), delta/.8)
+#     if Input.is_key_pressed(KEY_W):
+#         rotate_object_local(Vector3(1, 0, 0), -delta/.8)
+#     if Input.is_key_pressed(KEY_A):
+#         rotate_object_local(Vector3(0, 1, 0), delta/.8)
+#     if Input.is_key_pressed(KEY_D):
+#         rotate_object_local(Vector3(0, 1, 0), -delta/.8)
+
+#     translate(Vector3(0,0,delta*speed))
+
+func _enter_tree():
+    # Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
+    pass
+
+func _exit_tree():
+    # Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
+    pass
+
+func _unhandled_input(event):
+    if event is InputEventKey:
+        if event.pressed and event.scancode == KEY_R:
+            reset_ship()
+            
+
+func _process(delta):
+    var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
+    emit_signal("position",{"coords":translation,"rotation":get_rotation()}) 
+    if get_slide_count():
+        if abs(speed) > 18:
+            crash()
+    # change to ship in storage
+    var SHIP_TURN_RATE = 0.05
+    var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
+    var TURN_SPEED = delta * abs(speed/SHIP_TURN_RATE_RECIP)
+    if Input.is_key_pressed(KEY_UP):
+        speed = speed + .1
+    if Input.is_key_pressed(KEY_DOWN):
+        speed = speed - .1
+        print("minus")
+    if Input.is_key_pressed(KEY_S):
+        rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
+        _rot_x += TURN_SPEED
+    if Input.is_key_pressed(KEY_W):
+        rotate_object_local(Vector3(1, 0, 0), -TURN_SPEED)
+        _rot_x -= TURN_SPEED
+    if Input.is_key_pressed(KEY_A):
+        rotate_object_local(Vector3(0, 1, 0), TURN_SPEED)
+        _rot_y += TURN_SPEED
+    if Input.is_key_pressed(KEY_D):
+        rotate_object_local(Vector3(0, 1, 0), -TURN_SPEED)
+        _rot_y -= TURN_SPEED
+    if Input.is_key_pressed(KEY_Q):
+        rotate_object_local(Vector3(0, 0, 1), TURN_SPEED)
+        _rot_z += TURN_SPEED
+    if Input.is_key_pressed(KEY_E):
+        rotate_object_local(Vector3(0, 0, 1), -TURN_SPEED)
+        _rot_z -= TURN_SPEED
+
+func reset_ship():
+    set_translation(_initial_position)
+    speed = 0.1
+    set_rotation(Vector3(0, 0, 0))
+# func _integrate_forces(state):
+    # var a = state.get_transform().basis
+    # set_linear_velocity(Vector3(a.x.z, a.y.z, -a.z.z) * speed)
+    # if Input.is_key_pressed(KEY_Z):
+    #     set_linear_velocity(Vector3(1,1,1) * 0.00001)
+    #     set_angular_velocity(Vector3(1,1,1) * 0.00001)
+
+    # move_and_slide(Vector3(a.x.z, a.y.z, -a.z.z) * speed)
+
+func crash():
+    # print("crashed")
+    # global_event_bus.publish("message",{"text":"Crashed!"})
+    # emit_signal("message","crashed")
+    
+    reset_ship()
+    EventManager.emit("message",{"text":"Crashed!"})
+    # get_node("../Message/Message").set_text("Crashed")
+    # emit_signal("message","Crashed")
+    # print(get_node("../Message/Message"))
+    # emit_signal("message","Crashed")
+    
+    # THIS WAS THE PROBLEM
+    # get_tree().reload_current_scene()

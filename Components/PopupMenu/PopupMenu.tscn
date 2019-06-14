@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Themes/material.tres" type="Theme" id=1]
+[ext_resource path="res://Components/PopupMenu/Main.gd" type="Script" id=2]
+[ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/HomeButton/HomeButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/QuitButton/QuitButton.tscn" type="PackedScene" id=5]
+
+
+
+
+
+[node name="PopupMenu" type="PopupMenu"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 673.449
+margin_top = 238.618
+margin_right = 1218.45
+margin_bottom = 775.618
+
+[node name="SettingsButton" parent="VBoxContainer" instance=ExtResource( 3 )]
+position = Vector2( 24.9928, -4.54419 )
+
+[node name="HomeButton" parent="VBoxContainer" instance=ExtResource( 4 )]
+position = Vector2( -2.27209, 81.7948 )
+
+[node name="QuitButton" parent="VBoxContainer" instance=ExtResource( 5 )]
+position = Vector2( 0, 163.59 )

@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Components/Position/view_box_texture.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0.843137, 0.796078, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.0784314, 0, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.0313726, 1, 0, 1 )
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Viewport")
+
+[node name="Position" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1680.0
+margin_bottom = -1023.0
+script = ExtResource( 1 )
+
+[node name="Coords" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "x:0 y:0 z:0"
+
+[node name="Rotation" type="Label" parent="."]
+margin_left = 199.724
+margin_top = -1.52588e-05
+margin_right = 311.724
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
+text = "x:0 y:0 z:0"
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 200, 200 )
+transparent_bg = true
+
+[node name="viewCube" type="CSGBox" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100001 )
+material = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Viewport/viewCube"]
+transform = Transform( -0.0109726, 0.999798, 0.0168643, 0, -0.0168653, 0.999858, 0.99994, 0.010971, 0.000185056, -1.9904, 0, 0 )
+radius = 0.121
+height = 1.778
+sides = 12
+material = SubResource( 2 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Viewport/viewCube"]
+transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, -1.84375 )
+radius = 0.121
+height = 1.778
+sides = 12
+material = SubResource( 3 )
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Viewport/viewCube"]
+transform = Transform( -1, -0.000508037, -8.56943e-06, -0.000507744, 0.998505, 0.0546486, -1.92068e-05, 0.0546486, -0.998506, -0.000920296, -1.85929, 0.0859375 )
+radius = 0.121
+height = 1.778
+sides = 12
+material = SubResource( 4 )
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0102536, 0, 99991.2 )
+current = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -12.1884, -15.5125 )
+texture = SubResource( 5 )
+vframes = 2
+hframes = 16
+frame = 4
+region_enabled = true
+
+[node name="Viewport_Sprite" type="Sprite" parent="."]
+position = Vector2( 1504.46, 43.0231 )
