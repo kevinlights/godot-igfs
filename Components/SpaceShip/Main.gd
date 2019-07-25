@@ -64,8 +64,14 @@ func _process(delta):
             crash()
     # change to ship in storage
     var SHIP_TURN_RATE = 0.05
-    var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
-    var TURN_SPEED = delta * abs(speed/SHIP_TURN_RATE_RECIP)
+
+    var TURN_SPEED = 0
+    # var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
+    if abs(speed * SHIP_TURN_RATE) <= SHIP_TURN_RATE * 10:
+        TURN_SPEED = delta * abs(speed * SHIP_TURN_RATE)
+    else:
+        TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
+
     if Input.is_key_pressed(KEY_UP):
         speed = speed + .1
     if Input.is_key_pressed(KEY_DOWN):

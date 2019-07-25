@@ -1,13 +1,60 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
 [ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Images/Planets/SS1-P1/texture.jpg" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/Planets/SS1-P2/texture.jpg" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/Planets/SS1-P3/texture.png" type="Texture" id=9]
+[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Images/Game/skybox1.jpg" type="Texture" id=11]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereMesh" id=1]
+radius = 200.0
+height = 400.0
+rings = 64
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="SphereShape" id=3]
+radius = 200.0
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="SphereShape" id=6]
+
+[sub_resource type="PanoramaSky" id=8]
+panorama = ExtResource( 11 )
+
+[sub_resource type="Environment" id=7]
+background_mode = 2
+background_sky = SubResource( 8 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.11
+fog_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+fog_sun_color = Color( 1, 1, 1, 1 )
+fog_depth_begin = 7.0
+fog_transmit_enabled = true
+fog_height_enabled = true
+tonemap_white = 1.2
+auto_exposure_enabled = true
+auto_exposure_scale = 1.0
+auto_exposure_max_luma = 8.89
+auto_exposure_speed = 2.0
+dof_blur_far_distance = 149.66
+dof_blur_near_enabled = true
+dof_blur_near_distance = 0.91
+glow_enabled = true
+glow_bloom = 0.09
+glow_blend_mode = 1
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
@@ -46,19 +93,61 @@ use_collision = true
 polygon = PoolVector2Array( -7.03677, 0.0448091, 0, 1, 1, 1, 1, 0 )
 depth = 10.8401
 
+[node name="SS1" type="Spatial" parent="."]
+
+[node name="SS1-S" parent="SS1" instance=ExtResource( 6 )]
+
+[node name="SS1-P1" type="StaticBody" parent="SS1"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3224.42, 0, 370.775 )
+
+[node name="MeshInstance" type="MeshInstance" parent="SS1/SS1-P1"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SS1/SS1-P1"]
+shape = SubResource( 3 )
+
+[node name="SS1-P2" type="StaticBody" parent="SS1"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2833.69, 0, 2072.56 )
+
+[node name="MeshInstance" type="MeshInstance" parent="SS1/SS1-P2"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SS1/SS1-P2"]
+shape = SubResource( 3 )
+
+[node name="SS1-P3" type="StaticBody" parent="SS1"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1995.05, 0, -1612.68 )
+
+[node name="MeshInstance" type="MeshInstance" parent="SS1/SS1-P3"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SS1/SS1-P3"]
+shape = SubResource( 3 )
+
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.875, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="CSGSphere" type="CSGSphere" parent="RigidBody"]
 radius = 1.20018
 radial_segments = 100
 rings = 100
 
-[node name="SpaceShip" parent="." instance=ExtResource( 6 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20.5674 )
 
 [node name="Camera" type="Camera" parent="SpaceShip"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.401537, 0, 7.56059 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 0.00153065, 0.268911 )
+near = 0.01
+far = 5315.8
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )

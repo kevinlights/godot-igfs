@@ -17,7 +17,7 @@ albedo_color = Color( 0.0784314, 0, 1, 1 )
 [sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.0313726, 1, 0, 1 )
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("Viewport")
 
 [node name="Position" type="Control"]
@@ -74,9 +74,14 @@ material = SubResource( 4 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0102536, 0, 99991.2 )
 current = true
 
+[node name="OmniLight" type="OmniLight" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518124, 99997.9 )
+light_energy = 0.9
+omni_range = 11.3
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -12.1884, -15.5125 )
-texture = SubResource( 5 )
+texture = SubResource( 6 )
 vframes = 2
 hframes = 16
 frame = 4

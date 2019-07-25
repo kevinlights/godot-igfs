@@ -44,5 +44,6 @@ enabled=PoolStringArray( "godot-git-control.funabab", "vector-icons" )
 [rendering]
 
 quality/driver/driver_name="GLES2"
+threads/thread_model=2
 quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"
