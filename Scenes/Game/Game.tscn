@@ -31,12 +31,12 @@ albedo_texture = ExtResource( 9 )
 
 [sub_resource type="SphereShape" id=6]
 
-[sub_resource type="PanoramaSky" id=8]
+[sub_resource type="PanoramaSky" id=7]
 panorama = ExtResource( 11 )
 
-[sub_resource type="Environment" id=7]
+[sub_resource type="Environment" id=8]
 background_mode = 2
-background_sky = SubResource( 8 )
+background_sky = SubResource( 7 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.11
 fog_color = Color( 0.423529, 0.423529, 0.423529, 1 )
@@ -145,9 +145,9 @@ rings = 100
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20.5674 )
 
 [node name="Camera" type="Camera" parent="SpaceShip"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 0.00153065, 0.268911 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 1.44672, 4.76159 )
 near = 0.01
 far = 5315.8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 7 )
+environment = SubResource( 8 )
