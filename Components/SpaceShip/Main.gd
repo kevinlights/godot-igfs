@@ -5,6 +5,7 @@ var _initial_rotation
 var _rot_x = 0
 var _rot_y = 0
 var _rot_z = 0
+var _heat_interval = false
 
 signal position(content) 
 
@@ -16,6 +17,7 @@ func _ready():
     # pass
     _initial_position = get_global_transform().origin
     _initial_rotation = get_global_transform().basis
+    addConnections()
     # while ( true ):
     #     yield( get_tree().create_timer(0.4), "timeout" )
     #     # EventManager.emit("ship_position",translation)       
@@ -41,6 +43,10 @@ func _ready():
 #         rotate_object_local(Vector3(0, 1, 0), -delta/.8)
 
 #     translate(Vector3(0,0,delta*speed))
+
+func addConnections():
+    get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
+    get_node("HeatArea").connect("body_exited", self, "heat_body_exit")
 
 func _enter_tree():
     # Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
@@ -68,7 +74,7 @@ func _process(delta):
     #         print("n")
 
     if get_slide_count():
-        print(get_slide_collision(0).get_collider().get_name())
+        # print(get_slide_collision(0).get_collider().get_name())
         if abs(speed) > 18:
             crash()
     # change to ship in storage
@@ -132,3 +138,14 @@ func crash():
     
     # THIS WAS THE PROBLEM
     # get_tree().reload_current_scene()
+
+
+func heat_body_enter(body):
+    if body.get_groups().has("star"):
+        _heat_interval = true
+        while ( _heat_interval == true ):
+            yield( get_tree().create_timer(0.3), "timeout" )
+            print("star")
+
+func heat_body_exit(body):
+    _heat_interval = false
