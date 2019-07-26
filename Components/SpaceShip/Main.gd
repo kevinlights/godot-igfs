@@ -1,5 +1,8 @@
 extends KinematicBody
 
+const Regexes = preload("res://Scripts/Regexes.gd") # Relative path
+onready var regexes = Regexes.new()
+
 var _initial_position
 var _initial_rotation
 var _rot_x = 0
@@ -60,6 +63,7 @@ func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
     emit_signal("position",{"coords":translation,"rotation":get_rotation()}) 
     if get_slide_count():
+        print(get_slide_collision(0).get_collider().get_name())
         if abs(speed) > 18:
             crash()
     # change to ship in storage
