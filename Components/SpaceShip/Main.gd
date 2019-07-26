@@ -1,8 +1,5 @@
 extends KinematicBody
 
-const Regexes = preload("res://Scripts/Regexes.gd") # Relative path
-onready var regexes = Regexes.new()
-
 var _initial_position
 var _initial_rotation
 var _rot_x = 0
@@ -62,6 +59,14 @@ func _unhandled_input(event):
 func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
     emit_signal("position",{"coords":translation,"rotation":get_rotation()}) 
+
+    # var array_stars = get_tree().get_nodes_in_group("star")
+    # print(global_transform)
+    # for star in array_stars:
+    #     var distance_to_star = global_transform.distance_to(star.global_transform)
+    #     if distance_to_star < 200:
+    #         print("n")
+
     if get_slide_count():
         print(get_slide_collision(0).get_collider().get_name())
         if abs(speed) > 18:

@@ -20,7 +20,9 @@ rings = 64
 margin = 0.001
 radius = 600.0
 
-[node name="Sun" type="StaticBody"]
+[node name="Sun" type="StaticBody" groups=[
+"star",
+]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
