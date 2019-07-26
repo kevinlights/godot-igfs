@@ -1,0 +1,28 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Images/Game/skybox1.jpg" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.11
+fog_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+fog_sun_color = Color( 1, 1, 1, 1 )
+fog_depth_begin = 7.0
+fog_transmit_enabled = true
+fog_height_enabled = true
+tonemap_white = 1.2
+auto_exposure_enabled = true
+auto_exposure_scale = 0.5
+auto_exposure_max_luma = 4.66
+dof_blur_far_distance = 149.66
+dof_blur_near_enabled = true
+dof_blur_near_distance = 0.91
+glow_enabled = true
+glow_strength = 0.56
+glow_bloom = 0.02
+glow_blend_mode = 1

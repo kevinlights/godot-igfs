@@ -33,9 +33,11 @@ func addConnections():
 func _update_coords(pos):
 	var coords = pos.coords
 	var rotation = pos.rotation
+	var health = pos.health
 	get_node("Coords").text = "x:" + str(round(coords.x)) + " y:" + str(round(coords.y)) + " z:" + str(round(coords.z))
 	get_node("Rotation").text = "x:" + str(round(rad2deg(rotation.x))) + " y:" + str(round(rad2deg(rotation.y))) + " z:" + str(round(rad2deg(rotation.z)))
 	get_node("Viewport/viewCube").set_rotation(rotation);
+	get_node("Health").text = "Health:" + str(health)
 	pass
 
 func startCubeView():

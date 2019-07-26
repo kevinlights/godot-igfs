@@ -6,6 +6,9 @@ var _rot_x = 0
 var _rot_y = 0
 var _rot_z = 0
 var _heat_interval = false
+var health = 100
+# change to ship in storage
+var SHIP_TURN_RATE = 0.05
 
 signal position(content) 
 
@@ -64,7 +67,10 @@ func _unhandled_input(event):
 
 func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
-    emit_signal("position",{"coords":translation,"rotation":get_rotation()}) 
+    emit_signal("position",{"coords":translation,"rotation":get_rotation(),"health":health}) 
+
+    if (health <= 0):
+        reset_ship()
 
     # var array_stars = get_tree().get_nodes_in_group("star")
     # print(global_transform)
@@ -77,8 +83,6 @@ func _process(delta):
         # print(get_slide_collision(0).get_collider().get_name())
         if abs(speed) > 18:
             crash()
-    # change to ship in storage
-    var SHIP_TURN_RATE = 0.05
 
     var TURN_SPEED = 0
     # var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
@@ -91,7 +95,6 @@ func _process(delta):
         speed = speed + .1
     if Input.is_key_pressed(KEY_DOWN):
         speed = speed - .1
-        print("minus")
     if Input.is_key_pressed(KEY_S):
         rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
         _rot_x += TURN_SPEED
@@ -115,6 +118,8 @@ func reset_ship():
     set_translation(_initial_position)
     speed = 0.1
     set_rotation(Vector3(0, 0, 0))
+    yield( get_tree().create_timer(0.05), "timeout" )
+    health = 100
 # func _integrate_forces(state):
     # var a = state.get_transform().basis
     # set_linear_velocity(Vector3(a.x.z, a.y.z, -a.z.z) * speed)
@@ -128,8 +133,7 @@ func crash():
     # print("crashed")
     # global_event_bus.publish("message",{"text":"Crashed!"})
     # emit_signal("message","crashed")
-    
-    reset_ship()
+    health = 0
     EventManager.emit("message",{"text":"Crashed!"})
     # get_node("../Message/Message").set_text("Crashed")
     # emit_signal("message","Crashed")
@@ -144,8 +148,9 @@ func heat_body_enter(body):
     if body.get_groups().has("star"):
         _heat_interval = true
         while ( _heat_interval == true ):
-            yield( get_tree().create_timer(0.3), "timeout" )
-            print("star")
+            yield( get_tree().create_timer(0.05), "timeout" )
+            health = health - 1
+            print(health)
 
 func heat_body_exit(body):
     _heat_interval = false
