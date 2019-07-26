@@ -21,6 +21,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.07117, 4.64714, 7.45358 )
 script = ExtResource( 1 )
 
 [node name="S0" type="CollisionShape" parent="."]
+editor/display_folded = true
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="S0"]

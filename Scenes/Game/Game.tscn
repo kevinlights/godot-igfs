@@ -46,14 +46,14 @@ fog_transmit_enabled = true
 fog_height_enabled = true
 tonemap_white = 1.2
 auto_exposure_enabled = true
-auto_exposure_scale = 1.0
-auto_exposure_max_luma = 8.89
-auto_exposure_speed = 2.0
+auto_exposure_scale = 0.5
+auto_exposure_max_luma = 4.66
 dof_blur_far_distance = 149.66
 dof_blur_near_enabled = true
 dof_blur_near_distance = 0.91
 glow_enabled = true
-glow_bloom = 0.09
+glow_strength = 0.56
+glow_bloom = 0.02
 glow_blend_mode = 1
 
 [node name="Game" type="Spatial"]
