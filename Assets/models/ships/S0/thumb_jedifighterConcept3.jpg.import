@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/thumb_jedifighterConcept3.jpg-1c7c629ad9dbd9e9dd6473100583d6cf.stex"
+path="res://.import/thumb_jedifighterConcept3.jpg-9f66c99cc83a00be13419ca67a3e6659.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S2/thumb_jedifighterConcept3.jpg"
-dest_files=[ "res://.import/thumb_jedifighterConcept3.jpg-1c7c629ad9dbd9e9dd6473100583d6cf.stex" ]
+source_file="res://Assets/models/ships/S0/thumb_jedifighterConcept3.jpg"
+dest_files=[ "res://.import/thumb_jedifighterConcept3.jpg-9f66c99cc83a00be13419ca67a3e6659.stex" ]
 
 [params]
 

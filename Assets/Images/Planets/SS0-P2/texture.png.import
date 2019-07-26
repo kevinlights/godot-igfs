@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/texture.png-2ddc84d2f1a893f850306b64eccca0c8.s3tc.stex"
-path.etc2="res://.import/texture.png-2ddc84d2f1a893f850306b64eccca0c8.etc2.stex"
+path.s3tc="res://.import/texture.png-8684653b510ec42c65a43ddf57aa5056.s3tc.stex"
+path.etc2="res://.import/texture.png-8684653b510ec42c65a43ddf57aa5056.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Images/Planets/SS1-P3/texture.png"
-dest_files=[ "res://.import/texture.png-2ddc84d2f1a893f850306b64eccca0c8.s3tc.stex", "res://.import/texture.png-2ddc84d2f1a893f850306b64eccca0c8.etc2.stex" ]
+source_file="res://Assets/Images/Planets/SS0-P2/texture.png"
+dest_files=[ "res://.import/texture.png-8684653b510ec42c65a43ddf57aa5056.s3tc.stex", "res://.import/texture.png-8684653b510ec42c65a43ddf57aa5056.etc2.stex" ]
 
 [params]
 

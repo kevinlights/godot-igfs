@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wing2.jpg-aff86bc28e4ae37f7709eb7dc9b55d01.stex"
+path="res://.import/top2.jpg-a6c2926a1a8cf02646296d91d3cb5164.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S2/wing2.jpg"
-dest_files=[ "res://.import/wing2.jpg-aff86bc28e4ae37f7709eb7dc9b55d01.stex" ]
+source_file="res://Assets/models/ships/S0/top2.jpg"
+dest_files=[ "res://.import/top2.jpg-a6c2926a1a8cf02646296d91d3cb5164.stex" ]
 
 [params]
 

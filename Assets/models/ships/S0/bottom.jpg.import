@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reacteur2.jpg-21fb5e17e012af791e9707f3005e170a.stex"
+path="res://.import/bottom.jpg-292a569eee6f7682e8dba8612b12a620.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S2/reacteur2.jpg"
-dest_files=[ "res://.import/reacteur2.jpg-21fb5e17e012af791e9707f3005e170a.stex" ]
+source_file="res://Assets/models/ships/S0/bottom.jpg"
+dest_files=[ "res://.import/bottom.jpg-292a569eee6f7682e8dba8612b12a620.stex" ]
 
 [params]
 

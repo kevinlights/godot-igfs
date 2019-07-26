@@ -6,9 +6,9 @@
 [ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Images/Planets/SS1-P1/texture.jpg" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/Planets/SS1-P2/texture.jpg" type="Texture" id=8]
-[ext_resource path="res://Assets/Images/Planets/SS1-P3/texture.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/Planets/SS0-P0/texture.jpg" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/Planets/SS0-P1/texture.jpg" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/Planets/SS0-P2/texture.png" type="Texture" id=9]
 [ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Images/Game/skybox1.jpg" type="Texture" id=11]
 
@@ -93,41 +93,41 @@ use_collision = true
 polygon = PoolVector2Array( -7.03677, 0.0448091, 0, 1, 1, 1, 1, 0 )
 depth = 10.8401
 
-[node name="SS1" type="Spatial" parent="."]
+[node name="SS0" type="Spatial" parent="."]
 
-[node name="SS1-S" parent="SS1" instance=ExtResource( 6 )]
+[node name="SS0-ST0" parent="SS0" instance=ExtResource( 6 )]
 
-[node name="SS1-P1" type="StaticBody" parent="SS1"]
+[node name="SS0-P0" type="StaticBody" parent="SS0"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3224.42, 0, 370.775 )
 
-[node name="MeshInstance" type="MeshInstance" parent="SS1/SS1-P1"]
+[node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P0"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="SS1/SS1-P1"]
+[node name="CollisionShape" type="CollisionShape" parent="SS0/SS0-P0"]
 shape = SubResource( 3 )
 
-[node name="SS1-P2" type="StaticBody" parent="SS1"]
+[node name="SS0-P1" type="StaticBody" parent="SS0"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2833.69, 0, 2072.56 )
 
-[node name="MeshInstance" type="MeshInstance" parent="SS1/SS1-P2"]
+[node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P1"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 4 )
 
-[node name="CollisionShape" type="CollisionShape" parent="SS1/SS1-P2"]
+[node name="CollisionShape" type="CollisionShape" parent="SS0/SS0-P1"]
 shape = SubResource( 3 )
 
-[node name="SS1-P3" type="StaticBody" parent="SS1"]
+[node name="SS0-P2" type="StaticBody" parent="SS0"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1995.05, 0, -1612.68 )
 
-[node name="MeshInstance" type="MeshInstance" parent="SS1/SS1-P3"]
+[node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P2"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="SS1/SS1-P3"]
+[node name="CollisionShape" type="CollisionShape" parent="SS0/SS0-P2"]
 shape = SubResource( 3 )
 
 [node name="RigidBody" type="RigidBody" parent="."]

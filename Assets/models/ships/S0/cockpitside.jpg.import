@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cockpitside.jpg-06cb5041f68418d3f04fe3e9cad3047e.stex"
+path="res://.import/cockpitside.jpg-c6db0570c31ac218ebb3a5d469ea1ad2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S2/cockpitside.jpg"
-dest_files=[ "res://.import/cockpitside.jpg-06cb5041f68418d3f04fe3e9cad3047e.stex" ]
+source_file="res://Assets/models/ships/S0/cockpitside.jpg"
+dest_files=[ "res://.import/cockpitside.jpg-c6db0570c31ac218ebb3a5d469ea1ad2.stex" ]
 
 [params]
 
