@@ -62,7 +62,7 @@ func resize(size):
 	
 
 func fullscreenPressed(state):
-	print("fullscreenPressed" + str(state))
+	print("fullscreenPressed: " + str(state))
 	OS.window_fullscreen = state
 	if not state:
 		resize(Vector2(1280, 720))
@@ -73,17 +73,22 @@ func fullscreenPressed(state):
 		OS.window_borderless = true 
 
 func vsyncPressed(state):
-	print("vsyncPressed" + str(state))
+	print("vsyncPressed: " + str(state))
 	OS.vsync_enabled = state
+	#persist
+	ProjectSettings.set_setting("display/window/vsync/use_vsync",state)
+	ProjectSettings.save()
 
 func antiAliasingChanged(id):
-	print("antiAliasingChanged" + str(id))
+	print("antiAliasingChanged: " + str(id))
 	get_viewport().msaa = id
+	#persist
+	ProjectSettings.set_setting("rendering/quality/filters/msaa",id)
+	ProjectSettings.save()
 
 func FPSChanged(id):
 	var fps_options = [30,60,75,144]
 	print("FPSChanged: " + str(fps_options[id]))
 	ProjectSettings.set_setting("debug/settings/fps/force_fps",fps_options[id])
-	print(ProjectSettings.save())
-	print(ProjectSettings.get_setting("debug/settings/fps/force_fps"))
+	ProjectSettings.save()
 	get_node("RestartPopup").popup()
