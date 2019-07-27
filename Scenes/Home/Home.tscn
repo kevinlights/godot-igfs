@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Home/Main.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Images/Home/bg.jpg" type="Texture" id=2]
+[ext_resource path="res://Scenes/Home/Images/bg.jpg" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Components/StartButton/StartButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=5]

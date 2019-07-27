@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
 [ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=2]
@@ -6,11 +6,12 @@
 [ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Images/Planets/SS0-P0/texture.jpg" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/Planets/SS0-P1/texture.jpg" type="Texture" id=8]
-[ext_resource path="res://Assets/Images/Planets/SS0-P2/texture.png" type="Texture" id=9]
-[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Enviroments/Performance.tres" type="Environment" id=11]
+[ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/Planets/SS0-P0/texture.jpg" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/Planets/SS0-P1/texture.jpg" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/Planets/SS0-P2/texture.png" type="Texture" id=10]
+[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Game/Enviroments/Performance.tres" type="Environment" id=12]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 200.0
@@ -18,16 +19,16 @@ height = 400.0
 rings = 64
 
 [sub_resource type="SpatialMaterial" id=2]
-albedo_texture = ExtResource( 7 )
+albedo_texture = ExtResource( 8 )
 
 [sub_resource type="SphereShape" id=3]
 radius = 200.0
 
 [sub_resource type="SpatialMaterial" id=4]
-albedo_texture = ExtResource( 8 )
+albedo_texture = ExtResource( 9 )
 
 [sub_resource type="SpatialMaterial" id=5]
-albedo_texture = ExtResource( 9 )
+albedo_texture = ExtResource( 10 )
 
 [sub_resource type="SphereShape" id=6]
 
@@ -71,6 +72,7 @@ depth = 10.8401
 [node name="SS0" type="Spatial" parent="."]
 
 [node name="SS0-ST0" parent="SS0" instance=ExtResource( 6 )]
+star_texture = ExtResource( 7 )
 
 [node name="SS0-P0" type="StaticBody" parent="SS0"]
 editor/display_folded = true
@@ -116,7 +118,7 @@ radius = 1.20018
 radial_segments = 100
 rings = 100
 
-[node name="SpaceShip" parent="." instance=ExtResource( 10 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20.5674 )
 
 [node name="Camera" type="Camera" parent="SpaceShip"]
@@ -125,4 +127,4 @@ near = 0.01
 far = 5315.8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 11 )
+environment = ExtResource( 12 )
