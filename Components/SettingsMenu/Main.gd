@@ -18,6 +18,7 @@ func addConnections():
 	get_node("VBoxContainer/Fullscreen").connect("toggled", self, "fullscreenPressed")
 	get_node("VBoxContainer/V-sync").connect("toggled", self, "vsyncPressed")
 	get_node("VBoxContainer/AntiAliasing").connect("item_selected", self, "antiAliasingChanged")
+	get_node("VBoxContainer/FPS").connect("item_selected", self, "FPSChanged")
 
 func setNodes():
 	get_node("VBoxContainer/Fullscreen").pressed = OS.window_fullscreen
@@ -28,6 +29,24 @@ func setNodes():
 	get_node("VBoxContainer/AntiAliasing").add_item("8x",8)
 	get_node("VBoxContainer/AntiAliasing").add_item("16x",16)
 	get_node("VBoxContainer/AntiAliasing").select(get_viewport().msaa)
+
+	get_node("VBoxContainer/FPS").add_item("30",30)
+	get_node("VBoxContainer/FPS").add_item("60",60)
+	get_node("VBoxContainer/FPS").add_item("75",75)
+	get_node("VBoxContainer/FPS").add_item("144",144)
+
+	var fps = ProjectSettings.get_setting("debug/settings/fps/force_fps");
+	var fps_index = 0
+	if fps == 30:
+		fps_index = 0
+	elif fps == 60:
+		fps_index = 1
+	elif fps == 75:
+		fps_index = 2
+	elif fps == 144:
+		fps_index = 3
+	get_node("VBoxContainer/FPS").select(fps_index)
+	
 
 func resize(size):
 	OS.window_resizable = true;
@@ -58,5 +77,13 @@ func vsyncPressed(state):
 	OS.vsync_enabled = state
 
 func antiAliasingChanged(id):
-	print("antiAliasingPressed" + str(id))
+	print("antiAliasingChanged" + str(id))
 	get_viewport().msaa = id
+
+func FPSChanged(id):
+	var fps_options = [30,60,75,144]
+	print("FPSChanged: " + str(fps_options[id]))
+	ProjectSettings.set_setting("debug/settings/fps/force_fps",fps_options[id])
+	print(ProjectSettings.save())
+	print(ProjectSettings.get_setting("debug/settings/fps/force_fps"))
+	get_node("RestartPopup").popup()

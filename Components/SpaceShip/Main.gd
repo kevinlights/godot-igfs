@@ -150,7 +150,7 @@ func heat_body_enter(body):
         while ( _heat_interval == true ):
             yield( get_tree().create_timer(0.05), "timeout" )
             health = health - 1
-            print(health)
+            # print(health)
 
 func heat_body_exit(body):
     _heat_interval = false

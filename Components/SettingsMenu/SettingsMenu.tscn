@@ -10,6 +10,21 @@ margin_bottom = 1080.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
+[node name="RestartPopup" type="Popup" parent="."]
+visible = true
+margin_left = 652.352
+margin_top = 19.3549
+margin_right = 1197.35
+margin_bottom = 19.3549
+
+[node name="Label" type="Label" parent="RestartPopup"]
+margin_top = 4.0
+margin_right = 545.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 3 )
+text = "Restart Needed"
+align = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 673.449
 margin_top = 238.618
@@ -45,4 +60,12 @@ margin_right = 545.0
 margin_bottom = 123.0
 custom_fonts/font = ExtResource( 3 )
 text = "Anti Aliasing"
+align = 1
+
+[node name="FPS" type="OptionButton" parent="VBoxContainer"]
+margin_top = 127.0
+margin_right = 545.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 3 )
+text = "FPS"
 align = 1
