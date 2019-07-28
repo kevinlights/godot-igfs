@@ -21,7 +21,7 @@ script = ExtResource( 1 )
 light_color = Color( 1, 0.87451, 0.784314, 1 )
 light_energy = 0.9
 light_specular = 0.77
-omni_range = 8000.0
+omni_range = 19000.0
 omni_attenuation = 0.0980731
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

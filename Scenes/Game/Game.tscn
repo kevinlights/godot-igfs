@@ -76,7 +76,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -4471.33 )
 star_texture = ExtResource( 7 )
 
 [node name="SS0-P0" type="StaticBody" parent="SS0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3224.42, 0, 370.775 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12000, 0, 1661.82 )
 
 [node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P0"]
 mesh = SubResource( 1 )
@@ -87,7 +87,7 @@ shape = SubResource( 3 )
 
 [node name="SS0-P1" type="StaticBody" parent="SS0"]
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2833.69, 0, 2072.56 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4000, 0, 10000 )
 
 [node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P1"]
 mesh = SubResource( 1 )
@@ -97,9 +97,10 @@ material/0 = SubResource( 4 )
 shape = SubResource( 3 )
 
 [node name="SS0-P2" type="StaticBody" parent="SS0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 390.566, 0, -14755.4 )
+transform = Transform( 0.876556, -0.326271, 0.353832, 0, 0.735159, 0.677895, -0.4813, -0.594213, 0.644408, 390.566, 0, -19755.4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P2"]
+transform = Transform( 1, -2.98023e-08, 0, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 5 )
 
@@ -123,7 +124,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20.5674 )
 [node name="Camera" type="Camera" parent="SpaceShip"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 1.44672, 4.76159 )
 near = 0.01
-far = 5315.8
+far = 20000.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 12 )

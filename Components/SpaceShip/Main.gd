@@ -92,9 +92,9 @@ func _process(delta):
         TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
 
     if Input.is_key_pressed(KEY_UP):
-        speed = speed + .1
+        speed = speed + 1
     if Input.is_key_pressed(KEY_DOWN):
-        speed = speed - .1
+        speed = speed - 1
     if Input.is_key_pressed(KEY_S):
         rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
         _rot_x += TURN_SPEED
