@@ -52,8 +52,8 @@ func resize(size):
 	OS.window_resizable = true;
 	OS.set_window_size(size)
 	get_viewport().set_size_override(true, size)
-    # Not setting viewport size with this has the Aliens scene still acting like it's 800x450
-    #--> Player can move outside of window, can't move around fully in shown window
+	# Not setting viewport size with this has the Aliens scene still acting like it's 800x450
+	#--> Player can move outside of window, can't move around fully in shown window
 	#OS.center_window() #centers properly
 	OS.window_borderless = false #doesn't go from borderless to bordered
 	OS.window_fullscreen = true

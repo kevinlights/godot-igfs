@@ -3,9 +3,9 @@
 [ext_resource path="res://Scenes/Home/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Home/Images/bg.jpg" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Components/StartButton/StartButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/QuitButton/QuitButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/QuitButton/QuitButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/StartButton/StartButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
@@ -31,9 +31,9 @@ size_flags_stretch_ratio = 0.0
 alignment = 1
 
 [node name="Title" type="Label" parent="MainGrid"]
-margin_top = 472.0
+margin_top = 473.0
 margin_right = 1916.0
-margin_bottom = 600.0
+margin_bottom = 599.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "Test Game"
@@ -41,27 +41,27 @@ align = 1
 valign = 1
 
 [node name="StartButtonWrapper" type="Control" parent="MainGrid"]
-margin_top = 604.0
+margin_top = 603.0
 margin_right = 1916.0
-margin_bottom = 604.0
+margin_bottom = 603.0
 
-[node name="StartButton" parent="MainGrid/StartButtonWrapper" instance=ExtResource( 4 )]
+[node name="StartButton" parent="MainGrid/StartButtonWrapper" instance=ExtResource( 6 )]
 position = Vector2( 0.681946, -4.383 )
 
 [node name="SettingsButtonWrapper" type="Control" parent="MainGrid"]
-margin_top = 608.0
+margin_top = 607.0
 margin_right = 1916.0
-margin_bottom = 608.0
+margin_bottom = 607.0
 
-[node name="SettingsButton" parent="MainGrid/SettingsButtonWrapper" instance=ExtResource( 5 )]
+[node name="SettingsButton" parent="MainGrid/SettingsButtonWrapper" instance=ExtResource( 4 )]
 position = Vector2( 711.539, 61.194 )
 
 [node name="QuitButtonWrapper" type="Control" parent="MainGrid"]
-margin_top = 612.0
+margin_top = 611.0
 margin_right = 1916.0
-margin_bottom = 612.0
+margin_bottom = 611.0
 
-[node name="QuitButton2" parent="MainGrid/QuitButtonWrapper" instance=ExtResource( 6 )]
+[node name="QuitButton2" parent="MainGrid/QuitButtonWrapper" instance=ExtResource( 5 )]
 position = Vector2( 680.503, 157.204 )
 
 [node name="FPS" parent="." instance=ExtResource( 7 )]

@@ -52,7 +52,6 @@ func startCubeView():
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	viewport_sprite.texture = viewport.get_texture()
-  
 	set_process(true)
 
 func _process(delta):
