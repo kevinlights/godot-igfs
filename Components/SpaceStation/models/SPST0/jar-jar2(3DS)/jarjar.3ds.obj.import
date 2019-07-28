@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/jarjar.3ds.obj-42954ee194d16824042a65036069d4bc.mesh"
+
+[deps]
+
+files=[ "res://.import/jarjar.3ds.obj-42954ee194d16824042a65036069d4bc.mesh" ]
+
+source_file="res://Components/SpaceStation/models/SPST0/jar-jar2(3DS)/jarjar.3ds.obj"
+dest_files=[ "res://.import/jarjar.3ds.obj-42954ee194d16824042a65036069d4bc.mesh", "res://.import/jarjar.3ds.obj-42954ee194d16824042a65036069d4bc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
