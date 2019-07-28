@@ -3,8 +3,8 @@
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
 [ext_resource path="res://Components/Planet/images/SS0-P0/texture.jpg" type="Texture" id=2]
 [ext_resource path="res://Components/Planet/images/SS0-P1/texture.jpg" type="Texture" id=3]
-[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=7]
 [ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=8]
@@ -12,9 +12,9 @@
 [ext_resource path="res://Components/Planet/images/SS0-P2/texture.png" type="Texture" id=10]
 [ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Game/Enviroments/GlowAndAutoExposure.tres" type="Environment" id=12]
-[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/STATION_CMPL.3ds.obj" type="ArrayMesh" id=14]
-[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=15]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.501961, 0.501961, 0.501961, 1 )
@@ -25,26 +25,26 @@ roughness = 0.58
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="FPS" parent="." instance=ExtResource( 4 )]
+[node name="FPS" parent="." instance=ExtResource( 15 )]
 margin_left = 1742.35
 margin_top = 11.3843
 margin_right = 2607.35
 margin_bottom = 267.384
 rect_scale = Vector2( 0.2, 0.2 )
 
-[node name="Message" parent="." instance=ExtResource( 13 )]
+[node name="Message" parent="." instance=ExtResource( 5 )]
 margin_left = 866.869
 margin_top = 7.79212
 margin_right = 866.869
 margin_bottom = 7.79212
 
-[node name="Position" parent="." instance=ExtResource( 5 )]
+[node name="Position" parent="." instance=ExtResource( 13 )]
 margin_left = 142.206
 margin_top = 3.89609
 margin_right = -1537.79
 margin_bottom = -1019.1
 
-[node name="MenuButton" parent="." instance=ExtResource( 15 )]
+[node name="MenuButton" parent="." instance=ExtResource( 4 )]
 position = Vector2( -3.09088, 0 )
 
 [node name="CSGBox" type="CSGPolygon" parent="."]
