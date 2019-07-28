@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/STATION_CMPL.3ds.obj-275eb3847dc804a35e43c8568bfc6523.mesh"
+
+[deps]
+
+files=[ "res://.import/STATION_CMPL.3ds.obj-275eb3847dc804a35e43c8568bfc6523.mesh" ]
+
+source_file="res://Components/SpaceStation/models/SPST0/STATION_CMPL.3ds.obj"
+dest_files=[ "res://.import/STATION_CMPL.3ds.obj-275eb3847dc804a35e43c8568bfc6523.mesh", "res://.import/STATION_CMPL.3ds.obj-275eb3847dc804a35e43c8568bfc6523.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

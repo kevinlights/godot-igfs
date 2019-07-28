@@ -4,15 +4,15 @@
 [ext_resource path="res://Components/Planet/Main.gd" type="Script" id=2]
 
 [sub_resource type="SphereMesh" id=1]
-radius = 1500.0
-height = 3000.0
+radius = 3000.0
+height = 6000.0
 rings = 64
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
 
 [sub_resource type="SphereShape" id=3]
-radius = 1500.0
+radius = 3000.0
 
 [node name="Planet" type="StaticBody"]
 script = ExtResource( 2 )
