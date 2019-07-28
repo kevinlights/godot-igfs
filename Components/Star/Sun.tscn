@@ -3,12 +3,12 @@
 [ext_resource path="res://Components/Star/Main.gd" type="Script" id=1]
 [ext_resource path="res://Components/Star/Material.tres" type="Material" id=2]
 
-[sub_resource type="SphereMesh" id=2]
+[sub_resource type="SphereMesh" id=1]
 radius = 600.0
 height = 1200.0
 rings = 64
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="SphereShape" id=2]
 margin = 0.001
 radius = 600.0
 
@@ -21,15 +21,14 @@ script = ExtResource( 1 )
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9317 )
 light_color = Color( 1, 0.87451, 0.784314, 1 )
-light_energy = 1.92
-light_indirect_energy = 2.4
+light_energy = 0.9
 light_specular = 0.77
 omni_range = 4096.0
 omni_attenuation = 0.0980731
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )

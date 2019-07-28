@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/UHu.jpg-f3712bab77c88b337996bc0420e54887.stex"
+path="res://.import/Sky1.jpg-6e9d7daba8dea40e8b26cbeb54793c2c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S1/UHu.jpg"
-dest_files=[ "res://.import/UHu.jpg-f3712bab77c88b337996bc0420e54887.stex" ]
+source_file="res://Components/SpaceShip/models/S1/Sky1.jpg"
+dest_files=[ "res://.import/Sky1.jpg-6e9d7daba8dea40e8b26cbeb54793c2c.stex" ]
 
 [params]
 

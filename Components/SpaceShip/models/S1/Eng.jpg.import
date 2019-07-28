@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jedifighter4.jpg-ca2b64f6e27b7005363779ff891d55c2.stex"
+path="res://.import/Eng.jpg-f9c4ed999d11c7fcb8e068e1d0116926.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S0/jedifighter4.jpg"
-dest_files=[ "res://.import/jedifighter4.jpg-ca2b64f6e27b7005363779ff891d55c2.stex" ]
+source_file="res://Components/SpaceShip/models/S1/Eng.jpg"
+dest_files=[ "res://.import/Eng.jpg-f9c4ed999d11c7fcb8e068e1d0116926.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wing2.jpg-637a4f790a5226be6d0be2483bae2d3a.stex"
+path="res://.import/Rost02.jpg-91084bab3f350eb0cfa872c9e4d151d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S0/wing2.jpg"
-dest_files=[ "res://.import/wing2.jpg-637a4f790a5226be6d0be2483bae2d3a.stex" ]
+source_file="res://Components/SpaceShip/models/S0/Rost02.jpg"
+dest_files=[ "res://.import/Rost02.jpg-91084bab3f350eb0cfa872c9e4d151d2.stex" ]
 
 [params]
 

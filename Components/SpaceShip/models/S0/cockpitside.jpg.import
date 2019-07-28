@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/EnvMap2.jpg-1fd8e03ef711037e7e17de3a04af0c75.stex"
+path="res://.import/cockpitside.jpg-6dc037c65d3aa2d222c5fc16971d8e73.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S1/EnvMap2.jpg"
-dest_files=[ "res://.import/EnvMap2.jpg-1fd8e03ef711037e7e17de3a04af0c75.stex" ]
+source_file="res://Components/SpaceShip/models/S0/cockpitside.jpg"
+dest_files=[ "res://.import/cockpitside.jpg-6dc037c65d3aa2d222c5fc16971d8e73.stex" ]
 
 [params]
 

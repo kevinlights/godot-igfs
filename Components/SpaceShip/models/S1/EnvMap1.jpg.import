@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LHu.jpg-cca8891c7f67bd476561c2a15b78a8ef.stex"
+path="res://.import/EnvMap1.jpg-1d75decde22206d7e40787ffc8e94a79.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S1/LHu.jpg"
-dest_files=[ "res://.import/LHu.jpg-cca8891c7f67bd476561c2a15b78a8ef.stex" ]
+source_file="res://Components/SpaceShip/models/S1/EnvMap1.jpg"
+dest_files=[ "res://.import/EnvMap1.jpg-1d75decde22206d7e40787ffc8e94a79.stex" ]
 
 [params]
 

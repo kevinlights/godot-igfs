@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sky2.jpg-125e1dd8e3fc9d495d46ade598bca6e3.stex"
+path="res://.import/wing1.jpg-50a7719aca379570df393c93939f0789.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S1/Sky2.jpg"
-dest_files=[ "res://.import/Sky2.jpg-125e1dd8e3fc9d495d46ade598bca6e3.stex" ]
+source_file="res://Components/SpaceShip/models/S0/wing1.jpg"
+dest_files=[ "res://.import/wing1.jpg-50a7719aca379570df393c93939f0789.stex" ]
 
 [params]
 

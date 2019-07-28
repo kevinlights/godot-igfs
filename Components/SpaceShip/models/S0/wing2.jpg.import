@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/EnvMap3.jpg-1353528a16e776eb5c7885935cc3ab52.stex"
+path="res://.import/wing2.jpg-12e9072bc979735425a67fee704cf2fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/models/ships/S1/EnvMap3.jpg"
-dest_files=[ "res://.import/EnvMap3.jpg-1353528a16e776eb5c7885935cc3ab52.stex" ]
+source_file="res://Components/SpaceShip/models/S0/wing2.jpg"
+dest_files=[ "res://.import/wing2.jpg-12e9072bc979735425a67fee704cf2fb.stex" ]
 
 [params]
 
