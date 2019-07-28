@@ -1,13 +1,13 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
-[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/Planets/SS0-P0/texture.jpg" type="Texture" id=8]
+[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Images/Planets/SS0-P1/texture.jpg" type="Texture" id=9]
 [ext_resource path="res://Assets/Images/Planets/SS0-P2/texture.png" type="Texture" id=10]
 [ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=11]
@@ -18,14 +18,11 @@ radius = 1500.0
 height = 3000.0
 rings = 64
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_texture = ExtResource( 8 )
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 9 )
 
 [sub_resource type="SphereShape" id=3]
 radius = 1500.0
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_texture = ExtResource( 9 )
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_texture = ExtResource( 10 )
@@ -42,19 +39,19 @@ margin_right = 2607.35
 margin_bottom = 267.384
 rect_scale = Vector2( 0.2, 0.2 )
 
-[node name="Message" parent="." instance=ExtResource( 6 )]
+[node name="Message" parent="." instance=ExtResource( 2 )]
 margin_left = 866.869
 margin_top = 7.79212
 margin_right = 866.869
 margin_bottom = 7.79212
 
-[node name="Position" parent="." instance=ExtResource( 5 )]
+[node name="Position" parent="." instance=ExtResource( 3 )]
 margin_left = 142.206
 margin_top = 3.89609
 margin_right = -1537.79
 margin_bottom = -1019.1
 
-[node name="MenuButton" parent="." instance=ExtResource( 4 )]
+[node name="MenuButton" parent="." instance=ExtResource( 5 )]
 position = Vector2( -3.09088, 0 )
 
 [node name="CSGBox" type="CSGPolygon" parent="."]
@@ -71,19 +68,13 @@ depth = 10.8401
 
 [node name="SS0" type="Spatial" parent="."]
 
-[node name="SS0-ST0" parent="SS0" instance=ExtResource( 3 )]
+[node name="SS0-ST0" parent="SS0" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -4471.33 )
 star_texture = ExtResource( 7 )
 
-[node name="SS0-P0" type="StaticBody" parent="SS0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12000, 0, 1661.82 )
-
-[node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P0"]
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="SS0/SS0-P0"]
-shape = SubResource( 3 )
+[node name="SS0-P0" parent="SS0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14554.9, 0, -8770.5 )
+planet_texture = ExtResource( 9 )
 
 [node name="SS0-P1" type="StaticBody" parent="SS0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4000, 0, 10000 )
@@ -96,7 +87,7 @@ material/0 = SubResource( 4 )
 shape = SubResource( 3 )
 
 [node name="SS0-P2" type="StaticBody" parent="SS0"]
-transform = Transform( 0.876556, -0.326271, 0.353832, 0, 0.735159, 0.677895, -0.4813, -0.594213, 0.644408, 390.566, 0, -19755.4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 390.566, 0, -19755.4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P2"]
 transform = Transform( 1, -2.98023e-08, 0, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
@@ -105,6 +96,10 @@ material/0 = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="SS0/SS0-P2"]
 shape = SubResource( 3 )
+
+[node name="SS0-P3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12443.6, 0, -3627.08 )
+planet_texture = ExtResource( 10 )
 
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.875, 0 )
@@ -117,7 +112,7 @@ radius = 1.20018
 radial_segments = 100
 rings = 100
 
-[node name="SpaceShip" parent="." instance=ExtResource( 2 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20.5674 )
 
 [node name="Camera" type="Camera" parent="SpaceShip"]

@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Components/Star/Main.gd" type="Script" id=1]
-[ext_resource path="res://Components/Star/Material.tres" type="Material" id=2]
+[ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 3000.0
 height = 6000.0
 rings = 64
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SpatialMaterial" id=2]
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 2 )
+
+[sub_resource type="SphereShape" id=3]
 margin = 0.001
 radius = 3000.0
 
@@ -26,7 +34,7 @@ omni_attenuation = 0.0980731
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
+material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
