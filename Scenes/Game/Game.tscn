@@ -14,15 +14,15 @@
 [ext_resource path="res://Scenes/Game/Enviroments/GlowAndAutoExposure.tres" type="Environment" id=12]
 
 [sub_resource type="SphereMesh" id=1]
-radius = 200.0
-height = 400.0
+radius = 1500.0
+height = 3000.0
 rings = 64
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 8 )
 
 [sub_resource type="SphereShape" id=3]
-radius = 200.0
+radius = 1500.0
 
 [sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 9 )
@@ -72,10 +72,10 @@ depth = 10.8401
 [node name="SS0" type="Spatial" parent="."]
 
 [node name="SS0-ST0" parent="SS0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -4471.33 )
 star_texture = ExtResource( 7 )
 
 [node name="SS0-P0" type="StaticBody" parent="SS0"]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3224.42, 0, 370.775 )
 
 [node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P0"]
@@ -97,8 +97,7 @@ material/0 = SubResource( 4 )
 shape = SubResource( 3 )
 
 [node name="SS0-P2" type="StaticBody" parent="SS0"]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1995.05, 0, -1612.68 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 390.566, 0, -14755.4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="SS0/SS0-P2"]
 mesh = SubResource( 1 )
