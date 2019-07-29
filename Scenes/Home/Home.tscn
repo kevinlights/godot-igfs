@@ -3,10 +3,10 @@
 [ext_resource path="res://Scenes/Home/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Home/Images/bg.jpg" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/QuitButton/QuitButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Components/StartButton/StartButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Components/QuitButton/QuitButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/StartButton/StartButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -45,7 +45,7 @@ margin_top = 603.0
 margin_right = 1916.0
 margin_bottom = 603.0
 
-[node name="StartButton" parent="MainGrid/StartButtonWrapper" instance=ExtResource( 7 )]
+[node name="StartButton" parent="MainGrid/StartButtonWrapper" instance=ExtResource( 6 )]
 position = Vector2( 0.681946, -4.383 )
 
 [node name="SettingsButtonWrapper" type="Control" parent="MainGrid"]
@@ -53,7 +53,7 @@ margin_top = 607.0
 margin_right = 1916.0
 margin_bottom = 607.0
 
-[node name="SettingsButton" parent="MainGrid/SettingsButtonWrapper" instance=ExtResource( 4 )]
+[node name="SettingsButton" parent="MainGrid/SettingsButtonWrapper" instance=ExtResource( 5 )]
 position = Vector2( 711.539, 61.194 )
 
 [node name="QuitButtonWrapper" type="Control" parent="MainGrid"]
@@ -61,10 +61,10 @@ margin_top = 611.0
 margin_right = 1916.0
 margin_bottom = 611.0
 
-[node name="QuitButton2" parent="MainGrid/QuitButtonWrapper" instance=ExtResource( 5 )]
+[node name="QuitButton2" parent="MainGrid/QuitButtonWrapper" instance=ExtResource( 4 )]
 position = Vector2( 680.503, 157.204 )
 
-[node name="FPS" parent="." instance=ExtResource( 6 )]
+[node name="FPS" parent="." instance=ExtResource( 7 )]
 margin_left = 1734.76
 margin_top = -1.4782e-05
 margin_right = 2599.76

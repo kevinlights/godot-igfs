@@ -38,3 +38,8 @@ spot_range = 1338.13
 spot_attenuation = 0.116629
 spot_angle = 17.5914
 spot_angle_attenuation = 0.101532
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 1.44672, 4.76159 )
+near = 0.01
+far = 20000.0

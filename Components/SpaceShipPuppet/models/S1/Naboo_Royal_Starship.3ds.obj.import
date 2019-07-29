@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Naboo_Royal_Starship.3ds.obj-69f321621cc4928b8d69f04982fe991a.mesh"
+
+[deps]
+
+files=[ "res://.import/Naboo_Royal_Starship.3ds.obj-69f321621cc4928b8d69f04982fe991a.mesh" ]
+
+source_file="res://Components/SpaceShipPuppet/models/S1/Naboo_Royal_Starship.3ds.obj"
+dest_files=[ "res://.import/Naboo_Royal_Starship.3ds.obj-69f321621cc4928b8d69f04982fe991a.mesh", "res://.import/Naboo_Royal_Starship.3ds.obj-69f321621cc4928b8d69f04982fe991a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
