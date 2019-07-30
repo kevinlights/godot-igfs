@@ -161,3 +161,8 @@ func heat_body_enter(body):
 func heat_body_exit(body):
     # _heat_interval = false
     pass
+
+remote func update_position(id,pos):
+    if get_name() == id:
+        translation = pos.coords
+        set_rotation(pos.rotation)
