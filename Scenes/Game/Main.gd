@@ -1,7 +1,7 @@
 extends Spatial
 
 
-var HOST = true
+var HOST = false
 
 # Player info, associate ID to data
 var player_info = {}
@@ -32,6 +32,7 @@ func add_connections():
 	get_tree().connect("connected_to_server", self, "connected_ok")
 	get_tree().connect("connection_failed", self, "connected_fail")
 	get_tree().connect("server_disconnected", self, "server_disconnected")
+	get_node("SpaceShip").connect("position",self,"update_position_local")
 
 func player_connected(id):
 	print("Player connected, id: " + str(id))
@@ -52,6 +53,9 @@ func connected_fail():
 
 func server_disconnected():
 	print("Disconnected from server")
+
+func update_position_local(position):
+	rpc("update_position",get_tree().get_network_unique_id(), position)
 	
 # func _on_message(message):
 # 	print("message: " + message)
@@ -60,12 +64,13 @@ func server_disconnected():
 
 remote func register_player(id, info):
 	# Store the info
-	player_info[id] = info
-	var player = preload("res://Components/SpaceShipPuppet/SpaceShipPuppet.tscn").instance()
-	# var player = CSGBox.new()
-	player.set_name(str(id))
-	player.set_network_master(id) # Will be explained later
-	get_node("SpaceShips").add_child(player)
+	if id != get_tree().get_network_unique_id():
+		player_info[id] = info
+		var player = preload("res://Components/SpaceShipPuppet/SpaceShipPuppet.tscn").instance()
+		# var player = CSGBox.new()
+		player.set_name(str(id))
+		player.set_network_master(id) # Will be explained later
+		get_node("SpaceShips").add_child(player)
 	# If I'm the server, let the new guy know about existing players.
 	if get_tree().is_network_server():
 		# Send my info to new player
@@ -83,6 +88,10 @@ remote func unregister_player(id):
 	get_node("SpaceShips/" + str(id)).queue_free()
 
 	print("Players: " + str(player_info))
+
+remote func update_position(id,position):
+	# print("Update position of " + str(id) + ": " + str(position))
+	get_node("SpaceShips/" + str(id)).translation = position.coords
 
 
 # remote func pre_configure_game():

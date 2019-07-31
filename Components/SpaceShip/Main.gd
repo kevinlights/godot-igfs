@@ -68,7 +68,7 @@ func _unhandled_input(event):
 func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
     emit_signal("position",{"coords":translation,"rotation":get_rotation(),"health":health}) 
-    rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
+    # rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
 
     if (health <= 0):
         reset_ship()
