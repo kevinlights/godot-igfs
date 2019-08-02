@@ -96,7 +96,7 @@ remote func unregister_player(id):
 
 remote func update_position(id,position):
 	# print("Update position of " + str(id) + ": " + str(position))
-	if get_node("SpaceShips/" + str(id)):
+	if has_node("SpaceShips/" + str(id)):
 		get_node("SpaceShips/" + str(id)).translation = position.coords
 		get_node("SpaceShips/" + str(id)).set_rotation(position.rotation)
 
