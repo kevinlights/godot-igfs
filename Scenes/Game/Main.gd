@@ -92,6 +92,7 @@ remote func unregister_player(id):
 remote func update_position(id,position):
 	# print("Update position of " + str(id) + ": " + str(position))
 	get_node("SpaceShips/" + str(id)).translation = position.coords
+	get_node("SpaceShips/" + str(id)).set_rotation(position.rotation)
 
 
 # remote func pre_configure_game():
