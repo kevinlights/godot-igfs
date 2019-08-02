@@ -64,6 +64,7 @@ func update_position_local(position):
 
 remote func register_player(id, info):
 	# Store the info
+	print("Registering player, id: " + str(id))
 	if id != get_tree().get_network_unique_id():
 		player_info[id] = info
 		var player = preload("res://Components/SpaceShipPuppet/SpaceShipPuppet.tscn").instance()
@@ -85,14 +86,16 @@ remote func unregister_player(id):
 	# Store the info
 	player_info.erase(id)
 
-	get_node("SpaceShips/" + str(id)).queue_free()
+	if get_node("SpaceShips/" + str(id)):
+		get_node("SpaceShips/" + str(id)).queue_free()
 
 	print("Players: " + str(player_info))
 
 remote func update_position(id,position):
 	# print("Update position of " + str(id) + ": " + str(position))
-	get_node("SpaceShips/" + str(id)).translation = position.coords
-	get_node("SpaceShips/" + str(id)).set_rotation(position.rotation)
+	if get_node("SpaceShips/" + str(id)):
+		get_node("SpaceShips/" + str(id)).translation = position.coords
+		get_node("SpaceShips/" + str(id)).set_rotation(position.rotation)
 
 
 # remote func pre_configure_game():
