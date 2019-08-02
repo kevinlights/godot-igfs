@@ -32,6 +32,7 @@ func add_connections():
 	get_tree().connect("connected_to_server", self, "connected_ok")
 	get_tree().connect("connection_failed", self, "connected_fail")
 	get_tree().connect("server_disconnected", self, "server_disconnected")
+	get_tree().connect("peer_connected", self, "peer_connected")
 	get_node("SpaceShip").connect("position",self,"update_position_local")
 
 func player_connected(id):
@@ -46,7 +47,9 @@ func player_disconnected(id):
 func connected_ok():
 	print("Connected to server")
 	# Only called on clients, not server. Send my ID and info to all the other peers.
+	yield(get_tree().create_timer(5), "timeout")
 	rpc("register_player", get_tree().get_network_unique_id(), my_info)
+	# rpc_id(1, "register_player", get_tree().get_network_unique_id(), my_info)
 
 func connected_fail():
 	print("Failed to connect to server")
