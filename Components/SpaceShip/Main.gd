@@ -7,12 +7,19 @@ var _rot_y = 0
 var _rot_z = 0
 var _heat_interval = false
 var health = 100
+var landed = false
 # change to ship in storage
-var SHIP_TURN_RATE = 0.05
+# var SHIP_TURN_RATE = 0.1
+
+var config = ConfigFile.new()
+var err = config.load("res://settings.cfg")
+
+var SHIP_TURN_RATE = config.get_value("ship_info","turn_rate",0.1)
+var SHIP_MAX_SPEED = config.get_value("ship_info","max_speed",250)
 
 signal position(content) 
 
-var speed = 0.1
+var speed = 0
 
 func _ready():
 #    set_physics_process(true)
@@ -67,7 +74,7 @@ func _unhandled_input(event):
 
 func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
-    emit_signal("position",{"coords":translation,"rotation":get_rotation(),"health":health}) 
+    emit_signal("position",{"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed}) 
     # rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
 
     if (health <= 0):
@@ -82,7 +89,7 @@ func _process(delta):
 
     if get_slide_count():
         # print(get_slide_collision(0).get_collider().get_name())
-        if abs(speed) > 18:
+        if abs(speed) > 30 && !landed:
             crash()
 
     var TURN_SPEED = 0
@@ -93,9 +100,11 @@ func _process(delta):
         TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
 
     if Input.is_key_pressed(KEY_UP):
-        speed = speed + 1
+        # if speed + 1 <= SHIP_MAX_SPEED && !landed:
+            speed = speed + 1
     if Input.is_key_pressed(KEY_DOWN):
-        speed = speed - 1
+        # if abs(speed - 1) <= SHIP_MAX_SPEED && !landed:
+            speed = speed - 1
     if Input.is_key_pressed(KEY_S):
         rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
         _rot_x += TURN_SPEED
@@ -116,10 +125,23 @@ func _process(delta):
         _rot_z -= TURN_SPEED
     if Input.is_key_pressed(KEY_O):
         speed = 0
+    if Input.is_key_pressed(KEY_L):
+        
+        var body_in_landing = get_node("LandingRay").is_colliding()
+        print(body_in_landing)
+        if body_in_landing:
+            # if !landed:
+                # landed = true
+                # set_rotation(Vector3(0, 0, 0))
+                speed = 0
+                move_and_collide(global_transform.basis.y * -1 * 0.1)
+            # else:
+                # move_and_collide(global_transform.basis.y * 1 * 1)
+                # landed = false
 
 func reset_ship():
     set_translation(_initial_position)
-    speed = 0.1
+    speed = 0
     set_rotation(Vector3(0, 0, 0))
     yield( get_tree().create_timer(0.05), "timeout" )
     health = 100
