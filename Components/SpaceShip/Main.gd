@@ -114,6 +114,8 @@ func _process(delta):
     if Input.is_key_pressed(KEY_E):
         rotate_object_local(Vector3(0, 0, 1), -TURN_SPEED)
         _rot_z -= TURN_SPEED
+    if Input.is_key_pressed(KEY_O):
+        speed = 0
 
 func reset_ship():
     set_translation(_initial_position)
