@@ -1,19 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Themes/material.tres" type="Theme" id=1]
 [ext_resource path="res://Components/PopupMenu/Main.gd" type="Script" id=2]
 [ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/HomeButton/HomeButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/QuitButton/QuitButton.tscn" type="PackedScene" id=5]
 
-
-
-
-
 [node name="PopupMenu" type="PopupMenu"]
 margin_right = 1920.0
 margin_bottom = 1080.0
-theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

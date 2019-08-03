@@ -46,6 +46,11 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "godot-git-control.funabab", "vector-icons" )
 
+[gui]
+
+theme/custom="res://Assets/Themes/material.tres"
+theme/custom_font="res://Assets/Fonts/googleSans16.tres"
+
 [rendering]
 
 threads/thread_model=2
