@@ -1,15 +1,15 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
-[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/STATION_CMPL.3ds.obj" type="ArrayMesh" id=6]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/jar-jar2(3DS)/jarjar.3ds.obj" type="ArrayMesh" id=7]
 [ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=9]
-[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Components/Planet/images/SS0-P0/texture.jpg" type="Texture" id=11]
 [ext_resource path="res://Components/Planet/images/SS0-P1/texture.jpg" type="Texture" id=12]
 [ext_resource path="res://Components/Planet/images/SS0-P2/texture.png" type="Texture" id=13]
@@ -21,7 +21,7 @@
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="FPS" parent="." instance=ExtResource( 10 )]
+[node name="FPS" parent="." instance=ExtResource( 5 )]
 margin_left = 1742.35
 margin_top = 11.3843
 margin_right = 2607.35
@@ -34,7 +34,7 @@ margin_top = 7.79212
 margin_right = 866.869
 margin_bottom = 7.79212
 
-[node name="Position" parent="." instance=ExtResource( 4 )]
+[node name="Position" parent="." instance=ExtResource( 2 )]
 margin_left = 142.206
 margin_top = 3.89609
 margin_right = -1537.79
@@ -157,19 +157,19 @@ material/90 = null
 
 [node name="SS0" type="Spatial" parent="."]
 
-[node name="SS0-ST0" parent="SS0" instance=ExtResource( 5 )]
+[node name="SS0-ST0" parent="SS0" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -6461.2 )
 star_texture = ExtResource( 9 )
 
-[node name="SS0-P0" parent="SS0" instance=ExtResource( 2 )]
+[node name="SS0-P0" parent="SS0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9608.31, 0, -19588.2 )
 planet_texture = ExtResource( 11 )
 
-[node name="SS0-P1" parent="SS0" instance=ExtResource( 2 )]
+[node name="SS0-P1" parent="SS0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16965, 0, 2203.8 )
 planet_texture = ExtResource( 12 )
 
-[node name="SS0-P2" parent="SS0" instance=ExtResource( 2 )]
+[node name="SS0-P2" parent="SS0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16650.4, 0, 6440.48 )
 planet_texture = ExtResource( 13 )
 

@@ -1,7 +1,7 @@
 extends Spatial
 
 
-var HOST = false
+var HOST = true
 
 # Player info, associate ID to data
 var player_info = {}
@@ -53,9 +53,13 @@ func connected_ok():
 
 func connected_fail():
 	print("Failed to connect to server")
+	get_tree().set_network_peer(null)
+	get_tree().change_scene("res://Scenes/Home/Home.tscn")
 
 func server_disconnected():
 	print("Disconnected from server")
+	get_tree().set_network_peer(null)
+	get_tree().change_scene("res://Scenes/Home/Home.tscn")
 
 func update_position_local(position):
 	rpc("update_position",get_tree().get_network_unique_id(), position)

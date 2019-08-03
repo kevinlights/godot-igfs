@@ -32,6 +32,9 @@ margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 2 )
 text = "x:0 y:0 z:0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Rotation" type="Label" parent="."]
 margin_left = 199.724
@@ -42,10 +45,10 @@ custom_fonts/font = ExtResource( 2 )
 text = "x:0 y:0 z:0"
 
 [node name="Health" type="Label" parent="."]
-margin_left = 367.911
-margin_top = 1.58667
-margin_right = 479.911
-margin_bottom = 34.5867
+margin_left = 423.159
+margin_top = -0.868805
+margin_right = 550.159
+margin_bottom = 40.1312
 custom_fonts/font = ExtResource( 2 )
 text = "Health:100"
 
