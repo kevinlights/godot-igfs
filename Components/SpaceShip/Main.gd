@@ -7,7 +7,7 @@ var _rot_y = 0
 var _rot_z = 0
 var _heat_interval = false
 var health = 100
-var landed = false
+var landing = false
 # change to ship in storage
 # var SHIP_TURN_RATE = 0.1
 
@@ -24,35 +24,9 @@ var speed = 0
 func _ready():
 #    set_physics_process(true)
 #    set_gravity_scale(1)
-    # pass
     _initial_position = get_global_transform().origin
     _initial_rotation = get_global_transform().basis
     addConnections()
-    # while ( true ):
-    #     yield( get_tree().create_timer(0.4), "timeout" )
-    #     # EventManager.emit("ship_position",translation)       
-    #     emit_signal("position",translation) 
-
-# func _physics_process(delta):
-#     var bodies = get_colliding_bodies()
-
-#     for curBody in bodies:
-#         print( "collision :" + curBody.get_name() )
-
-#     if Input.is_key_pressed(KEY_E):
-#         speed = speed + .1
-#     if Input.is_key_pressed(KEY_Q):
-#         speed = speed - .1
-#     if Input.is_key_pressed(KEY_S):
-#         rotate_object_local(Vector3(1, 0, 0), delta/.8)
-#     if Input.is_key_pressed(KEY_W):
-#         rotate_object_local(Vector3(1, 0, 0), -delta/.8)
-#     if Input.is_key_pressed(KEY_A):
-#         rotate_object_local(Vector3(0, 1, 0), delta/.8)
-#     if Input.is_key_pressed(KEY_D):
-#         rotate_object_local(Vector3(0, 1, 0), -delta/.8)
-
-#     translate(Vector3(0,0,delta*speed))
 
 func addConnections():
     get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
@@ -70,6 +44,14 @@ func _unhandled_input(event):
     if event is InputEventKey:
         if event.pressed and event.scancode == KEY_R:
             reset_ship()
+        if event.pressed and event.scancode == KEY_L:
+            var body_in_landing = get_node("LandingRay").is_colliding()
+            # print(body_in_landing)
+            if body_in_landing:
+                speed = 0
+                landing = !landing
+            else:
+                landing = false
             
 
 func _process(delta):
@@ -80,16 +62,8 @@ func _process(delta):
     if (health <= 0):
         reset_ship()
 
-    # var array_stars = get_tree().get_nodes_in_group("star")
-    # print(global_transform)
-    # for star in array_stars:
-    #     var distance_to_star = global_transform.distance_to(star.global_transform)
-    #     if distance_to_star < 200:
-    #         print("n")
-
     if get_slide_count():
-        # print(get_slide_collision(0).get_collider().get_name())
-        if abs(speed) > 30 && !landed:
+        if abs(speed) > 30 && !landing:
             crash()
 
     var TURN_SPEED = 0
@@ -100,11 +74,19 @@ func _process(delta):
         TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
 
     if Input.is_key_pressed(KEY_UP):
-        # if speed + 1 <= SHIP_MAX_SPEED && !landed:
+        if speed + 1 <= SHIP_MAX_SPEED && !landing:
             speed = speed + 1
+        elif landing:
+            var body_in_landing = get_node("LandingRay").is_colliding()
+            if body_in_landing:
+                move_and_collide(global_transform.basis.y * 1 * 0.1)
     if Input.is_key_pressed(KEY_DOWN):
-        # if abs(speed - 1) <= SHIP_MAX_SPEED && !landed:
+        if abs(speed - 1) <= SHIP_MAX_SPEED && !landing:
             speed = speed - 1
+        elif landing:
+            var body_in_landing = get_node("LandingRay").is_colliding()
+            if body_in_landing:
+                move_and_collide(global_transform.basis.y * -1 * 0.1)
     if Input.is_key_pressed(KEY_S):
         rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
         _rot_x += TURN_SPEED
@@ -112,11 +94,19 @@ func _process(delta):
         rotate_object_local(Vector3(1, 0, 0), -TURN_SPEED)
         _rot_x -= TURN_SPEED
     if Input.is_key_pressed(KEY_A):
-        rotate_object_local(Vector3(0, 1, 0), TURN_SPEED)
-        _rot_y += TURN_SPEED
+        if !landing:
+            rotate_object_local(Vector3(0, 1, 0), TURN_SPEED)
+            _rot_y += TURN_SPEED
+        else:
+            rotate_object_local(Vector3(0, 1, 0), delta * (SHIP_TURN_RATE * 10))
+            _rot_y += delta * (SHIP_TURN_RATE * 10)
     if Input.is_key_pressed(KEY_D):
-        rotate_object_local(Vector3(0, 1, 0), -TURN_SPEED)
-        _rot_y -= TURN_SPEED
+        if !landing:
+            rotate_object_local(Vector3(0, 1, 0), -TURN_SPEED)
+            _rot_y -= TURN_SPEED
+        else:
+            rotate_object_local(Vector3(0, 1, 0), -(delta * (SHIP_TURN_RATE * 10)))
+            _rot_y -= delta * (SHIP_TURN_RATE * 10)
     if Input.is_key_pressed(KEY_Q):
         rotate_object_local(Vector3(0, 0, 1), TURN_SPEED)
         _rot_z += TURN_SPEED
@@ -125,19 +115,6 @@ func _process(delta):
         _rot_z -= TURN_SPEED
     if Input.is_key_pressed(KEY_O):
         speed = 0
-    if Input.is_key_pressed(KEY_L):
-        
-        var body_in_landing = get_node("LandingRay").is_colliding()
-        print(body_in_landing)
-        if body_in_landing:
-            # if !landed:
-                # landed = true
-                # set_rotation(Vector3(0, 0, 0))
-                speed = 0
-                move_and_collide(global_transform.basis.y * -1 * 0.1)
-            # else:
-                # move_and_collide(global_transform.basis.y * 1 * 1)
-                # landed = false
 
 func reset_ship():
     set_translation(_initial_position)
