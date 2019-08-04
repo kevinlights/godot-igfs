@@ -35,6 +35,12 @@ func add_connections():
 	get_tree().connect("peer_connected", self, "peer_connected")
 	get_node("SpaceShip").connect("position",self,"update_position_local")
 
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_P:
+			# get_tree().paused = !get_tree().paused 
+			pass
+
 func player_connected(id):
 	print("Player connected, id: " + str(id))
 

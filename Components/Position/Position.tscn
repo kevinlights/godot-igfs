@@ -26,6 +26,9 @@ anchor_bottom = 1.0
 margin_right = -1680.0
 margin_bottom = -1023.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Coords" type="Label" parent="."]
 margin_left = 167.416
@@ -55,6 +58,17 @@ margin_right = 771.015
 margin_bottom = 45.7834
 custom_fonts/font = ExtResource( 2 )
 text = "Health:100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Landable" type="Label" parent="."]
+margin_left = 878.398
+margin_top = 3.48091e-05
+margin_right = 1073.4
+margin_bottom = 41.0001
+custom_fonts/font = ExtResource( 2 )
+text = "Landable > 0um"
 __meta__ = {
 "_edit_use_anchors_": false
 }

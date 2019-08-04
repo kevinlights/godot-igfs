@@ -43,3 +43,4 @@ icon = "menu"
 filter = true
 
 [node name="PopupMenu" parent="." instance=ExtResource( 4 )]
+pause_mode = 2

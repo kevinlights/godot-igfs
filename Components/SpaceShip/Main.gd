@@ -56,8 +56,16 @@ func _unhandled_input(event):
 
 func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
-    emit_signal("position",{"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed}) 
+    
     # rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
+    var emit_position;
+    if get_node("LandingRay").is_colliding():
+        var landing_distance = translation.y - get_node("LandingRay").get_collision_point().y;
+        emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":true,"distance":landing_distance,"doing":landing}}
+    else:
+        emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":false}}
+
+    emit_signal("position",emit_position) 
 
     if (health <= 0):
         reset_ship()
