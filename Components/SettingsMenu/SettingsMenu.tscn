@@ -4,6 +4,7 @@
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=3]
 
 [node name="SettingsMenu" type="PopupMenu"]
+visible = true
 margin_right = 1920.0
 margin_bottom = 1080.0
 script = ExtResource( 2 )
@@ -31,7 +32,7 @@ margin_bottom = 775.618
 
 [node name="Fullscreen" type="CheckButton" parent="VBoxContainer"]
 margin_right = 545.0
-margin_bottom = 41.0
+margin_bottom = 42.2
 focus_mode = 0
 custom_fonts/font = ExtResource( 3 )
 enabled_focus_mode = 0
@@ -40,9 +41,9 @@ flat = true
 align = 1
 
 [node name="V-sync" type="CheckButton" parent="VBoxContainer"]
-margin_top = 45.0
+margin_top = 46.0
 margin_right = 545.0
-margin_bottom = 86.0
+margin_bottom = 88.2
 focus_mode = 0
 custom_fonts/font = ExtResource( 3 )
 enabled_focus_mode = 0
@@ -50,18 +51,29 @@ text = "V-sync"
 flat = true
 align = 1
 
-[node name="AntiAliasing" type="OptionButton" parent="VBoxContainer"]
-margin_top = 90.0
+[node name="GlowHDR" type="CheckButton" parent="VBoxContainer"]
+margin_top = 92.0
 margin_right = 545.0
-margin_bottom = 123.0
+margin_bottom = 134.2
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+enabled_focus_mode = 0
+text = "Glow and HDR"
+flat = true
+align = 1
+
+[node name="AntiAliasing" type="OptionButton" parent="VBoxContainer"]
+margin_top = 138.0
+margin_right = 545.0
+margin_bottom = 180.2
 custom_fonts/font = ExtResource( 3 )
 text = "Anti Aliasing"
 align = 1
 
 [node name="FPS" type="OptionButton" parent="VBoxContainer"]
-margin_top = 127.0
+margin_top = 184.0
 margin_right = 545.0
-margin_bottom = 160.0
+margin_bottom = 226.2
 custom_fonts/font = ExtResource( 3 )
 text = "FPS"
 align = 1

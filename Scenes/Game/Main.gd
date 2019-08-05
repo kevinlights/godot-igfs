@@ -8,6 +8,9 @@ var player_info = {}
 # Info we send to other players
 var my_info = { name = "PJT" }
 
+var config = ConfigFile.new()
+var err = config.load("res://settings.cfg")
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -25,6 +28,7 @@ func _ready():
 	print("Peer: " + str(get_tree().get_network_peer()))
 	print("Is server: " + str(get_tree().is_network_server()))
 	add_connections()
+	apply_settings()
 
 func add_connections():
 	get_tree().connect("network_peer_connected", self, "player_connected")
@@ -35,11 +39,15 @@ func add_connections():
 	get_tree().connect("peer_connected", self, "peer_connected")
 	get_node("SpaceShip").connect("position",self,"update_position_local")
 
-func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_P:
-			# get_tree().paused = !get_tree().paused 
-			pass
+func apply_settings():
+	#GlowHDR
+	var GlowHDR = config.get_value("settings","GlowHDR",false);
+	var enviroment;
+	if GlowHDR == true:
+		enviroment = ResourceLoader.load("res://Scenes/Game/Environments/GlowAndAutoExposure.tres");
+	else:
+		enviroment = ResourceLoader.load("res://Scenes/Game/Environments/Performance.tres");
+	get_node("WorldEnvironment").set_environment(enviroment)
 
 func player_connected(id):
 	print("Player connected, id: " + str(id))

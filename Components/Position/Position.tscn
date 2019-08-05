@@ -4,6 +4,9 @@
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Components/Position/view_box_texture.png" type="Texture" id=3]
 
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Viewport")
+
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0.843137, 0.796078, 1 )
 albedo_texture = ExtResource( 3 )
@@ -16,9 +19,6 @@ albedo_color = Color( 0.0784314, 0, 1, 1 )
 
 [sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.0313726, 1, 0, 1 )
-
-[sub_resource type="ViewportTexture" id=5]
-viewport_path = NodePath("Viewport")
 
 [node name="Position" type="Control"]
 anchor_right = 1.0
@@ -97,6 +97,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ViewCubeViewer" type="Sprite" parent="."]
+position = Vector2( 1650.24, 40.6582 )
+texture = SubResource( 6 )
+
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
 transparent_bg = true
@@ -113,7 +117,7 @@ sides = 12
 material = SubResource( 2 )
 
 [node name="CSGCylinder2" type="CSGCylinder" parent="Viewport/viewCube"]
-transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, -1.84375 )
+transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, 1.8125 )
 radius = 0.121
 height = 1.778
 sides = 12
@@ -134,14 +138,3 @@ current = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518124, 99997.9 )
 light_energy = 0.9
 omni_range = 11.3
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -12.1884, -15.5125 )
-texture = SubResource( 5 )
-vframes = 2
-hframes = 16
-frame = 4
-region_enabled = true
-
-[node name="Viewport_Sprite" type="Sprite" parent="."]
-position = Vector2( 1504.46, 43.0231 )

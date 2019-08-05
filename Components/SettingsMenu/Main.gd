@@ -4,6 +4,9 @@ extends PopupMenu
 # var a = 2
 # var b = "text"
 
+var config = ConfigFile.new()
+var err = config.load("res://settings.cfg")
+
 # Called when the node enters the scene tree for the first time.
 
 func _process(delta):
@@ -17,12 +20,14 @@ func _ready():
 func addConnections():
 	get_node("VBoxContainer/Fullscreen").connect("toggled", self, "fullscreenPressed")
 	get_node("VBoxContainer/V-sync").connect("toggled", self, "vsyncPressed")
+	get_node("VBoxContainer/GlowHDR").connect("toggled", self, "glowHDRPressed")
 	get_node("VBoxContainer/AntiAliasing").connect("item_selected", self, "antiAliasingChanged")
 	get_node("VBoxContainer/FPS").connect("item_selected", self, "FPSChanged")
 
 func setNodes():
 	get_node("VBoxContainer/Fullscreen").pressed = OS.window_fullscreen
 	get_node("VBoxContainer/V-sync").pressed = OS.vsync_enabled;
+	get_node("VBoxContainer/GlowHDR").pressed = config.get_value("settings","GlowHDR",false);
 	get_node("VBoxContainer/AntiAliasing").add_item("Disabled",0)
 	get_node("VBoxContainer/AntiAliasing").add_item("2x",2)
 	get_node("VBoxContainer/AntiAliasing").add_item("4x",4)
@@ -78,6 +83,19 @@ func vsyncPressed(state):
 	#persist
 	ProjectSettings.set_setting("display/window/vsync/use_vsync",state)
 	ProjectSettings.save()
+
+func glowHDRPressed(state):
+	print("glowHDRPressed: " + str(state))
+	var enviroment;
+	if state == true:
+		enviroment = ResourceLoader.load("res://Scenes/Game/Environments/GlowAndAutoExposure.tres");
+	else:
+		enviroment = ResourceLoader.load("res://Scenes/Game/Environments/Performance.tres");
+	
+	config.set_value("settings","GlowHDR",state)
+	config.save("res://settings.cfg")
+	if get_tree().get_root().has_node("Game/WorldEnvironment"):
+		get_tree().get_root().get_node("Game/WorldEnvironment").set_environment(enviroment)
 
 func antiAliasingChanged(id):
 	print("antiAliasingChanged: " + str(id))
