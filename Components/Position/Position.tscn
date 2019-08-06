@@ -1,24 +1,37 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Components/Position/view_box_texture.png" type="Texture" id=3]
 
-[sub_resource type="ViewportTexture" id=6]
+[sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("ScannerViewport")
+
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0.843137, 0.796078, 1 )
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.0784314, 0, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.0313726, 1, 0, 1 )
+
+[sub_resource type="OpenSimplexNoise" id=7]
+seed = 2
+octaves = 6
+period = 0.1
+persistence = 0.617
+lacunarity = 2.49
+
+[sub_resource type="NoiseTexture" id=8]
+noise = SubResource( 7 )
 
 [node name="Position" type="Control"]
 anchor_right = 1.0
@@ -99,7 +112,11 @@ __meta__ = {
 
 [node name="ViewCubeViewer" type="Sprite" parent="."]
 position = Vector2( 1650.24, 40.6582 )
-texture = SubResource( 6 )
+texture = SubResource( 1 )
+
+[node name="ScannerViewer" type="Sprite" parent="."]
+position = Vector2( 103.916, 982.773 )
+texture = SubResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
@@ -107,28 +124,28 @@ transparent_bg = true
 
 [node name="viewCube" type="CSGBox" parent="Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100001 )
-material = SubResource( 1 )
+material = SubResource( 3 )
 
 [node name="CSGCylinder" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -0.0109726, 0.999798, 0.0168643, 0, -0.0168653, 0.999858, 0.99994, 0.010971, 0.000185056, -1.9904, 0, 0 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 2 )
+material = SubResource( 4 )
 
 [node name="CSGCylinder2" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, 1.8125 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 3 )
+material = SubResource( 5 )
 
 [node name="CSGCylinder3" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -1, -0.000508037, -8.56943e-06, -0.000507744, 0.998505, 0.0546486, -1.92068e-05, 0.0546486, -0.998506, -0.000920296, -1.85929, 0.0859375 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 4 )
+material = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="Viewport"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0102536, 0, 99991.2 )
@@ -138,3 +155,12 @@ current = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518124, 99997.9 )
 light_energy = 0.9
 omni_range = 11.3
+
+[node name="ScannerViewport" type="Viewport" parent="."]
+size = Vector2( 200, 200 )
+
+[node name="Sprite" type="Sprite" parent="ScannerViewport"]
+position = Vector2( 100, 100 )
+texture = SubResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10, 10 )
