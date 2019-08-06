@@ -67,6 +67,8 @@ func _process(delta):
 
     emit_signal("position",emit_position) 
 
+    send_scanner_bodies()
+
     if (health <= 0):
         reset_ship()
 
@@ -130,28 +132,10 @@ func reset_ship():
     set_rotation(Vector3(0, 0, 0))
     yield( get_tree().create_timer(0.05), "timeout" )
     health = 100
-# func _integrate_forces(state):
-    # var a = state.get_transform().basis
-    # set_linear_velocity(Vector3(a.x.z, a.y.z, -a.z.z) * speed)
-    # if Input.is_key_pressed(KEY_Z):
-    #     set_linear_velocity(Vector3(1,1,1) * 0.00001)
-    #     set_angular_velocity(Vector3(1,1,1) * 0.00001)
-
-    # move_and_slide(Vector3(a.x.z, a.y.z, -a.z.z) * speed)
 
 func crash():
-    # print("crashed")
-    # global_event_bus.publish("message",{"text":"Crashed!"})
-    # emit_signal("message","crashed")
     health = 0
     EventManager.emit("message",{"text":"Crashed!"})
-    # get_node("../Message/Message").set_text("Crashed")
-    # emit_signal("message","Crashed")
-    # print(get_node("../Message/Message"))
-    # emit_signal("message","Crashed")
-    
-    # THIS WAS THE PROBLEM
-    # get_tree().reload_current_scene()
 
 
 func heat_body_enter(body):
@@ -164,3 +148,21 @@ func heat_body_enter(body):
 
 func heat_body_exit(body):
     _heat_interval = false
+
+func send_scanner_bodies():
+    var overlapping_bodies = get_node("ScannerArea").get_overlapping_bodies()
+    var processed_bodies = []
+
+    for body in overlapping_bodies:
+        var position = Vector2(body.translation.x, body.translation.z)
+        var self_position2d = Vector2(translation.x, translation.z)
+        var combined_position = Vector2(self_position2d.x - position.x, self_position2d.y - position.y)
+
+        var name = body.get_name()
+        processed_bodies.append({
+            "position": combined_position,
+            "name":name
+        })
+
+    # print(processed_bodies)
+    EventManager.emit("scanner_bodies", processed_bodies)

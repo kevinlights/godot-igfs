@@ -5,7 +5,7 @@
 [ext_resource path="res://Components/SpaceShip/materials/main.tres" type="Material" id=3]
 
 [sub_resource type="SphereShape" id=1]
-radius = 100.0
+radius = 1000.0
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.9, 0.8, 3.5 )
@@ -20,6 +20,11 @@ enabled = true
 [node name="HeatArea" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="HeatArea"]
+shape = SubResource( 1 )
+
+[node name="ScannerArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="ScannerArea"]
 shape = SubResource( 1 )
 
 [node name="S0" type="CollisionShape" parent="."]
