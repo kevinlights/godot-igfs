@@ -24,11 +24,8 @@ albedo_color = Color( 0.0784314, 0, 1, 1 )
 albedo_color = Color( 0.0313726, 1, 0, 1 )
 
 [sub_resource type="OpenSimplexNoise" id=7]
-seed = 2
-octaves = 6
-period = 0.1
-persistence = 0.617
-lacunarity = 2.49
+persistence = 0.0
+lacunarity = 4.0
 
 [sub_resource type="NoiseTexture" id=8]
 noise = SubResource( 7 )
