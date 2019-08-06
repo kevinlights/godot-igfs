@@ -31,6 +31,8 @@ func _ready():
 func addConnections():
     get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
     get_node("HeatArea").connect("body_exited", self, "heat_body_exit")
+    get_node("ScannerArea").connect("body_entered", self, "scanner_body_enter")
+    get_node("ScannerArea").connect("body_exited", self, "scanner_body_exit")
 
 func _enter_tree():
     # Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
@@ -153,6 +155,7 @@ func send_scanner_bodies():
     var overlapping_bodies = get_node("ScannerArea").get_overlapping_bodies()
     var processed_bodies = []
 
+
     for body in overlapping_bodies:
         var position = Vector2(body.translation.x, body.translation.z)
         var self_position2d = Vector2(translation.x, translation.z)
@@ -163,6 +166,14 @@ func send_scanner_bodies():
             "position": combined_position,
             "name":name
         })
+        # print(name)
 
     # print(processed_bodies)
     EventManager.emit("scanner_bodies", processed_bodies)
+
+
+func scanner_body_enter(body):
+    print("enter: " + str(body))
+
+func scanner_body_exit(body):
+    print("exit: " + str(body))

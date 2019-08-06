@@ -1,35 +1,65 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game/PauseControl.gd" type="Script" id=2]
-[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/STATION_CMPL.3ds.obj" type="ArrayMesh" id=6]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/jar-jar2(3DS)/jarjar.3ds.obj" type="ArrayMesh" id=7]
-[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=9]
-[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Components/Planet/images/SS0-P0/texture.jpg" type="Texture" id=11]
 [ext_resource path="res://Components/Planet/images/SS0-P1/texture.jpg" type="Texture" id=12]
 [ext_resource path="res://Components/Planet/images/SS0-P2/texture.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Game/Environments/Performance.tres" type="Environment" id=14]
-[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=16]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -89151.5, -58397.4, -40305.7, -89151.5, -58397.4, 40492, -89151.5, -50042, -40305.7, -89151.5, -50042, 40492, -88749.4, -49559.1, -5721.82, -88647.9, -49588.1, 5871.94, -86364.6, -59790.3, -29154.1, -84971.1, -59790.3, -36121.9, -84971.1, -59790.3, 36308.2, -61301.1, -59790.3, -36121.9, -61301.1, -59790.3, 36308.2, -59907.7, -59790.3, 29340.4, -57120.7, -58397.4, -40305.7, -57120.7, -58397.4, 40492, -57120.7, -50042, -40305.7, -57120.7, -50042, 40492, -51449.9, -54219.7, -11902.3, -51449.9, -54219.7, 10581.7, -49145.2, -47563.6, -13219.5, -49145.2, -47563.6, 11733.4 )
+
+[sub_resource type="ConvexPolygonShape" id=4]
+points = PoolVector3Array( -118411, -52824.7, 4272.35, -118411, -50041.3, 2879.29, -115623, -52824.7, 5665.42, -115623, -50041.3, 5665.42, -114229, -51433, -5479.1, -114229, -50041.3, -5479.1, -112835, -52824.7, -5479.1, -110047, -55612.2, 93.1558, -105871, -47253.8, -2692.97, -97517.8, -55612.2, 4272.35, -97517.8, -48647.9, 4272.35, -93336.2, -47253.8, -4086.04, -91606.8, -52860, -5620.37, -91606.8, -52860, 5806.68, -91606.8, -50006, -5620.37, -91606.8, -50006, 5806.68 )
+
+[sub_resource type="ConvexPolygonShape" id=5]
+points = PoolVector3Array( -5572.26, -13819.1, -2692.97, -5572.26, -9636.67, -2692.97, -5572.26, -9636.67, 2879.29, -4179.2, -15213.3, 2879.29, -2786.13, -13819.1, -5479.1, -2786.13, -9636.67, 5665.42, -1393.07, -2676.8, -4086.04, -1393.07, 5681.59, -1299.91, -1393.07, 7075.75, 1486.22, 1393.07, -13819.1, 5665.42, 1393.07, 7075.75, -1299.91, 1393.07, 7075.75, 1486.22, 2786.13, -9636.67, -5479.1, 2786.13, -9636.67, 5665.42, 4179.2, -15213.3, -2692.97, 4179.2, -15213.3, 2879.29, 5572.26, -9636.67, -2692.97, 5572.26, -9636.67, 2879.29 )
+
+[sub_resource type="ConvexPolygonShape" id=6]
+points = PoolVector3Array( -20896, -19392.9, 1486.22, -19501, -20784.5, -1299.91, -19501, -18000.5, -2692.97, -19501, -18000.5, 2879.29, -18106, -16607.3, -1299.91, -5571.71, -23570.9, -4086.04, -4176.74, -23570.9, -5479.1, -4176.74, -23570.9, 5665.42, -2785.86, -15214.1, -4086.04, -2785.86, -15214.1, 4272.35, 2785.86, -15214.1, -4086.04, 2785.86, -15214.1, 4272.35, 4176.74, -23570.9, -5479.1, 4176.74, -23570.9, 5665.42, 16715.1, -16607.3, 1486.22, 18106, -16607.3, -1299.91, 19501, -20784.5, 1486.22, 19501, -19392.9, -2692.97, 19501, -18000.5, 2879.29 )
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( -51537.1, -58394.4, -40305.7, -51537.1, -58394.4, 40492, -51537.1, -50040.1, -40305.7, -51537.1, -50040.1, 40492, -50248.4, -40955.8, -27689.8, -50248.4, -40955.8, 27876.1, -47358.4, -59789.9, -36121.9, -47358.4, -59789.9, 36308.2, -44565.6, -38897.9, -27754.2, -44565.6, -38897.9, 27940.5, -15054.7, -66753.1, 2605.06, -8716.99, -67956, -4917.03, -8647.48, -67849.4, 5066.34, -4969.87, -68002.9, -8715.69, -4867.64, -67741.7, 8743.09, -2481.23, -65620.2, -20287.7, -2449.81, -65500.7, 20272.5, 2595.5, -65605.9, -20263.5, 5007.45, -67695.6, 8715.04, 5078.38, -67928.8, -8670.57, 6376.07, -66771, 13973.9, 8723.4, -67728.2, 5024.25, 8766.27, -67804, -4864.27, 15168.2, -66738.1, 2602.21, 44573.1, -38897.9, -27754.2, 44573.1, -38897.9, 27940.5, 47355.4, -59789.9, -36121.9, 47355.4, -59789.9, 36308.2, 50315.3, -40955.8, -27689.8, 50315.3, -40955.8, 27876.1, 51386.6, -56899.2, -28289.6, 51534.1, -58394.4, 40492, 51534.1, -50040.1, -40305.7, 51534.1, -50040.1, 40492, 57050.1, -54252.4, 11802.7 )
+
+[sub_resource type="ConvexPolygonShape" id=8]
+points = PoolVector3Array( -11144.5, -37502.3, -4084.95, -11144.5, -36108.7, 1482.95, -9750.36, -37502.3, 7055.21, -8358.39, -36108.7, -8263.05, -8358.39, -26358.9, -5476.92, -8358.39, -24966.7, 2874.92, -5572.26, -37502.3, -9655.03, -4178.1, -24966.7, -8263.05, -4178.1, -23571.7, -1298.82, -2786.13, -37502.3, 11237.7, -2786.13, -24966.7, 8447.18, -1391.97, -23571.7, 4269.08, 2786.13, -24966.7, 8447.18, 4178.1, -36108.7, -11051.4, 4178.1, -24966.7, -8263.05, 4178.1, -23571.7, -1298.82, 5572.26, -24966.7, 7055.21, 6964.23, -36108.7, 9841.34, 8358.39, -26358.9, -5476.92, 8358.39, -24966.7, 2874.92, 9750.36, -37502.3, -6871.08, 11144.5, -37502.3, 4269.08, 11144.5, -36108.7, 4269.08 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( 54335.8, -48647.9, -9650.66, 54335.8, -48647.9, 9836.98, 57126.9, -58397.2, -40305.7, 57126.9, -58397.2, 40492, 57126.9, -50042.1, -40305.7, 57126.9, -50042.1, 40492, 61304, -59791.4, -36121.9, 61304, -59791.4, 36308.2, 84980.8, -59791.4, -36121.9, 84980.8, -59791.4, 36308.2, 86373.2, -59791.4, -29154.1, 86373.2, -59791.4, 29340.4, 89151.7, -58397.2, -40305.7, 89151.7, -58397.2, 40492, 89151.7, -50042.1, -40305.7, 89151.7, -50042.1, 40492, 103082, -47253.8, 1477.22, 105867, -47253.8, 2869.2, 110044, -55611.4, -2682.88, 110044, -55611.4, 93.1562, 114221, -51433.8, 5653.14, 118404, -52826.7, -4074.86, 118404, -52826.7, -2682.88, 118404, -50042.1, -5466.83, 118404, -50042.1, -2682.88 )
+
+[sub_resource type="ConvexPolygonShape" id=10]
+points = PoolVector3Array( -9751.46, -73723.7, 1482.95, -9751.46, -69542.8, -2692.16, -8357.85, -69542.8, 5663.78, -6964.23, -77899.6, -4085.77, -6964.23, -73723.7, -6871.08, -4178.92, -82079.2, 2876.56, -4178.92, -77899.6, 7057.39, -2783.4, -82079.2, -4085.77, -2783.4, -70938.1, -9658.3, -2783.4, -69542.8, -9658.3, -1391.7, -73723.7, 9844.61, 1391.7, -73723.7, -9658.3, 1391.7, -69542.8, 9844.61, 2783.4, -82079.2, -4085.77, 2783.4, -82079.2, 4270.17, 4178.92, -77899.6, 7057.39, 5568.72, -70938.1, 8449.09, 5568.72, -69542.8, -8264.69, 6964.23, -77899.6, -4085.77, 6964.23, -77899.6, 4270.17, 8357.85, -69542.8, 5663.78, 9751.46, -73723.7, 1482.95, 9751.46, -69542.8, -2692.16 )
+
+[sub_resource type="ConvexPolygonShape" id=11]
+points = PoolVector3Array( -12537.6, -86262.8, 1482.4, -12537.6, -84869.3, 1482.4, -9749.27, -86262.8, -9656.12, -9749.27, -86262.8, 9842.43, -9749.27, -84869.3, -9656.12, -9749.27, -84869.3, 9842.43, -8357.57, -93222.5, -2692.7, -8357.57, -83475.8, -5478.56, -5571.71, -83475.8, -8264.42, -2785.86, -93222.5, -8264.42, -1391.7, -101581, -1298.55, -1391.7, -101581, 1482.4, -1391.7, -86262.8, -12444.4, -1391.7, -86262.8, 12630.7, 1391.7, -101581, -1298.55, 1391.7, -101581, 1482.4, 1391.7, -96009.4, -6870.26, 1391.7, -86262.8, 12630.7, 1391.7, -84869.3, -12444.4, 5571.71, -83475.8, 8450.73, 8357.57, -93222.5, -2692.7, 8357.57, -83475.8, -5478.56, 9749.27, -86262.8, -9656.12, 9749.27, -86262.8, 9842.43, 9749.27, -84869.3, -9656.12, 12537.6, -86262.8, -1298.55, 12537.6, -84869.3, 1482.4 )
+
+[sub_resource type="ConvexPolygonShape" id=12]
+points = PoolVector3Array( -1522.49, -96406.9, -1429.33, -1393.07, -213018, -1299.91, -1393.07, -213018, 1486.22, -1393.07, -101583, 1486.22, 1393.07, -213018, -1299.91, 1393.07, -213018, 1486.22, 1393.07, -101583, 1486.22, 1519.6, -96522.6, -1426.44 )
+
+[sub_resource type="SphereShape" id=2]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="FPS" parent="." instance=ExtResource( 3 )]
+[node name="FPS" parent="." instance=ExtResource( 10 )]
 margin_left = 1742.35
 margin_top = 11.3843
 margin_right = 2607.35
 margin_bottom = 267.384
 rect_scale = Vector2( 0.2, 0.2 )
 
-[node name="Message" parent="." instance=ExtResource( 5 )]
+[node name="Message" parent="." instance=ExtResource( 8 )]
 margin_left = 866.869
 margin_top = 7.79212
 margin_right = 866.869
@@ -37,7 +67,7 @@ margin_bottom = 7.79212
 
 [node name="Position" parent="." instance=ExtResource( 16 )]
 
-[node name="MenuButton" parent="." instance=ExtResource( 8 )]
+[node name="MenuButton" parent="." instance=ExtResource( 5 )]
 position = Vector2( -3.09088, 0 )
 
 [node name="CSGBox" type="CSGPolygon" parent="."]
@@ -52,10 +82,30 @@ use_collision = true
 polygon = PoolVector2Array( -7.03677, 0.0448091, 0, 1, 1, 1, 1, 0 )
 depth = 10.8401
 
-[node name="SPST0" type="CSGMesh" parent="."]
+[node name="SPST0" type="MeshInstance" parent="."]
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 1493.65, 11282.3 )
-use_collision = true
 mesh = ExtResource( 6 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
+material/10 = null
+material/11 = null
+material/12 = null
+material/13 = null
+material/14 = null
+material/15 = null
+material/16 = null
+material/17 = null
+material/18 = null
+material/19 = null
+material/20 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="SPST0"]
 transform = Transform( -4.99825, 0, 0.132454, 0, 5, 0, -0.132454, 0, -4.99825, -582.822, -37575.6, -10810 )
@@ -152,21 +202,65 @@ material/88 = null
 material/89 = null
 material/90 = null
 
+[node name="StaticBody" type="StaticBody" parent="SPST0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape10" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SPST0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 12 )
+
 [node name="SS0" type="Spatial" parent="."]
 
-[node name="SS0-ST0" parent="SS0" instance=ExtResource( 15 )]
+[node name="SS0-ST0" parent="SS0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -6461.2 )
 star_texture = ExtResource( 9 )
 
-[node name="SS0-P0" parent="SS0" instance=ExtResource( 10 )]
+[node name="SS0-P0" parent="SS0" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9608.31, 0, -19588.2 )
 planet_texture = ExtResource( 11 )
 
-[node name="SS0-P1" parent="SS0" instance=ExtResource( 10 )]
+[node name="SS0-P1" parent="SS0" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16965, 0, 2203.8 )
 planet_texture = ExtResource( 12 )
 
-[node name="SS0-P2" parent="SS0" instance=ExtResource( 10 )]
+[node name="SS0-P2" parent="SS0" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16650.4, 0, 6440.48 )
 planet_texture = ExtResource( 13 )
 
@@ -175,14 +269,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.875, 0 )
 visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CSGSphere" type="CSGSphere" parent="RigidBody"]
 radius = 1.20018
 radial_segments = 100
 rings = 100
 
-[node name="SpaceShip" parent="." instance=ExtResource( 4 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3244, 0 )
 
 [node name="SpaceShips" type="Spatial" parent="."]

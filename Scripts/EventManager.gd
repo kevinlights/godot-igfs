@@ -24,5 +24,5 @@ func ignore(event, callback):
 func emit(event, args):
     if listeners.has(event):
         for callback in listeners[event]:
-            print(callback)
+            # print(callback)
             callback.call_func(args)

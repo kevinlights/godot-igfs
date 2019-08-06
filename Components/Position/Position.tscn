@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
@@ -22,13 +22,6 @@ albedo_color = Color( 0.0784314, 0, 1, 1 )
 
 [sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.0313726, 1, 0, 1 )
-
-[sub_resource type="OpenSimplexNoise" id=7]
-persistence = 0.0
-lacunarity = 4.0
-
-[sub_resource type="NoiseTexture" id=8]
-noise = SubResource( 7 )
 
 [node name="Position" type="Control"]
 anchor_right = 1.0
@@ -112,7 +105,7 @@ position = Vector2( 1650.24, 40.6582 )
 texture = SubResource( 1 )
 
 [node name="ScannerViewer" type="Sprite" parent="."]
-position = Vector2( 103.916, 982.773 )
+position = Vector2( 100, 980 )
 texture = SubResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -155,9 +148,3 @@ omni_range = 11.3
 
 [node name="ScannerViewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
-
-[node name="Sprite" type="Sprite" parent="ScannerViewport"]
-position = Vector2( 100, 100 )
-texture = SubResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 10, 10 )
