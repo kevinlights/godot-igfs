@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
@@ -7,6 +7,8 @@
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
+
+[sub_resource type="NoiseTexture" id=7]
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("ScannerViewport")
@@ -105,6 +107,11 @@ __meta__ = {
 position = Vector2( 1650.24, 40.6582 )
 texture = SubResource( 1 )
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 103.238, 984.317 )
+scale = Vector2( 0.388714, 0.39293 )
+texture = SubResource( 7 )
+
 [node name="ScannerViewer" type="Sprite" parent="."]
 position = Vector2( 100, 980 )
 texture = SubResource( 2 )
@@ -149,6 +156,7 @@ omni_range = 11.3
 
 [node name="ScannerViewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
+transparent_bg = true
 
 [node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
 position = Vector2( 150, 150 )
