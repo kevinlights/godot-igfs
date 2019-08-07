@@ -7,6 +7,10 @@ var err = config.load("res://settings.cfg")
 
 var SHIP_MAX_SPEED = config.get_value("ship_info","max_speed",250)
 
+
+var update_scanner_bodies_ref = funcref(self, "update_scanner_bodies")
+
+
 func _ready():
 	addConnections()
 	addListeners()
@@ -14,11 +18,17 @@ func _ready():
 	# startCubeView()
 	get_node("SpeedProgress").max_value = SHIP_MAX_SPEED
 
+func _exit_tree():
+	removeListeners()
+
 func addConnections():
 	get_node("../SpaceShip").connect("position", self, "_update_coords")
 
 func addListeners():
-	EventManager.listen("scanner_bodies",funcref(self, "update_scanner_bodies"))
+	EventManager.listen("scanner_bodies",update_scanner_bodies_ref)
+
+func removeListeners():
+	EventManager.ignore("scanner_bodies",update_scanner_bodies_ref)
 
 func _update_coords(pos):
 	var coords = pos.coords
@@ -28,6 +38,7 @@ func _update_coords(pos):
 	var landing = pos.landing
 	get_node("Coords").text = "x:" + str(round(coords.x)) + " y:" + str(round(coords.y)) + " z:" + str(round(coords.z))
 	get_node("Rotation").text = "x:" + str(round(rad2deg(rotation.x))) + " y:" + str(round(rad2deg(rotation.y))) + " z:" + str(round(rad2deg(rotation.z)))
+	get_node("ScannerViewer").rotation = rotation.y
 	get_node("Viewport/viewCube").set_rotation(rotation);
 	get_node("Health").text = "Health:" + str(health)
 	get_node("Speed").text = "Speed:" + str((float(speed)/SHIP_MAX_SPEED) * 100) + "% (" + str(speed) + " um/s)"
@@ -49,7 +60,7 @@ func update_scanner_bodies(bodies):
 	for body in bodies:
 		var sprite = ScannerSprite.instance()
 		get_node("ScannerViewport").add_child(sprite)
-		sprite.position.x = (body.position.x / 20.48) + 100
-		sprite.position.y = (body.position.y / 20.48) + 100
+		sprite.position.x = (body.position.x / 40.96) + 100
+		sprite.position.y = (body.position.y / 40.96) + 100
 		sprite.name = body.name
 		# print(sprite.position)

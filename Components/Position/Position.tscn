@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Components/Position/view_box_texture.png" type="Texture" id=3]
+[ext_resource path="res://Components/ScannerSprite/ScannerSprite.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -148,3 +149,6 @@ omni_range = 11.3
 
 [node name="ScannerViewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
+
+[node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
+position = Vector2( 150, 150 )

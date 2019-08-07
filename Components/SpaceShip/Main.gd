@@ -157,10 +157,10 @@ func send_scanner_bodies():
 
 
     for body in overlapping_bodies:
-        var position = Vector2(body.translation.x, body.translation.z)
-        var self_position2d = Vector2(translation.x, translation.z)
+        var position = Vector2(body.get_global_transform().origin.x, body.get_global_transform().origin.z)
+        var self_position2d = Vector2(get_global_transform().origin.x, get_global_transform().origin.z)
         var combined_position = Vector2(self_position2d.x - position.x, self_position2d.y - position.y)
-
+        # print(position)
         var name = body.get_name()
         processed_bodies.append({
             "position": combined_position,
@@ -173,7 +173,9 @@ func send_scanner_bodies():
 
 
 func scanner_body_enter(body):
-    print("enter: " + str(body))
+    # print("enter: " + str(body))
+    pass
 
 func scanner_body_exit(body):
-    print("exit: " + str(body))
+    # print("exit: " + str(body))
+    pass
