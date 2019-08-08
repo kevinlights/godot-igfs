@@ -144,14 +144,6 @@ func _process(delta):
     if Input.is_key_pressed(KEY_E):
         rotate_object_local(Vector3(0, 0, 1), -TURN_SPEED)
         _rot_z -= TURN_SPEED
-    # if Input.is_key_pressed(KEY_O):
-    #     var speed_power = 252.5/speed
-    #     print(speed_power)
-    #     var speed_transition = transition(speed,0,100,speed_power)
-    #     var speed_time = 0.01
-    #     for amount in speed_transition:
-    #         speed = amount
-    #         yield( get_tree().create_timer(speed_time), "timeout" )
 
 func reset_ship():
     set_translation(_initial_position)
