@@ -54,6 +54,25 @@ func _unhandled_input(event):
                 landing = !landing
             else:
                 landing = false
+        if event.pressed and event.scancode == KEY_O:
+            var speed_power;
+            #1.07 is max exponent
+            # 252.5/abs(speed) calculates exponent proportional to speed, so if speed is slower, then it will slow down faster
+            if 252.5/abs(speed) < 1.07:
+                speed_power = 252.5/abs(speed)
+            else:
+                speed_power = 1.07
+            
+            var speed_transition = transition(speed,0,100,speed_power)
+            var speed_time = 0.01
+            # print(speed_transition)
+            for amount in speed_transition:
+                if abs(amount) > 1.09:
+                    speed = amount
+                    yield( get_tree().create_timer(speed_time), "timeout" )
+                else:
+                    speed = 0
+                    return
             
 
 func _process(delta):
@@ -125,12 +144,14 @@ func _process(delta):
     if Input.is_key_pressed(KEY_E):
         rotate_object_local(Vector3(0, 0, 1), -TURN_SPEED)
         _rot_z -= TURN_SPEED
-    if Input.is_key_pressed(KEY_O):
-        var speed_transition = transition(speed,0,100)
-        var speed_time = speed/22500
-        for amount in speed_transition:
-            speed = amount
-            yield( get_tree().create_timer(speed_time), "timeout" )
+    # if Input.is_key_pressed(KEY_O):
+    #     var speed_power = 252.5/speed
+    #     print(speed_power)
+    #     var speed_transition = transition(speed,0,100,speed_power)
+    #     var speed_time = 0.01
+    #     for amount in speed_transition:
+    #         speed = amount
+    #         yield( get_tree().create_timer(speed_time), "timeout" )
 
 func reset_ship():
     set_translation(_initial_position)
@@ -185,7 +206,7 @@ func scanner_body_exit(body):
     pass
 
 
-func transition(start,end,amount):
+func transition(start,end,amount,power):
     var res = []
     for i in range(amount - 1):
         res.append(0)
@@ -195,11 +216,11 @@ func transition(start,end,amount):
     if start > 0:
         for index in res.size():
             if index != 0:
-                res[index] = pow(res[index - 1],1/1.01)
+                res[index] = pow(res[index - 1],1/power)
     else:
         for index in res.size():
             if index != 0:
-                res[index] = pow(abs(res[index - 1]),1/1.01) * -1
+                res[index] = pow(abs(res[index - 1]),1/power) * -1
         
     res.append(end)
     return res
