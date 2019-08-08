@@ -108,8 +108,8 @@ position = Vector2( 1650.24, 40.6582 )
 texture = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 103.238, 984.317 )
-scale = Vector2( 0.388714, 0.39293 )
+position = Vector2( 99.8713, 979.689 )
+scale = Vector2( 0.38953, 0.386338 )
 texture = SubResource( 2 )
 
 [node name="ScannerViewer" type="Sprite" parent="."]
@@ -157,6 +157,7 @@ omni_range = 11.3
 
 [node name="ScannerViewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
+transparent_bg = true
 
 [node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
-position = Vector2( 150, 150 )
+position = Vector2( 200, 200 )
