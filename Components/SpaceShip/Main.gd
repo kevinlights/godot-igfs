@@ -127,9 +127,10 @@ func _process(delta):
         _rot_z -= TURN_SPEED
     if Input.is_key_pressed(KEY_O):
         var speed_transition = transition(speed,0,100)
+        var speed_time = speed/22500
         for amount in speed_transition:
             speed = amount
-            yield( get_tree().create_timer(0.02), "timeout" )
+            yield( get_tree().create_timer(speed_time), "timeout" )
 
 func reset_ship():
     set_translation(_initial_position)
