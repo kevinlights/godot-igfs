@@ -126,7 +126,10 @@ func _process(delta):
         rotate_object_local(Vector3(0, 0, 1), -TURN_SPEED)
         _rot_z -= TURN_SPEED
     if Input.is_key_pressed(KEY_O):
-        speed = 0
+        var speed_transition = transition(speed,0,100)
+        for amount in speed_transition:
+            speed = amount
+            yield( get_tree().create_timer(0.02), "timeout" )
 
 func reset_ship():
     set_translation(_initial_position)
@@ -179,3 +182,23 @@ func scanner_body_enter(body):
 func scanner_body_exit(body):
     # print("exit: " + str(body))
     pass
+
+
+func transition(start,end,amount):
+    var res = []
+    for i in range(amount - 1):
+        res.append(0)
+
+    res[0] = start
+
+    if start > 0:
+        for index in res.size():
+            if index != 0:
+                res[index] = pow(res[index - 1],1/1.01)
+    else:
+        for index in res.size():
+            if index != 0:
+                res[index] = pow(abs(res[index - 1]),1/1.01) * -1
+        
+    res.append(end)
+    return res
