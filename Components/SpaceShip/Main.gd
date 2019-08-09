@@ -119,31 +119,34 @@ func _process(delta):
             if body_in_landing:
                 move_and_collide(global_transform.basis.y * -1 * 0.1)
     if Input.is_key_pressed(KEY_S):
-        rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
+        # rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
+        transition_rotate(TURN_SPEED,Vector3(1, 0, 0))
         _rot_x += TURN_SPEED
     if Input.is_key_pressed(KEY_W):
-        rotate_object_local(Vector3(1, 0, 0), -TURN_SPEED)
+        # rotate_object_local(Vector3(1, 0, 0), -TURN_SPEED)
+        transition_rotate(-TURN_SPEED,Vector3(1, 0, 0))
         _rot_x -= TURN_SPEED
     if Input.is_key_pressed(KEY_A):
         if !landing:
-            rotate_object_local(Vector3(0, 1, 0), TURN_SPEED)
+            # rotate_object_local(Vector3(0, 1, 0), TURN_SPEED)
+            transition_rotate(TURN_SPEED,Vector3(0, 1, 0))
             _rot_y += TURN_SPEED
         else:
             rotate_object_local(Vector3(0, 1, 0), delta * (SHIP_TURN_RATE * 10))
             _rot_y += delta * (SHIP_TURN_RATE * 10)
     if Input.is_key_pressed(KEY_D):
         if !landing:
-            rotate_object_local(Vector3(0, 1, 0), -TURN_SPEED)
+            # rotate_object_local(Vector3(0, 1, 0), -TURN_SPEED)
+            transition_rotate(-TURN_SPEED,Vector3(0, 1, 0))
             _rot_y -= TURN_SPEED
         else:
             rotate_object_local(Vector3(0, 1, 0), -(delta * (SHIP_TURN_RATE * 10)))
             _rot_y -= delta * (SHIP_TURN_RATE * 10)
     if Input.is_key_pressed(KEY_Q):
-        rotate_object_local(Vector3(0, 0, 1), TURN_SPEED)
-        _rot_z += TURN_SPEED
+        transition_rotate(TURN_SPEED,Vector3(0, 0, 1))
+            
     if Input.is_key_pressed(KEY_E):
-        rotate_object_local(Vector3(0, 0, 1), -TURN_SPEED)
-        _rot_z -= TURN_SPEED
+        transition_rotate(-TURN_SPEED,Vector3(0, 0, 1))
 
 func reset_ship():
     set_translation(_initial_position)
@@ -205,14 +208,30 @@ func transition(start,end,amount,power):
 
     res[0] = start
 
-    if start > 0:
+    if start > 0 && start > 1:
         for index in res.size():
             if index != 0:
                 res[index] = pow(res[index - 1],1/power)
-    else:
+    elif start > 0 && start < 10:
+        for index in res.size():
+            if index != 0:
+                res[index] = pow(res[index - 1],power)
+    elif start < 0 && start < -1:
         for index in res.size():
             if index != 0:
                 res[index] = pow(abs(res[index - 1]),1/power) * -1
+    elif start < 0 && start > -1:
+        for index in res.size():
+            if index != 0:
+                res[index] = pow(abs(res[index - 1]),power) * -1
+    
+    
         
     res.append(end)
     return res
+
+func transition_rotate(speed,vector):
+    var rotate_transiton = transition(speed,0,100,1.07)
+    for amount in rotate_transiton:
+        rotate_object_local(vector, amount)
+        yield( get_tree().create_timer(0.05), "timeout" )
