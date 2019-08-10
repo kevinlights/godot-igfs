@@ -242,3 +242,8 @@ func stop_ship():
             else:
                 speed = 0
                 return
+
+func transition_helper(start,end,amount,power,callback):
+    var transition_results = transition(start,end,amount,power)
+    for result in transition_results:
+        callback.call_func(result)
