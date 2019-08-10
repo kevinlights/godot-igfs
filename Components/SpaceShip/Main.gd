@@ -50,29 +50,12 @@ func _unhandled_input(event):
             var body_in_landing = get_node("LandingRay").is_colliding()
             # print(body_in_landing)
             if body_in_landing:
-                speed = 0
+                stop_ship()
                 landing = !landing
             else:
                 landing = false
         if event.pressed and event.scancode == KEY_O:
-            var speed_power;
-            #1.07 is max exponent
-            # 252.5/abs(speed) calculates exponent proportional to speed, so if speed is slower, then it will slow down faster
-            if 252.5/abs(speed) < 1.07:
-                speed_power = 252.5/abs(speed)
-            else:
-                speed_power = 1.07
-            
-            var speed_transition = transition(speed,0,100,speed_power)
-            var speed_time = 0.01
-            # print(speed_transition)
-            for amount in speed_transition:
-                if abs(amount) > 1.09:
-                    speed = amount
-                    yield( get_tree().create_timer(speed_time), "timeout" )
-                else:
-                    speed = 0
-                    return
+            stop_ship()
             
 
 func _process(delta):
@@ -120,33 +103,36 @@ func _process(delta):
                 move_and_collide(global_transform.basis.y * -1 * 0.1)
     if Input.is_key_pressed(KEY_S):
         # rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
-        transition_rotate(TURN_SPEED,Vector3(1, 0, 0))
-        _rot_x += TURN_SPEED
+        if !landing:
+            transition_rotate(TURN_SPEED,Vector3(1, 0, 0))
+        else:
+            transition_rotate(delta * (SHIP_TURN_RATE * 10),Vector3(1, 0, 0))
     if Input.is_key_pressed(KEY_W):
-        # rotate_object_local(Vector3(1, 0, 0), -TURN_SPEED)
-        transition_rotate(-TURN_SPEED,Vector3(1, 0, 0))
-        _rot_x -= TURN_SPEED
+        if !landing:
+            transition_rotate(-TURN_SPEED,Vector3(1, 0, 0))
+        else:
+            transition_rotate(-(delta * (SHIP_TURN_RATE * 10)),Vector3(1, 0, 0))
     if Input.is_key_pressed(KEY_A):
         if !landing:
-            # rotate_object_local(Vector3(0, 1, 0), TURN_SPEED)
             transition_rotate(TURN_SPEED,Vector3(0, 1, 0))
-            _rot_y += TURN_SPEED
         else:
-            rotate_object_local(Vector3(0, 1, 0), delta * (SHIP_TURN_RATE * 10))
-            _rot_y += delta * (SHIP_TURN_RATE * 10)
+            transition_rotate(delta * (SHIP_TURN_RATE * 10),Vector3(0, 1, 0))
     if Input.is_key_pressed(KEY_D):
         if !landing:
-            # rotate_object_local(Vector3(0, 1, 0), -TURN_SPEED)
             transition_rotate(-TURN_SPEED,Vector3(0, 1, 0))
-            _rot_y -= TURN_SPEED
         else:
-            rotate_object_local(Vector3(0, 1, 0), -(delta * (SHIP_TURN_RATE * 10)))
-            _rot_y -= delta * (SHIP_TURN_RATE * 10)
+            transition_rotate(-(delta * (SHIP_TURN_RATE * 10)),Vector3(0, 1, 0))
     if Input.is_key_pressed(KEY_Q):
-        transition_rotate(TURN_SPEED,Vector3(0, 0, 1))
+        if !landing:
+            transition_rotate(TURN_SPEED,Vector3(0, 0, 1))
+        else:
+            transition_rotate(delta * (SHIP_TURN_RATE * 10),Vector3(0, 0, 1))
             
     if Input.is_key_pressed(KEY_E):
-        transition_rotate(-TURN_SPEED,Vector3(0, 0, 1))
+        if !landing:
+            transition_rotate(-TURN_SPEED,Vector3(0, 0, 1))
+        else:
+            transition_rotate(-(delta * (SHIP_TURN_RATE * 10)),Vector3(0, 0, 1))
 
 func reset_ship():
     set_translation(_initial_position)
@@ -235,3 +221,24 @@ func transition_rotate(speed,vector):
     for amount in rotate_transiton:
         rotate_object_local(vector, amount)
         yield( get_tree().create_timer(0.05), "timeout" )
+
+func stop_ship():
+    if speed != 0:
+        var speed_power;
+        #1.07 is max exponent
+        # 252.5/abs(speed) calculates exponent proportional to speed, so if speed is slower, then it will slow down faster
+        if 252.5/abs(speed) < 1.07:
+            speed_power = 252.5/abs(speed)
+        else:
+            speed_power = 1.07
+        
+        var speed_transition = transition(speed,0,100,speed_power)
+        var speed_time = 0.01
+        # print(speed_transition)
+        for amount in speed_transition:
+            if abs(amount) > 1.09:
+                speed = amount
+                yield( get_tree().create_timer(speed_time), "timeout" )
+            else:
+                speed = 0
+                return
