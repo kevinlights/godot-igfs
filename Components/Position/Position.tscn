@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Components/Position/view_box_texture.png" type="Texture" id=3]
 [ext_resource path="res://Components/ScannerSprite/ScannerSprite.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -161,3 +162,10 @@ transparent_bg = true
 
 [node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
 position = Vector2( 200, 200 )
+
+[node name="FPS" parent="." instance=ExtResource( 5 )]
+margin_left = 1732.4
+margin_top = 12.5175
+margin_right = 2605.4
+margin_bottom = 271.518
+rect_scale = Vector2( 0.2, 0.2 )
