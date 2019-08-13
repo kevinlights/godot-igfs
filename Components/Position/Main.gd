@@ -41,7 +41,7 @@ func _update_coords(pos):
 	get_node("ScannerViewer").rotation = rotation.y
 	get_node("Viewport/viewCube").set_rotation(rotation);
 	get_node("Health").text = "Health:" + str(health)
-	get_node("Speed").text = "Speed:" + str((float(speed)/SHIP_MAX_SPEED) * 100) + "% (" + str(speed) + " um/s)"
+	get_node("Speed").text = str(round(speed)) + " um/s"
 	get_node("SpeedProgress").value = abs(speed)
 	if landing.possible:
 		get_node("Landable").visible = true

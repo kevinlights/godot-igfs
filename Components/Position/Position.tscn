@@ -81,13 +81,13 @@ __meta__ = {
 }
 
 [node name="Speed" type="Label" parent="."]
-margin_left = 1866.59
-margin_top = 824.817
-margin_right = 1993.59
-margin_bottom = 865.817
+margin_left = 1868.54
+margin_top = 733.26
+margin_right = 1995.54
+margin_bottom = 774.26
 rect_rotation = 270.0
 custom_fonts/font = ExtResource( 2 )
-text = "Speed:0"
+text = "0 um/s"
 __meta__ = {
 "_edit_use_anchors_": false
 }
