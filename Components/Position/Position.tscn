@@ -10,20 +10,21 @@
 [ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=8]
 [ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=10]
 size = 32
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=11]
 size = 32
 use_filter = true
 font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 1, 1, 1, 0.133333 )
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
-
-[sub_resource type="NoiseTexture" id=4]
 
 [sub_resource type="ViewportTexture" id=5]
 viewport_path = NodePath("ScannerViewport")
@@ -56,7 +57,7 @@ margin_left = 850.0
 margin_right = 850.0
 
 [node name="PositionBG" type="ColorRect" parent="."]
-margin_right = 483.0
+margin_right = 605.0
 margin_bottom = 57.0
 color = Color( 1, 1, 1, 0.360784 )
 __meta__ = {
@@ -84,7 +85,7 @@ margin_left = -32.5949
 margin_top = 1.91331
 margin_right = 7.40514
 margin_bottom = 41.9133
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = ""
 script = ExtResource( 8 )
@@ -97,10 +98,10 @@ icon = "crosshairs-gps"
 filter = true
 
 [node name="Rotation" type="Label" parent="PositionBG"]
-margin_left = 339.026
-margin_top = 7.22177
-margin_right = 459.026
-margin_bottom = 48.2218
+margin_left = 388.19
+margin_top = 7.78949
+margin_right = 508.19
+margin_bottom = 48.7895
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "x:0 y:0 z:0"
@@ -113,7 +114,7 @@ margin_left = -35.3944
 margin_top = -0.0666618
 margin_right = 4.60556
 margin_bottom = 39.9333
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "ﵴ"
 script = ExtResource( 8 )
@@ -125,22 +126,31 @@ size = 32
 icon = "rotate-orbit"
 filter = true
 
-[node name="Health" type="Label" parent="."]
-margin_left = 644.015
-margin_top = 4.78336
-margin_right = 771.015
-margin_bottom = 45.7834
-custom_fonts/font = ExtResource( 2 )
-text = "Health:100"
+[node name="HealthProgress" type="ProgressBar" parent="PositionBG"]
+margin_left = -1.0
+margin_top = 57.0
+margin_right = 3029.0
+margin_bottom = 78.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_styles/bg = SubResource( 12 )
+value = 60.0
+percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FPS" parent="." instance=ExtResource( 5 )]
+margin_left = 1732.4
+margin_top = 12.5175
+margin_right = 2605.4
+margin_bottom = 271.518
+rect_scale = Vector2( 0.2, 0.2 )
+
 [node name="Landable" type="Label" parent="."]
-margin_left = 878.398
-margin_top = 3.48091e-05
-margin_right = 1073.4
-margin_bottom = 41.0001
+margin_left = 649.583
+margin_top = 5.01059
+margin_right = 844.585
+margin_bottom = 46.0107
 custom_fonts/font = ExtResource( 2 )
 text = "Landable > 0um"
 __meta__ = {
@@ -160,10 +170,10 @@ __meta__ = {
 }
 
 [node name="SpeedProgress" type="ProgressBar" parent="."]
-margin_left = 1876.41
-margin_top = 581.546
-margin_right = 2280.41
-margin_bottom = 602.546
+margin_left = 1883.36
+margin_top = 601.0
+margin_right = 2287.36
+margin_bottom = 611.0
 rect_rotation = 270.0
 max_value = 250.0
 percent_visible = false
@@ -175,10 +185,15 @@ __meta__ = {
 position = Vector2( 1650.24, 40.6582 )
 texture = SubResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 99.8713, 979.689 )
-scale = Vector2( 0.38953, 0.386338 )
-texture = SubResource( 4 )
+[node name="ScannerBG" type="ColorRect" parent="."]
+margin_left = -7.62939e-06
+margin_top = 880.0
+margin_right = 200.0
+margin_bottom = 1080.0
+color = Color( 1, 1, 1, 0.360784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScannerViewer" type="Sprite" parent="."]
 position = Vector2( 100, 980 )
@@ -229,10 +244,3 @@ transparent_bg = true
 
 [node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
 position = Vector2( 200, 200 )
-
-[node name="FPS" parent="." instance=ExtResource( 5 )]
-margin_left = 1732.4
-margin_top = 12.5175
-margin_right = 2605.4
-margin_bottom = 271.518
-rect_scale = Vector2( 0.2, 0.2 )
