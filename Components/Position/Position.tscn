@@ -43,25 +43,36 @@ __meta__ = {
 margin_left = 850.0
 margin_right = 850.0
 
-[node name="MenuButton" parent="." instance=ExtResource( 6 )]
+[node name="PositionBG" type="ColorRect" parent="."]
+margin_right = 424.0
+margin_bottom = 57.0
+color = Color( 1, 1, 1, 0.360784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" parent="PositionBG" instance=ExtResource( 6 )]
 pause_mode = 2
 
-[node name="Coords" type="Label" parent="."]
-margin_left = 167.416
-margin_right = 287.416
-margin_bottom = 41.0
+[node name="Coords" type="Label" parent="PositionBG"]
+margin_left = 80.437
+margin_top = 7.40247
+margin_right = 200.437
+margin_bottom = 48.4025
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "x:0 y:0 z:0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rotation" type="Label" parent="."]
-margin_left = 412.476
-margin_top = 3.82362
-margin_right = 532.476
-margin_bottom = 44.8236
+[node name="Rotation" type="Label" parent="PositionBG"]
+margin_left = 276.921
+margin_top = 7.22177
+margin_right = 396.921
+margin_bottom = 48.2218
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "x:0 y:0 z:0"
 __meta__ = {
 "_edit_use_anchors_": false

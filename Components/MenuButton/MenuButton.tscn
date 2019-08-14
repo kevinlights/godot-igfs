@@ -38,6 +38,7 @@ margin_top = -5.30178
 margin_right = 62.3585
 margin_bottom = 62.6982
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = ""
 script = ExtResource( 2 )
 icon_set = "MaterialIcons"

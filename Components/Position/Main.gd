@@ -36,8 +36,8 @@ func _update_coords(pos):
 	var health = pos.health
 	var speed = pos.speed
 	var landing = pos.landing
-	get_node("Coords").text = "x:" + str(round(coords.x)) + " y:" + str(round(coords.y)) + " z:" + str(round(coords.z))
-	get_node("Rotation").text = "x:" + str(round(rad2deg(rotation.x))) + " y:" + str(round(rad2deg(rotation.y))) + " z:" + str(round(rad2deg(rotation.z)))
+	get_node("PositionBG/Coords").text = "x:" + str(round(coords.x)) + " y:" + str(round(coords.y)) + " z:" + str(round(coords.z))
+	get_node("PositionBG/Rotation").text = "x:" + str(round(rad2deg(rotation.x))) + " y:" + str(round(rad2deg(rotation.y))) + " z:" + str(round(rad2deg(rotation.z)))
 	get_node("ScannerViewer").rotation = rotation.y
 	get_node("Viewport/viewCube").set_rotation(rotation);
 	get_node("Health").text = "Health:" + str(health)
