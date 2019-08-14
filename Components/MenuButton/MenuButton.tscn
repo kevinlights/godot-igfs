@@ -11,7 +11,7 @@ size = 40
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 60
+size = 40
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -33,16 +33,19 @@ __meta__ = {
 }
 
 [node name="VectorIcon" type="Label" parent="MenuButton"]
-margin_left = -5.64148
-margin_top = -5.30178
-margin_right = 62.3585
-margin_bottom = 62.6982
+margin_left = -6.0
+margin_top = -5.0
+margin_right = 42.0
+margin_bottom = 43.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = ""
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 icon_set = "MaterialIcons"
-size = 60
+size = 40
 icon = "menu"
 filter = true
 

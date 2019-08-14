@@ -32,13 +32,16 @@ __meta__ = {
 }
 
 [node name="StartIcon" type="Label" parent="."]
-margin_left = 726.877
-margin_top = 2.84326
-margin_right = 771.877
-margin_bottom = 48.8433
+margin_left = 687.337
+margin_top = 2.5111
+margin_right = 740.337
+margin_bottom = 56.5111
 custom_fonts/font = SubResource( 2 )
 text = ""
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 icon_set = "MaterialCommunityIcons"
 size = 45
 icon = "play-circle-outline"

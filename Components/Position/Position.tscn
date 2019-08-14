@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
@@ -7,6 +7,18 @@
 [ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=8]
+[ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+use_filter = true
+font_data = ExtResource( 9 )
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -44,7 +56,7 @@ margin_left = 850.0
 margin_right = 850.0
 
 [node name="PositionBG" type="ColorRect" parent="."]
-margin_right = 424.0
+margin_right = 483.0
 margin_bottom = 57.0
 color = Color( 1, 1, 1, 0.360784 )
 __meta__ = {
@@ -53,30 +65,65 @@ __meta__ = {
 
 [node name="MenuButton" parent="PositionBG" instance=ExtResource( 6 )]
 pause_mode = 2
+position = Vector2( 15.5125, 8.86426 )
 
 [node name="Coords" type="Label" parent="PositionBG"]
-margin_left = 80.437
-margin_top = 7.40247
-margin_right = 200.437
-margin_bottom = 48.4025
+margin_left = 104.647
+margin_top = 6.34984
+margin_right = 224.647
+margin_bottom = 47.3498
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "x:0 y:0 z:0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VectorIcon" type="Label" parent="PositionBG/Coords"]
+margin_left = -32.5949
+margin_top = 1.91331
+margin_right = 7.40514
+margin_bottom = 41.9133
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+text = ""
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+icon_set = "MaterialCommunityIcons"
+size = 32
+icon = "crosshairs-gps"
+filter = true
+
 [node name="Rotation" type="Label" parent="PositionBG"]
-margin_left = 276.921
+margin_left = 339.026
 margin_top = 7.22177
-margin_right = 396.921
+margin_right = 459.026
 margin_bottom = 48.2218
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "x:0 y:0 z:0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VectorIcon" type="Label" parent="PositionBG/Rotation"]
+margin_left = -35.3944
+margin_top = -0.0666618
+margin_right = 4.60556
+margin_bottom = 39.9333
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+text = "ﵴ"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+icon_set = "MaterialCommunityIcons"
+size = 32
+icon = "rotate-orbit"
+filter = true
 
 [node name="Health" type="Label" parent="."]
 margin_left = 644.015

@@ -32,17 +32,19 @@ __meta__ = {
 }
 
 [node name="SettingsIcon" type="Label" parent="."]
-margin_left = 16.3019
-margin_top = 14.2039
-margin_right = 61.3019
-margin_bottom = 60.2041
+margin_left = -23.9947
+margin_top = 11.6318
+margin_right = 29.0053
+margin_bottom = 65.6318
 custom_fonts/font = SubResource( 2 )
-text = ""
+text = ""
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 icon_set = "MaterialCommunityIcons"
 size = 45
-icon = "settings"
+icon = "settings-outline"
 filter = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 6 )]
-theme = null
