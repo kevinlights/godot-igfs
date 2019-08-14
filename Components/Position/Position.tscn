@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=8]
 [ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=10]
 size = 32
@@ -22,6 +23,14 @@ font_data = ExtResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 1, 1, 1, 0.133333 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 32
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 10 )
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
@@ -165,6 +174,35 @@ margin_bottom = 774.26
 rect_rotation = 270.0
 custom_fonts/font = ExtResource( 2 )
 text = "0 um/s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LandingIcon" type="Label" parent="."]
+margin_left = 1868.62
+margin_top = 749.405
+margin_right = 1908.62
+margin_bottom = 789.405
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "﬋"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+icon_set = "MaterialCommunityIcons"
+size = 32
+icon = "chevron-down-circle"
+filter = true
+
+[node name="Label" type="Label" parent="LandingIcon"]
+margin_left = 0.499268
+margin_top = 30.047
+margin_right = 40.4993
+margin_bottom = 59.047
+custom_fonts/font = SubResource( 14 )
+text = "0"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

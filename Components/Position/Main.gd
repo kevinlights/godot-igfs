@@ -44,13 +44,16 @@ func _update_coords(pos):
 	get_node("Speed").text = str(round(speed)) + " um/s"
 	get_node("SpeedProgress").value = abs(speed)
 	if landing.possible:
-		get_node("Landable").visible = true
+		get_node("LandingIcon").icon = "chevron-down-circle-outline"
+		get_node("LandingIcon").add_color_override("font_color", Color("#4caf50"))
+		get_node("LandingIcon/Label").visible = true
+		get_node("LandingIcon/Label").text = str(round(landing.distance));
 		if landing.doing:
-			get_node("Landable").text = "Landing > " + str(landing.distance) + "um"
-		else:
-			get_node("Landable").text = "Landable > " + str(landing.distance) + "um"
+			get_node("LandingIcon").icon = "chevron-down-circle"
 	else:
-		get_node("Landable").visible = false
+		get_node("LandingIcon").icon = "chevron-down-circle-outline"
+		get_node("LandingIcon").add_color_override("font_color", Color("#ffffff"))
+		get_node("LandingIcon/Label").visible = false
 	pass
 
 func update_scanner_bodies(bodies):
