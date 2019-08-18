@@ -1,0 +1,29 @@
+--------------------------------------------------------------
+Naboo Royal Starship  (STAR WARS - Episode I)
+--------------------------------------------------------------
+3DS Version
+--------------------------------------------------------------
+Please visit SCIFI 3D <www.theforce.net/scifi3d/>
+for rules governing use, display of credit, and copyright information.
+3DS conversion done for The Force Net Sci-Fi 3D
+
+As reference I used the about 40 images.
+
+Maybe I'll make landing gears and further detail work in the future.
+
+I would be pleased if you send me a picture or an url if you 
+use my model for web publishing.
+
+cadmueller@t-online.de
+
+
+MTFBWY
+	André Müller
+
+Included texture files:
+surface maps:	              Name.jpg
+reflectivity(diffusion) maps: Name_Dif.jpg
+bump maps:                    Name_Bmp.jpg
+
+
+Star Wars is registered for LucasFilm & LucasArts

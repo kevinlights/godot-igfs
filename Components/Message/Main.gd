@@ -24,10 +24,23 @@ extends Node
 # func setParameters():
 # 	if not text == "":
 # 		get_node("Message").text = text
+
+var _on_message_ref = funcref(self, "_on_message")
+
+
 func _ready():
 	# addConnections()
-	EventManager.listen("message",funcref(self, "_on_message"))
+	addListeners()
+	
 
+func _exit_tree():
+	removeListeners()
+
+func addListeners():
+	EventManager.listen("message",_on_message_ref)
+
+func removeListeners():
+	EventManager.ignore("message",_on_message_ref)
 # func addConnections():
 # 	get_node("../SpaceShip").connect("message", self, "_on_message")
 

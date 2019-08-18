@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Components/QuitButton/Main.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Themes/material.tres" type="Theme" id=2]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=5]
@@ -22,18 +21,23 @@ script = ExtResource( 1 )
 margin_right = 550.0
 margin_bottom = 60.0
 size_flags_vertical = 2
-theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 1 )
-text = "Quit"
+text = "Quit to Desktop"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="QuitIcon" type="Label" parent="."]
-margin_left = 45.8471
-margin_top = 5.78693
-margin_right = 90.8471
-margin_bottom = 51.7869
+margin_left = 3.71661
+margin_top = 3.59272
+margin_right = 56.7166
+margin_bottom = 57.5927
 custom_fonts/font = SubResource( 2 )
 text = ""
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 icon_set = "MaterialCommunityIcons"
 size = 45
 icon = "exit-to-app"

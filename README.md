@@ -1,3 +1,4 @@
 # IGFS
+### Inter Galactic Flight Simulator
 
-Intergalactic Space Flight Simulator
+Open source multiplayer space-flying game.

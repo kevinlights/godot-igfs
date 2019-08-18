@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=IGFS
+Exec=igfs
+Icon=/usr/share/igfs/icon.png
+Terminal=false
+Type=Application
+Categories=Game;
+Keywords=IGFS;igfs;inter;Inter;galactic;Galactic;space;Space;flight;Flight;simulator;Simulator;
+

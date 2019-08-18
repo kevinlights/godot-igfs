@@ -18,4 +18,5 @@ func addConnections():
 
 func menuPressed():
 	print("menuPressed")
-	get_node("PopupMenu").visible = true
+	get_node("PopupMenu").show()
+

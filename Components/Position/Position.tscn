@@ -1,24 +1,55 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Components/Position/view_box_texture.png" type="Texture" id=3]
+[ext_resource path="res://Components/ScannerSprite/ScannerSprite.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/FPS/FPS.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/MenuButton/MenuButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/Message/Message.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=8]
+[ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=10]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 0.133333 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 10 )
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("ScannerViewport")
+
+[sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 1, 0.843137, 0.796078, 1 )
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.0784314, 0, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 0.0313726, 1, 0, 1 )
-
-[sub_resource type="ViewportTexture" id=5]
-viewport_path = NodePath("Viewport")
 
 [node name="Position" type="Control"]
 anchor_right = 1.0
@@ -26,28 +57,175 @@ anchor_bottom = 1.0
 margin_right = -1680.0
 margin_bottom = -1023.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Coords" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="Message" parent="." instance=ExtResource( 7 )]
+margin_left = 850.0
+margin_right = 850.0
+
+[node name="PositionBG" type="ColorRect" parent="."]
+margin_right = 605.0
+margin_bottom = 57.0
+color = Color( 1, 1, 1, 0.360784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" parent="PositionBG" instance=ExtResource( 6 )]
+pause_mode = 2
+position = Vector2( 15.5125, 8.86426 )
+
+[node name="Coords" type="Label" parent="PositionBG"]
+margin_left = 104.647
+margin_top = 6.34984
+margin_right = 224.647
+margin_bottom = 47.3498
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "x:0 y:0 z:0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Rotation" type="Label" parent="."]
-margin_left = 199.724
-margin_top = -1.52588e-05
-margin_right = 311.724
-margin_bottom = 33.0
+[node name="VectorIcon" type="Label" parent="PositionBG/Coords"]
+margin_left = -32.5949
+margin_top = 1.91331
+margin_right = 7.40514
+margin_bottom = 41.9133
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+text = ""
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+icon_set = "MaterialCommunityIcons"
+size = 32
+icon = "crosshairs-gps"
+filter = true
+
+[node name="Rotation" type="Label" parent="PositionBG"]
+margin_left = 388.19
+margin_top = 7.78949
+margin_right = 508.19
+margin_bottom = 48.7895
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "x:0 y:0 z:0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Health" type="Label" parent="."]
-margin_left = 367.911
-margin_top = 1.58667
-margin_right = 479.911
-margin_bottom = 34.5867
+[node name="VectorIcon" type="Label" parent="PositionBG/Rotation"]
+margin_left = -35.3944
+margin_top = -0.0666618
+margin_right = 4.60556
+margin_bottom = 39.9333
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+text = "ﵴ"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+icon_set = "MaterialCommunityIcons"
+size = 32
+icon = "rotate-orbit"
+filter = true
+
+[node name="HealthProgress" type="ProgressBar" parent="PositionBG"]
+margin_left = -1.0
+margin_top = 57.0
+margin_right = 3029.0
+margin_bottom = 78.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_styles/bg = SubResource( 3 )
+value = 60.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" parent="." instance=ExtResource( 5 )]
+margin_left = 1734.45
+margin_top = 12.5175
+margin_right = 2607.45
+margin_bottom = 271.518
+rect_scale = Vector2( 0.2, 0.2 )
+
+[node name="Speed" type="Label" parent="."]
+margin_left = 1868.54
+margin_top = 733.26
+margin_right = 1995.54
+margin_bottom = 774.26
+rect_rotation = 270.0
 custom_fonts/font = ExtResource( 2 )
-text = "Health:100"
+text = "0 um/s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LandingIcon" type="Label" parent="."]
+margin_left = 1868.62
+margin_top = 749.405
+margin_right = 1908.62
+margin_bottom = 789.405
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "﬋"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+icon_set = "MaterialCommunityIcons"
+size = 32
+icon = "chevron-down-circle"
+filter = true
+
+[node name="Label" type="Label" parent="LandingIcon"]
+margin_left = 0.499268
+margin_top = 30.047
+margin_right = 40.4993
+margin_bottom = 59.047
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedProgress" type="ProgressBar" parent="."]
+margin_left = 1883.36
+margin_top = 601.0
+margin_right = 2287.36
+margin_bottom = 611.0
+rect_rotation = 270.0
+max_value = 250.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewCubeViewer" type="Sprite" parent="."]
+position = Vector2( 1650.24, 40.6582 )
+texture = SubResource( 6 )
+
+[node name="ScannerBG" type="ColorRect" parent="."]
+margin_left = -7.62939e-06
+margin_top = 880.0
+margin_right = 200.0
+margin_bottom = 1080.0
+color = Color( 1, 1, 1, 0.360784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScannerViewer" type="Sprite" parent="."]
+position = Vector2( 100, 980 )
+texture = SubResource( 7 )
+flip_h = true
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 200, 200 )
@@ -55,28 +233,28 @@ transparent_bg = true
 
 [node name="viewCube" type="CSGBox" parent="Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100001 )
-material = SubResource( 1 )
+material = SubResource( 8 )
 
 [node name="CSGCylinder" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -0.0109726, 0.999798, 0.0168643, 0, -0.0168653, 0.999858, 0.99994, 0.010971, 0.000185056, -1.9904, 0, 0 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 2 )
+material = SubResource( 9 )
 
 [node name="CSGCylinder2" type="CSGCylinder" parent="Viewport/viewCube"]
-transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, -1.84375 )
+transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, 1.8125 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 3 )
+material = SubResource( 10 )
 
 [node name="CSGCylinder3" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -1, -0.000508037, -8.56943e-06, -0.000507744, 0.998505, 0.0546486, -1.92068e-05, 0.0546486, -0.998506, -0.000920296, -1.85929, 0.0859375 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 4 )
+material = SubResource( 11 )
 
 [node name="Camera" type="Camera" parent="Viewport"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0102536, 0, 99991.2 )
@@ -87,13 +265,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518124, 99997.9 )
 light_energy = 0.9
 omni_range = 11.3
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -12.1884, -15.5125 )
-texture = SubResource( 5 )
-vframes = 2
-hframes = 16
-frame = 4
-region_enabled = true
+[node name="ScannerViewport" type="Viewport" parent="."]
+size = Vector2( 200, 200 )
+transparent_bg = true
 
-[node name="Viewport_Sprite" type="Sprite" parent="."]
-position = Vector2( 1504.46, 43.0231 )
+[node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
+position = Vector2( 200, 200 )

@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Components/SettingsButton/Main.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Themes/material.tres" type="Theme" id=2]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=5]
@@ -26,21 +25,26 @@ margin_right = 520.565
 margin_bottom = 67.0883
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 1 )
 text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SettingsIcon" type="Label" parent="."]
-margin_left = 16.3019
-margin_top = 14.2039
-margin_right = 61.3019
-margin_bottom = 60.2041
+margin_left = -23.9947
+margin_top = 11.6318
+margin_right = 29.0053
+margin_bottom = 65.6318
 custom_fonts/font = SubResource( 2 )
-text = ""
+text = ""
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 icon_set = "MaterialCommunityIcons"
 size = 45
-icon = "settings"
+icon = "settings-outline"
 filter = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 6 )]

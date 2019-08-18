@@ -18,4 +18,5 @@ func addConnections():
 	
 func homePressed():
 	print("homePressed")
+	get_tree().set_network_peer(null)
 	get_tree().change_scene("res://Scenes/Home/Home.tscn")
