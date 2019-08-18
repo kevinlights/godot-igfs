@@ -1,3 +1,3 @@
 # IGFS
 
-Intergalactic Space Flight Simulator
+Inter Galactic Flight Simulator
