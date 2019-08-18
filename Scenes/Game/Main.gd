@@ -1,7 +1,6 @@
 extends Spatial
 
 
-var HOST = true
 
 # Player info, associate ID to data
 var player_info = {}
@@ -10,6 +9,8 @@ var my_info = { name = "PJT" }
 
 var config = ConfigFile.new()
 var err = config.load("res://settings.cfg")
+
+var HOST = config.get_value("multiplayer","is_host",true)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -23,7 +24,7 @@ func _ready():
 		get_tree().set_network_peer(peer)
 	else:
 		var peer = NetworkedMultiplayerENet.new()
-		peer.create_client("127.0.0.1", 5000)
+		peer.create_client(config.get_value("multiplayer","address","127.0.0.1"), config.get_value("multiplayer","port",5000))
 		get_tree().set_network_peer(peer)
 	print("Peer: " + str(get_tree().get_network_peer()))
 	print("Is server: " + str(get_tree().is_network_server()))

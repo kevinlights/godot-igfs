@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game/PauseControl.gd" type="Script" id=2]
-[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/STATION_CMPL.3ds.obj" type="ArrayMesh" id=6]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/jar-jar2(3DS)/jarjar.3ds.obj" type="ArrayMesh" id=7]
@@ -227,7 +227,7 @@ shape = SubResource( 11 )
 
 [node name="SS0" type="Spatial" parent="."]
 
-[node name="SS0-ST0" parent="SS0" instance=ExtResource( 3 )]
+[node name="SS0-ST0" parent="SS0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -6461.2 )
 star_texture = ExtResource( 9 )
 
@@ -255,7 +255,7 @@ radius = 1.20018
 radial_segments = 100
 rings = 100
 
-[node name="SpaceShip" parent="." instance=ExtResource( 4 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3244, 0 )
 
 [node name="SpaceShips" type="Spatial" parent="."]

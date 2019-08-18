@@ -11,44 +11,44 @@
 [ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=10]
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 1, 1, 0.133333 )
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=4]
 size = 32
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 10 )
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=7]
 viewport_path = NodePath("ScannerViewport")
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 1, 0.843137, 0.796078, 1 )
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.0784314, 0, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 0.0313726, 1, 0, 1 )
 
 [node name="Position" type="Control"]
@@ -94,7 +94,7 @@ margin_left = -32.5949
 margin_top = 1.91331
 margin_right = 7.40514
 margin_bottom = 41.9133
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = ""
 script = ExtResource( 8 )
@@ -123,7 +123,7 @@ margin_left = -35.3944
 margin_top = -0.0666618
 margin_right = 4.60556
 margin_bottom = 39.9333
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 text = "ﵴ"
 script = ExtResource( 8 )
@@ -141,7 +141,7 @@ margin_top = 57.0
 margin_right = 3029.0
 margin_bottom = 78.0
 rect_scale = Vector2( 0.2, 0.2 )
-custom_styles/bg = SubResource( 12 )
+custom_styles/bg = SubResource( 3 )
 value = 60.0
 percent_visible = false
 __meta__ = {
@@ -172,7 +172,7 @@ margin_left = 1868.62
 margin_top = 749.405
 margin_right = 1908.62
 margin_bottom = 789.405
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "﬋"
 script = ExtResource( 8 )
@@ -189,7 +189,7 @@ margin_left = 0.499268
 margin_top = 30.047
 margin_right = 40.4993
 margin_bottom = 59.047
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 5 )
 text = "0"
 align = 1
 __meta__ = {
@@ -210,7 +210,7 @@ __meta__ = {
 
 [node name="ViewCubeViewer" type="Sprite" parent="."]
 position = Vector2( 1650.24, 40.6582 )
-texture = SubResource( 3 )
+texture = SubResource( 6 )
 
 [node name="ScannerBG" type="ColorRect" parent="."]
 margin_left = -7.62939e-06
@@ -224,7 +224,7 @@ __meta__ = {
 
 [node name="ScannerViewer" type="Sprite" parent="."]
 position = Vector2( 100, 980 )
-texture = SubResource( 5 )
+texture = SubResource( 7 )
 flip_h = true
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -233,28 +233,28 @@ transparent_bg = true
 
 [node name="viewCube" type="CSGBox" parent="Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100001 )
-material = SubResource( 6 )
+material = SubResource( 8 )
 
 [node name="CSGCylinder" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -0.0109726, 0.999798, 0.0168643, 0, -0.0168653, 0.999858, 0.99994, 0.010971, 0.000185056, -1.9904, 0, 0 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 7 )
+material = SubResource( 9 )
 
 [node name="CSGCylinder2" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -1, -0.000508037, -8.56943e-06, 0, -0.0168653, 0.999858, -0.000508107, 0.999858, 0.0168653, -0.000920296, 0, 1.8125 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 8 )
+material = SubResource( 10 )
 
 [node name="CSGCylinder3" type="CSGCylinder" parent="Viewport/viewCube"]
 transform = Transform( -1, -0.000508037, -8.56943e-06, -0.000507744, 0.998505, 0.0546486, -1.92068e-05, 0.0546486, -0.998506, -0.000920296, -1.85929, 0.0859375 )
 radius = 0.121
 height = 1.778
 sides = 12
-material = SubResource( 9 )
+material = SubResource( 11 )
 
 [node name="Camera" type="Camera" parent="Viewport"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0102536, 0, 99991.2 )
