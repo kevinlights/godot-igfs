@@ -54,8 +54,8 @@ albedo_color = Color( 0.0313726, 1, 0, 1 )
 [node name="Position" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1680.0
-margin_bottom = -1023.0
+margin_right = 1.0
+margin_bottom = 2.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -213,17 +213,17 @@ position = Vector2( 1650.24, 40.6582 )
 texture = SubResource( 6 )
 
 [node name="ScannerBG" type="ColorRect" parent="."]
-margin_left = -7.62939e-06
-margin_top = 880.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -200.0
 margin_right = 200.0
-margin_bottom = 1080.0
 color = Color( 1, 1, 1, 0.360784 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScannerViewer" type="Sprite" parent="."]
-position = Vector2( 100, 980 )
+[node name="ScannerViewer" type="Sprite" parent="ScannerBG"]
+position = Vector2( 100, 98 )
 texture = SubResource( 7 )
 flip_h = true
 
