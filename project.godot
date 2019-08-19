@@ -8,44 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Reference",
-"class": "Command",
-"language": "GDScript",
-"path": "res://console/command.gd"
-}, {
-"base": "Reference",
-"class": "CommandRef",
-"language": "GDScript",
-"path": "res://console/command_ref.gd"
-}, {
-"base": "Control",
-"class": "Console",
-"language": "GDScript",
-"path": "res://console/console.gd"
-}, {
-"base": "Reference",
-"class": "ConsoleRights",
-"language": "GDScript",
-"path": "res://console/console_rights.gd"
-}, {
-"base": "Reference",
-"class": "ConsoleUser",
-"language": "GDScript",
-"path": "res://console/console_user.gd"
-}, {
-"base": "Reference",
-"class": "DefaultCommands",
-"language": "GDScript",
-"path": "res://console/default_commands.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Command": "",
-"CommandRef": "",
-"Console": "",
-"ConsoleRights": "",
-"ConsoleUser": "",
-"DefaultCommands": ""
+
 }
 
 [application]

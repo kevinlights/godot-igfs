@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Components/Position/Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://addons/vector-icons/VectorIcon.gd" type="Script" id=8]
 [ext_resource path="res://addons/vector-icons/fonts/MaterialCommunityIcons.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Assets/Fonts/GoogleSans-Regular.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://console/console.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=12]
 size = 32
@@ -272,13 +271,3 @@ transparent_bg = true
 
 [node name="ScannerSprite" parent="ScannerViewport" instance=ExtResource( 4 )]
 position = Vector2( 200, 200 )
-
-[node name="console" parent="." instance=ExtResource( 11 )]
-visible = false
-margin_right = -5.0
-margin_bottom = -2.0
-dockingStation = "full_screen"
-showLine = true
-backgroundColor = Color( 0.0588235, 0.0588235, 0.0784314, 0.898039 )
-userNameColorName = "blue"
-enableWindowDrag = false
