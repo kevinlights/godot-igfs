@@ -4,8 +4,8 @@
 [ext_resource path="res://Components/Planet/images/SS0-P0/texture.jpg" type="Texture" id=2]
 
 [sub_resource type="SphereMesh" id=1]
-radius = 3000.0
-height = 6000.0
+radius = 3300.0
+height = 6600.0
 rings = 64
 
 [sub_resource type="SpatialMaterial" id=2]
