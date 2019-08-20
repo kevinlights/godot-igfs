@@ -257,6 +257,7 @@ rings = 100
 
 [node name="SpaceShip" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3244, 0 )
+ship = 1
 
 [node name="SpaceShips" type="Spatial" parent="."]
 

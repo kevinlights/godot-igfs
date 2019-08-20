@@ -12,6 +12,9 @@ var SHIP_TURN_RATE = 0.05
 
 signal position(content) 
 
+export(int) var ship = 0 setget load_ship_type;
+
+
 var speed = 0.1
 
 func _ready():
@@ -21,6 +24,8 @@ func _ready():
     _initial_position = get_global_transform().origin
     _initial_rotation = get_global_transform().basis
     addConnections()
+    load_ship_type(ship)
+    
     # while ( true ):
     #     yield( get_tree().create_timer(0.4), "timeout" )
     #     # EventManager.emit("ship_position",translation)       
@@ -46,6 +51,14 @@ func _ready():
 #         rotate_object_local(Vector3(0, 1, 0), -delta/.8)
 
 #     translate(Vector3(0,0,delta*speed))
+
+func load_ship_type(type):
+    var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
+    add_child(shipImport)
+    for child in shipImport.get_children():
+        shipImport.remove_child(child)
+        add_child(child)
+    shipImport.queue_free()
 
 func addConnections():
     # get_node("HeatArea").connect("body_entered", self, "heat_body_enter")

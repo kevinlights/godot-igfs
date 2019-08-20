@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/214977.obj-b5138a8b3e7513a8613a855555308f7e.mesh"
+
+[deps]
+
+files=[ "res://.import/214977.obj-b5138a8b3e7513a8613a855555308f7e.mesh" ]
+
+source_file="res://Components/SpaceShip/models/S2/214977.obj"
+dest_files=[ "res://.import/214977.obj-b5138a8b3e7513a8613a855555308f7e.mesh", "res://.import/214977.obj-b5138a8b3e7513a8613a855555308f7e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
