@@ -11,13 +11,17 @@ var landing = false
 # change to ship in storage
 # var SHIP_TURN_RATE = 0.1
 
+
 var config = ConfigFile.new()
 var err = config.load("res://settings.cfg")
 
 var SHIP_TURN_RATE = config.get_value("ship_info","turn_rate",0.1)
 var SHIP_MAX_SPEED = config.get_value("ship_info","max_speed",250)
 
+
 signal position(content) 
+
+export(int) var ship setget load_ship_type;
 
 var speed = 0
 
@@ -27,21 +31,21 @@ func _ready():
     _initial_position = get_global_transform().origin
     _initial_rotation = get_global_transform().basis
     addConnections()
-
-    var s0 = preload("res://Components/SpaceShip/S0.tscn").instance()
-    print(s0.get_children())
-    add_child(s0)
-    for child in s0.get_children():
-        s0.remove_child(child)
-        add_child(child)
-
-    s0.queue_free()
+    load_ship_type(ship)
 
 func addConnections():
     get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
     get_node("HeatArea").connect("body_exited", self, "heat_body_exit")
     get_node("ScannerArea").connect("body_entered", self, "scanner_body_enter")
     get_node("ScannerArea").connect("body_exited", self, "scanner_body_exit")
+
+func load_ship_type(type):
+    var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
+    add_child(shipImport)
+    for child in shipImport.get_children():
+        shipImport.remove_child(child)
+        add_child(child)
+    shipImport.queue_free()
 
 func _enter_tree():
     # Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
