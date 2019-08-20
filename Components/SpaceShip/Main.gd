@@ -28,6 +28,15 @@ func _ready():
     _initial_rotation = get_global_transform().basis
     addConnections()
 
+    var s0 = preload("res://Components/SpaceShip/S0.tscn").instance()
+    print(s0.get_children())
+    add_child(s0)
+    for child in s0.get_children():
+        s0.remove_child(child)
+        add_child(child)
+
+    s0.queue_free()
+
 func addConnections():
     get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
     get_node("HeatArea").connect("body_exited", self, "heat_body_exit")
