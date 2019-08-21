@@ -31,6 +31,13 @@ func _ready():
 	add_connections()
 	apply_settings()
 
+	yield(get_tree().create_timer(5), "timeout")
+	print("detected ship parameter:" + str( get_node("SpaceShip").ship))
+	if get_node("SpaceShip").ship != 0:
+		get_node("SpaceShip").ship = 0;
+		# get_node("SpaceShip").load_ship_type(0)
+		EventManager.emit("ship_type_change",0)
+
 func add_connections():
 	get_tree().connect("network_peer_connected", self, "player_connected")
 	get_tree().connect("network_peer_disconnected", self, "player_disconnected")

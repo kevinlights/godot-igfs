@@ -13,15 +13,19 @@ var landing = false
 
 
 var config = ConfigFile.new()
-var err = config.load("res://settings.cfg")
+var settings_location = "res://settings.cfg"
+var err = config.load(settings_location)
 
-var SHIP_TURN_RATE = config.get_value("ship_info","turn_rate",0.1)
-var SHIP_MAX_SPEED = config.get_value("ship_info","max_speed",250)
+#DEFAULT VALUES
+var SHIP_TURN_RATE = 0.1
+var SHIP_MAX_SPEED = 250
+
+var load_ship_type_ref = funcref(self, "load_ship_type")
 
 
 signal position(content) 
 
-export(int) var ship setget load_ship_type;
+export(int) var ship;
 
 var speed = 0
 
@@ -31,7 +35,14 @@ func _ready():
     _initial_position = get_global_transform().origin
     _initial_rotation = get_global_transform().basis
     addConnections()
+    addListeners()
     load_ship_type(ship)
+
+func addListeners():
+    EventManager.listen("ship_type_change",load_ship_type_ref)
+
+func removeListeners():
+    EventManager.ignore("ship_type_change",load_ship_type_ref)
 
 func addConnections():
     get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
@@ -40,11 +51,24 @@ func addConnections():
     get_node("ScannerArea").connect("body_exited", self, "scanner_body_exit")
 
 func load_ship_type(type):
+    config.set_value("ship_info","ship",type)
+    config.save(settings_location)
+    print("ship type is: " + str(type))
     var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
+    var ship_config = ConfigFile.new()
+    var err = ship_config.load("res://Components/SpaceShip/S"+str(type)+".cfg")
+    SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
+    SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
+    for child in get_children():
+        if "Ship" in child.get_name():
+            remove_child(child)
+            child.queue_free()
+    
     add_child(shipImport)
     for child in shipImport.get_children():
         shipImport.remove_child(child)
         add_child(child)
+        child.set_name("Ship" + child.get_name())
     shipImport.queue_free()
 
 func _enter_tree():
@@ -52,15 +76,14 @@ func _enter_tree():
     pass
 
 func _exit_tree():
-    # Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
-    pass
+    removeListeners()
 
 func _unhandled_input(event):
     if event is InputEventKey:
         if event.pressed and event.scancode == KEY_R:
             reset_ship()
         if event.pressed and event.scancode == KEY_L:
-            var body_in_landing = get_node("LandingRay").is_colliding()
+            var body_in_landing = get_node("ShipLandingRay").is_colliding()
             # print(body_in_landing)
             if body_in_landing:
                 stop_ship()
@@ -76,8 +99,8 @@ func _process(delta):
     
     # rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
     var emit_position;
-    if get_node("LandingRay").is_colliding():
-        var landing_distance = translation.y - get_node("LandingRay").get_collision_point().y;
+    if get_node("ShipLandingRay").is_colliding():
+        var landing_distance = translation.y - get_node("ShipLandingRay").get_collision_point().y;
         emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":true,"distance":landing_distance,"doing":landing}}
     else:
         emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":false}}
@@ -104,14 +127,14 @@ func _process(delta):
         if speed + 1 <= SHIP_MAX_SPEED && !landing:
             speed = speed + 1
         elif landing:
-            var body_in_landing = get_node("LandingRay").is_colliding()
+            var body_in_landing = get_node("ShipLandingRay").is_colliding()
             if body_in_landing:
                 move_and_collide(global_transform.basis.y * 1 * 0.1)
     if Input.is_key_pressed(KEY_DOWN):
         if abs(speed - 1) <= SHIP_MAX_SPEED && !landing:
             speed = speed - 1
         elif landing:
-            var body_in_landing = get_node("LandingRay").is_colliding()
+            var body_in_landing = get_node("ShipLandingRay").is_colliding()
             if body_in_landing:
                 move_and_collide(global_transform.basis.y * -1 * 0.1)
     if Input.is_key_pressed(KEY_S):

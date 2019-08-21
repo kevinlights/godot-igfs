@@ -5,7 +5,9 @@ onready var ScannerSprite = preload("res://Components/ScannerSprite/ScannerSprit
 var config = ConfigFile.new()
 var err = config.load("res://settings.cfg")
 
-var SHIP_MAX_SPEED = config.get_value("ship_info","max_speed",250)
+var ship_type = config.get_value("ship_info","ship",0)
+#DEFAULT VALUE
+var SHIP_MAX_SPEED = 250
 
 
 var update_scanner_bodies_ref = funcref(self, "update_scanner_bodies")
@@ -16,7 +18,20 @@ func _ready():
 	addListeners()
 	# EventManager.listen("ship_position",funcref(self, "_update_coords"))
 	# startCubeView()
+	yield(get_tree().create_timer(0.1), "timeout")
+	set_speedprogress_max_value()
+	
+func set_speedprogress_max_value():
+	config.load("res://settings.cfg")
+	ship_type = config.get_value("ship_info","ship",0)
+	var ship_config = ConfigFile.new()
+	var err = ship_config.load("res://Components/SpaceShip/S"+str(ship_type)+".cfg")
+	# print(ship_type)
+	
+	SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
+	# print(SHIP_MAX_SPEED)
 	get_node("SpeedProgress").max_value = SHIP_MAX_SPEED
+
 
 func _exit_tree():
 	removeListeners()
