@@ -11,6 +11,8 @@ var SHIP_MAX_SPEED = 250
 
 
 var update_scanner_bodies_ref = funcref(self, "update_scanner_bodies")
+var set_speedprogress_max_value_ref = funcref(self, "set_speedprogress_max_value")
+
 
 
 func _ready():
@@ -19,14 +21,14 @@ func _ready():
 	# EventManager.listen("ship_position",funcref(self, "_update_coords"))
 	# startCubeView()
 	yield(get_tree().create_timer(0.1), "timeout")
-	set_speedprogress_max_value()
-	
-func set_speedprogress_max_value():
 	config.load("res://settings.cfg")
 	ship_type = config.get_value("ship_info","ship",0)
+	set_speedprogress_max_value(ship_type)
+	
+func set_speedprogress_max_value(ship_type_arg):
 	var ship_config = ConfigFile.new()
-	var err = ship_config.load("res://Components/SpaceShip/S"+str(ship_type)+".cfg")
-	# print(ship_type)
+	var err = ship_config.load("res://Components/SpaceShip/S"+str(ship_type_arg)+".cfg")
+	print(ship_type_arg)
 	
 	SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
 	# print(SHIP_MAX_SPEED)
@@ -41,9 +43,11 @@ func addConnections():
 
 func addListeners():
 	EventManager.listen("scanner_bodies",update_scanner_bodies_ref)
+	EventManager.listen("ship_type_change",set_speedprogress_max_value_ref)
 
 func removeListeners():
 	EventManager.ignore("scanner_bodies",update_scanner_bodies_ref)
+	EventManager.ignore("ship_type_change",set_speedprogress_max_value_ref)
 
 func _update_coords(pos):
 	var coords = pos.coords

@@ -1,42 +1,47 @@
 extends KinematicBody
 
-var _initial_position
-var _initial_rotation
-var _rot_x = 0
-var _rot_y = 0
-var _rot_z = 0
-var _heat_interval = false
-var health = 100
-var landing = false
-# change to ship in storage
-# var SHIP_TURN_RATE = 0.1
-
-
-var config = ConfigFile.new()
+#Declarations
+var SHIP_TURN_RATE;
+var SHIP_MAX_SPEED;
+var _initial_position;
+var load_ship_type_ref;
+var _heat_interval;
+var health;
+var landing;
+var speed;
+########################
 var settings_location = "res://settings.cfg"
-var err = config.load(settings_location)
+var config = ConfigFile.new()
 
-#DEFAULT VALUES
-var SHIP_TURN_RATE = 0.1
-var SHIP_MAX_SPEED = 250
-
-var load_ship_type_ref = funcref(self, "load_ship_type")
-
-
+#signals
 signal position(content) 
 
+#exports
 export(int) var ship;
-
-var speed = 0
 
 func _ready():
 #    set_physics_process(true)
 #    set_gravity_scale(1)
     _initial_position = get_global_transform().origin
-    _initial_rotation = get_global_transform().basis
+    setFuncrefs()
+    setDefaultValues()
+    initConfig()
     addConnections()
     addListeners()
     load_ship_type(ship)
+    
+
+func setFuncrefs():
+    load_ship_type_ref = funcref(self, "load_ship_type")
+
+func setDefaultValues():
+    _heat_interval = false
+    health = 100
+    landing = false
+    speed = 0
+
+func initConfig():
+    config.load(settings_location)#returns error, is there is one
 
 func addListeners():
     EventManager.listen("ship_type_change",load_ship_type_ref)
