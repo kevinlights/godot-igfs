@@ -28,7 +28,7 @@ func _ready():
 func set_speedprogress_max_value(ship_type_arg):
 	var ship_config = ConfigFile.new()
 	var err = ship_config.load("res://Components/SpaceShip/S"+str(ship_type_arg)+".cfg")
-	print(ship_type_arg)
+	# print(ship_type_arg)
 	
 	SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
 	# print(SHIP_MAX_SPEED)

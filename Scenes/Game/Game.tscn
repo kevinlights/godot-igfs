@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Scenes/Game/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game/PauseControl.gd" type="Script" id=2]
-[ext_resource path="res://Components/SpaceStation/models/SPST0/darth_jar_jar_star_wars_custom_model/scene.gltf" type="PackedScene" id=3]
-[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/SpaceStation/models/SPST0/darth_jar_jar_star_wars_custom_model/scene.gltf" type="PackedScene" id=4]
+[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/SpaceStation/models/SPST0/STATION_CMPL.3ds.obj" type="ArrayMesh" id=6]
-[ext_resource path="res://Components/Star/Sun.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Components/SpaceShip/SpaceShip.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Components/Planet/Planet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Components/Position/Position.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Components/Star/sun.jpg" type="Texture" id=9]
 [ext_resource path="res://Components/Planet/images/SS0-P0/texture.jpg" type="Texture" id=11]
 [ext_resource path="res://Components/Planet/images/SS0-P1/texture.jpg" type="Texture" id=12]
@@ -52,7 +52,7 @@ points = PoolVector3Array( -1522.49, -96406.9, -1429.33, -1393.07, -213018, -129
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Position" parent="." instance=ExtResource( 5 )]
+[node name="Position" parent="." instance=ExtResource( 8 )]
 
 [node name="CSGBox" type="CSGPolygon" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8417, 3.13925, 4.2221 )
@@ -91,7 +91,7 @@ material/18 = null
 material/19 = null
 material/20 = null
 
-[node name="DJJ" parent="SPST0" instance=ExtResource( 3 )]
+[node name="DJJ" parent="SPST0" instance=ExtResource( 4 )]
 transform = Transform( -0.999998, 0, 3.25841e-07, 0, 0.999998, 0, -3.25841e-07, 0, -0.999998, 0, -37711.4, -10974 )
 
 [node name="CollisionStaticBody" type="StaticBody" parent="SPST0"]
@@ -135,19 +135,19 @@ shape = SubResource( 11 )
 
 [node name="SS0" type="Spatial" parent="."]
 
-[node name="SS0-ST0" parent="SS0" instance=ExtResource( 7 )]
+[node name="SS0-ST0" parent="SS0" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -6461.2 )
 star_texture = ExtResource( 9 )
 
-[node name="SS0-P0" parent="SS0" instance=ExtResource( 4 )]
+[node name="SS0-P0" parent="SS0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9608.31, 0, -19588.2 )
 planet_texture = ExtResource( 11 )
 
-[node name="SS0-P1" parent="SS0" instance=ExtResource( 4 )]
+[node name="SS0-P1" parent="SS0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16965, 0, 2203.8 )
 planet_texture = ExtResource( 12 )
 
-[node name="SS0-P2" parent="SS0" instance=ExtResource( 4 )]
+[node name="SS0-P2" parent="SS0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16650.4, 0, 6440.48 )
 planet_texture = ExtResource( 13 )
 
@@ -163,7 +163,7 @@ radius = 1.20018
 radial_segments = 100
 rings = 100
 
-[node name="SpaceShip" parent="." instance=ExtResource( 8 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3244, 0 )
 
 [node name="SpaceShips" type="Spatial" parent="."]
