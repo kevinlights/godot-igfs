@@ -36,8 +36,8 @@ func _ready():
 	# if get_node("SpaceShip").ship != 0:
 	# 	get_node("SpaceShip").ship = 0;
 		# get_node("SpaceShip").load_ship_type(0)
-		
-	# EventManager.emit("ship_type_change",2)
+
+	EventManager.emit("ship_type_change",2)
 
 func add_connections():
 	get_tree().connect("network_peer_connected", self, "player_connected")

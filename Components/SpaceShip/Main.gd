@@ -73,7 +73,7 @@ func _unhandled_input(event):
         if event.pressed and event.scancode == KEY_R:
             reset_ship()
         if event.pressed and event.scancode == KEY_L:
-            var body_in_landing = get_node("ShipPartLandingRay").is_colliding()
+            var body_in_landing = get_node("LandingRay").is_colliding()
             # print(body_in_landing)
             if body_in_landing:
                 stop_ship()
@@ -89,8 +89,8 @@ func _process(delta):
     
     # rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
     var emit_position;
-    if get_node("ShipPartLandingRay").is_colliding():
-        var landing_distance = translation.y - get_node("ShipPartLandingRay").get_collision_point().y;
+    if get_node("LandingRay").is_colliding():
+        var landing_distance = translation.y - get_node("LandingRay").get_collision_point().y;
         emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":true,"distance":landing_distance,"doing":landing}}
     else:
         emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":false}}
@@ -117,14 +117,14 @@ func _process(delta):
         if speed + 1 <= SHIP_MAX_SPEED && !landing:
             speed = speed + 1
         elif landing:
-            var body_in_landing = get_node("ShipPartLandingRay").is_colliding()
+            var body_in_landing = get_node("LandingRay").is_colliding()
             if body_in_landing:
                 move_and_collide(global_transform.basis.y * 1 * 0.1)
     if Input.is_key_pressed(KEY_DOWN):
         if abs(speed - 1) <= SHIP_MAX_SPEED && !landing:
             speed = speed - 1
         elif landing:
-            var body_in_landing = get_node("ShipPartLandingRay").is_colliding()
+            var body_in_landing = get_node("LandingRay").is_colliding()
             if body_in_landing:
                 move_and_collide(global_transform.basis.y * -1 * 0.1)
     if Input.is_key_pressed(KEY_S):

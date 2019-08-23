@@ -39,7 +39,7 @@ func load_ship_type(type):
 	SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
 	SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
 	for child in get_owner().get_children():
-		if "ShipPart" in child.get_name():
+		if child.is_in_group("ShipPart"):
 			get_owner().remove_child(child)
 			child.queue_free()
 	
@@ -47,5 +47,6 @@ func load_ship_type(type):
 	for child in shipImport.get_children():
 		shipImport.remove_child(child)
 		get_owner().call_deferred("add_child",child)
-		child.set_name("ShipPart" + child.get_name())
+		# child.set_name("ShipPart" + child.get_name())
+		child.add_to_group("ShipPart")
 	shipImport.queue_free()
