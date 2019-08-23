@@ -83,7 +83,7 @@ func update_scanner_bodies(bodies):
 		# print(body)
 		var sprite = ScannerSprite.instance()
 		get_node("ScannerViewport").add_child(sprite)
-		sprite.position.x = (body.position.x / 40.96) + 100
-		sprite.position.y = (body.position.y / 40.96) + 100
+		sprite.position.x = (body.position.x / 100) + 100
+		sprite.position.y = (body.position.y / 100) + 100
 		sprite.name = body.name
 		# print(sprite.position)
