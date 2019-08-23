@@ -68,22 +68,6 @@ func _enter_tree():
 func _exit_tree():
     removeListeners()
 
-func _unhandled_input(event):
-    if event is InputEventKey:
-        if event.pressed and event.scancode == KEY_R:
-            reset_ship()
-        if event.pressed and event.scancode == KEY_L:
-            var body_in_landing = get_node("LandingRay").is_colliding()
-            # print(body_in_landing)
-            if body_in_landing:
-                stop_ship()
-                landing = !landing
-            else:
-                landing = false
-        if event.pressed and event.scancode == KEY_O:
-            stop_ship()
-            
-
 func _process(delta):
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
     
