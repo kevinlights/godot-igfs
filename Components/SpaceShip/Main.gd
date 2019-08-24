@@ -95,53 +95,6 @@ func _process(delta):
     
     if speed > SHIP_MAX_SPEED:
         speed = SHIP_MAX_SPEED
-    
-    if Input.is_key_pressed(KEY_UP):
-        if speed + 1 <= SHIP_MAX_SPEED && !landing:
-            speed = speed + 1
-        elif landing:
-            var body_in_landing = get_node("LandingRay").is_colliding()
-            if body_in_landing:
-                move_and_collide(global_transform.basis.y * 1 * 0.1)
-    if Input.is_key_pressed(KEY_DOWN):
-        if abs(speed - 1) <= SHIP_MAX_SPEED && !landing:
-            speed = speed - 1
-        elif landing:
-            var body_in_landing = get_node("LandingRay").is_colliding()
-            if body_in_landing:
-                move_and_collide(global_transform.basis.y * -1 * 0.1)
-    if Input.is_key_pressed(KEY_S):
-        # rotate_object_local(Vector3(1, 0, 0), TURN_SPEED)
-        if !landing:
-            transition_rotate(TURN_SPEED,Vector3(1, 0, 0))
-        else:
-            transition_rotate(delta * (SHIP_TURN_RATE * 10),Vector3(1, 0, 0))
-    if Input.is_key_pressed(KEY_W):
-        if !landing:
-            transition_rotate(-TURN_SPEED,Vector3(1, 0, 0))
-        else:
-            transition_rotate(-(delta * (SHIP_TURN_RATE * 10)),Vector3(1, 0, 0))
-    if Input.is_key_pressed(KEY_A):
-        if !landing:
-            transition_rotate(TURN_SPEED,Vector3(0, 1, 0))
-        else:
-            transition_rotate(delta * (SHIP_TURN_RATE * 10),Vector3(0, 1, 0))
-    if Input.is_key_pressed(KEY_D):
-        if !landing:
-            transition_rotate(-TURN_SPEED,Vector3(0, 1, 0))
-        else:
-            transition_rotate(-(delta * (SHIP_TURN_RATE * 10)),Vector3(0, 1, 0))
-    if Input.is_key_pressed(KEY_Q):
-        if !landing:
-            transition_rotate(TURN_SPEED,Vector3(0, 0, 1))
-        else:
-            transition_rotate(delta * (SHIP_TURN_RATE * 10),Vector3(0, 0, 1))
-            
-    if Input.is_key_pressed(KEY_E):
-        if !landing:
-            transition_rotate(-TURN_SPEED,Vector3(0, 0, 1))
-        else:
-            transition_rotate(-(delta * (SHIP_TURN_RATE * 10)),Vector3(0, 0, 1))
 
 func reset_ship():
     set_translation(_initial_position)
