@@ -96,7 +96,10 @@ func _process(delta):
         TURN_SPEED = delta * abs(speed * SHIP_TURN_RATE)
     else:
         TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
-
+    
+    if speed > SHIP_MAX_SPEED:
+        speed = SHIP_MAX_SPEED
+    
     if Input.is_key_pressed(KEY_UP):
         if speed + 1 <= SHIP_MAX_SPEED && !landing:
             speed = speed + 1
