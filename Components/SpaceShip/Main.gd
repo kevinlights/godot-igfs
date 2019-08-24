@@ -87,15 +87,11 @@ func _process(delta):
         reset_ship()
 
     if get_slide_count():
-        if abs(speed) > 30 && !landing:
+        if abs(speed) > 30:
             crash()
 
-    var TURN_SPEED = 0
+    var TURN_SPEED = get_turn_speed(delta,speed,SHIP_TURN_RATE)
     # var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
-    if abs(speed * SHIP_TURN_RATE) <= SHIP_TURN_RATE * 10:
-        TURN_SPEED = delta * abs(speed * SHIP_TURN_RATE)
-    else:
-        TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
     
     if speed > SHIP_MAX_SPEED:
         speed = SHIP_MAX_SPEED
@@ -260,3 +256,13 @@ func transition_helper(start,end,amount,power,callback):
     var transition_results = transition(start,end,amount,power)
     for result in transition_results:
         callback.call_func(result)
+
+func get_turn_speed(delta,speed,SHIP_TURN_RATE):
+    var TURN_SPEED = 0;
+    if abs(speed * SHIP_TURN_RATE) <= SHIP_TURN_RATE * 10:
+        TURN_SPEED = delta * abs(speed * SHIP_TURN_RATE)
+    else:
+        TURN_SPEED = delta * (SHIP_TURN_RATE * 10)
+
+    return TURN_SPEED
+    
