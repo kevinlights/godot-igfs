@@ -53,8 +53,6 @@ func removeListeners():
 func addConnections():
     get_node("HeatArea").connect("body_entered", self, "heat_body_enter")
     get_node("HeatArea").connect("body_exited", self, "heat_body_exit")
-    get_node("ScannerArea").connect("body_entered", self, "scanner_body_enter")
-    get_node("ScannerArea").connect("body_exited", self, "scanner_body_exit")
 
 func load_ship_type(type):
     var ship_config = ConfigFile.new()
@@ -80,9 +78,7 @@ func _process(delta):
     else:
         emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":false}}
 
-    emit_signal("position",emit_position) 
-
-    send_scanner_bodies()
+    emit_signal("position",emit_position)
 
     if (health <= 0):
         reset_ship()
@@ -119,35 +115,6 @@ func heat_body_enter(body):
 
 func heat_body_exit(body):
     _heat_interval = false
-
-func send_scanner_bodies():
-    var overlapping_bodies = get_node("ScannerArea").get_overlapping_bodies()
-    var processed_bodies = []
-
-
-    for body in overlapping_bodies:
-        var position = Vector2(body.get_global_transform().origin.x, body.get_global_transform().origin.z)
-        var self_position2d = Vector2(get_global_transform().origin.x, get_global_transform().origin.z)
-        var combined_position = Vector2(self_position2d.x - position.x, self_position2d.y - position.y)
-        # print(position)
-        var name = body.get_name()
-        processed_bodies.append({
-            "position": combined_position,
-            "name":name
-        })
-        # print(name)
-
-    # print(processed_bodies)
-    EventManager.emit("scanner_bodies", processed_bodies)
-
-
-func scanner_body_enter(body):
-    # print("enter: " + str(body))
-    pass
-
-func scanner_body_exit(body):
-    # print("exit: " + str(body))
-    pass
 
 func transition_rotate(speed,vector):
     var rotate_transiton = TransitionHandler.transition(speed,0,100,1.07)
