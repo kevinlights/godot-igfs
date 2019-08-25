@@ -14,7 +14,7 @@ func _ready():
 	initConfig()
 	setFuncrefs()
 	addListeners()
-	print(config.get_value("ship_info","ship",0))
+	# print(config.get_value("ship_info","ship",0))
 	load_ship_type(config.get_value("ship_info","ship",0))
 
 func _exit_tree():
