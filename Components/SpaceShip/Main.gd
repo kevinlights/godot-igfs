@@ -13,6 +13,7 @@ var speed;
 var settings_location = "res://settings.cfg"
 var config = ConfigFile.new()
 
+onready var TransitionHandler = $"../TransitionHandler"
 #signals
 signal position(content) 
 
@@ -148,38 +149,8 @@ func scanner_body_exit(body):
     # print("exit: " + str(body))
     pass
 
-
-func transition(start,end,amount,power):
-    var res = []
-    for i in range(amount - 1):
-        res.append(0)
-
-    res[0] = start
-
-    if start > 0 && start > 1:
-        for index in res.size():
-            if index != 0:
-                res[index] = pow(res[index - 1],1/power)
-    elif start > 0 && start < 10:
-        for index in res.size():
-            if index != 0:
-                res[index] = pow(res[index - 1],power)
-    elif start < 0 && start < -1:
-        for index in res.size():
-            if index != 0:
-                res[index] = pow(abs(res[index - 1]),1/power) * -1
-    elif start < 0 && start > -1:
-        for index in res.size():
-            if index != 0:
-                res[index] = pow(abs(res[index - 1]),power) * -1
-    
-    
-        
-    res.append(end)
-    return res
-
 func transition_rotate(speed,vector):
-    var rotate_transiton = transition(speed,0,100,1.07)
+    var rotate_transiton = TransitionHandler.transition(speed,0,100,1.07)
     for amount in rotate_transiton:
         rotate_object_local(vector, amount)
         yield( get_tree().create_timer(0.05), "timeout" )
@@ -194,7 +165,7 @@ func stop_ship():
         else:
             speed_power = 1.07
         
-        var speed_transition = transition(speed,0,100,speed_power)
+        var speed_transition = TransitionHandler.transition(speed,0,100,speed_power)
         var speed_time = 0.01
         # print(speed_transition)
         for amount in speed_transition:
@@ -204,11 +175,6 @@ func stop_ship():
             else:
                 speed = 0
                 return
-
-func transition_helper(start,end,amount,power,callback):
-    var transition_results = transition(start,end,amount,power)
-    for result in transition_results:
-        callback.call_func(result)
 
 func get_turn_speed(delta,speed,SHIP_TURN_RATE):
     var TURN_SPEED = 0;
