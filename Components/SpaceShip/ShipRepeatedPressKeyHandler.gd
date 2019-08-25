@@ -16,40 +16,28 @@ func _ready():
 	#    set_physics_process(true)
 	#    set_gravity_scale(1)
 	initConfig()
-	setFuncrefs()
-	addListeners()
-	load_ship_type(config.get_value("ship_info","ship",0))
+	# setFuncrefs()
+	# addListeners()
+	# load_ship_type(config.get_value("ship_info","ship",0))
 
 
 func _exit_tree():
-	removeListeners()
+	# removeListeners()
+	pass
 
 func initConfig():
 	config.load(settings_location)#returns error, is there is one
-
-func setFuncrefs():
-	load_ship_type_ref = funcref(self, "load_ship_type")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func load_ship_type(type):
-	var ship_config = ConfigFile.new()
-	var err = ship_config.load("res://Components/SpaceShip/S"+str(type)+".cfg")
-	SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
-	SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
-
-
-func addListeners():
-	EventManager.listen("ship_type_change",load_ship_type_ref)
-
-func removeListeners():
-	EventManager.ignore("ship_type_change",load_ship_type_ref)
-
 func _process(delta):
 
-	var TURN_SPEED = get_turn_speed(delta,get_owner().speed,get_owner().SHIP_TURN_RATE)
+	var SHIP_TURN_RATE = ShipInfo.ships[ShipInfo.ship].turn_rate
+	var SHIP_MAX_SPEED = ShipInfo.ships[ShipInfo.ship].max_speed
+
+	var TURN_SPEED = get_turn_speed(delta,get_owner().speed,SHIP_TURN_RATE)
 
 	if Input.is_key_pressed(KEY_UP):
 		if get_owner().speed + 1 <= SHIP_MAX_SPEED && !get_owner().landing:

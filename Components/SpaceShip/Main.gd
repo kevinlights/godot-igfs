@@ -1,8 +1,6 @@
 extends KinematicBody
 
 #Declarations
-var SHIP_TURN_RATE;
-var SHIP_MAX_SPEED;
 var _initial_position;
 var load_ship_type_ref;
 var _heat_interval;
@@ -55,10 +53,12 @@ func addConnections():
     get_node("HeatArea").connect("body_exited", self, "heat_body_exit")
 
 func load_ship_type(type):
-    var ship_config = ConfigFile.new()
-    var err = ship_config.load("res://Components/SpaceShip/S"+str(type)+".cfg")
-    SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
-    SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
+    # var ship_config = ConfigFile.new()
+    # var err = ship_config.load("res://Components/SpaceShip/S"+str(type)+".cfg")
+    # SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
+    # SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
+    # SHIP_TURN_RATE = 
+    pass
 
 func _enter_tree():
     # Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
@@ -68,6 +68,9 @@ func _exit_tree():
     removeListeners()
 
 func _process(delta):
+    var SHIP_TURN_RATE = ShipInfo.ships[ShipInfo.ship].turn_rate
+    var SHIP_MAX_SPEED = ShipInfo.ships[ShipInfo.ship].max_speed
+
     var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
     
     # rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})

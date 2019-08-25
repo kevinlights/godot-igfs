@@ -1,8 +1,6 @@
 extends Node
 
 var load_ship_type_ref;
-var SHIP_TURN_RATE;
-var SHIP_MAX_SPEED;
 ########################
 var settings_location = "res://settings.cfg"
 var config = ConfigFile.new()
@@ -13,12 +11,17 @@ var config = ConfigFile.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	initConfig()
 	setFuncrefs()
 	addListeners()
+	print(config.get_value("ship_info","ship",0))
 	load_ship_type(config.get_value("ship_info","ship",0))
 
 func _exit_tree():
 	removeListeners();
+
+func initConfig():
+	config.load(settings_location)#returns error, is there is one
 
 func setFuncrefs():
 	load_ship_type_ref = funcref(self, "load_ship_type")
@@ -32,12 +35,9 @@ func removeListeners():
 func load_ship_type(type):
 	config.set_value("ship_info","ship",type)
 	config.save(settings_location)
+	ShipInfo.ship = type
 	print("ship type is: " + str(type))
 	var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
-	var ship_config = ConfigFile.new()
-	var err = ship_config.load("res://Components/SpaceShip/S"+str(type)+".cfg")
-	SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
-	SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
 	for child in get_owner().get_children():
 		if child.is_in_group("ShipPart"):
 			get_owner().remove_child(child)
