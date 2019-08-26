@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/googleSans25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Components/CreditsMenu/CreditLabel.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="CreditsMenu" type="PopupMenu"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="CreditLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.155
+anchor_top = 0.087
+anchor_right = 0.155
+anchor_bottom = 0.087
+margin_left = -0.600006
+margin_top = 0.0399933
+margin_right = 1282.4
+margin_bottom = 872.04
+focus_mode = 2
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+selection_enabled = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

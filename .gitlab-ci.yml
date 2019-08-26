@@ -1,0 +1,29 @@
+image: barichello/godot-ci:3.1.1
+
+stages:
+  - export
+  - deploy
+
+before_script:
+  - mkdir -v -p linux
+  - mkdir -v -p windows
+  - mkdir -v -p mac
+  - mkdir -v -p web
+
+linux:
+  stage: export
+  script:
+    - godot -v --export "Linux/X11" ./linux/$EXPORT_NAME.x86_64
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - linux
+
+web:
+  stage: export
+  script:
+    - godot -v --export "HTML5" ./web/index.html
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - web
