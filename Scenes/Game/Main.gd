@@ -31,7 +31,7 @@ func _ready():
 	add_connections()
 	apply_settings()
 
-	yield(get_tree().create_timer(5), "timeout")
+	# yield(get_tree().create_timer(5), "timeout")
 	# print("detected ship parameter:" + str( get_node("SpaceShip").ship))
 	# if get_node("SpaceShip").ship != 0:
 	# 	get_node("SpaceShip").ship = 0;
