@@ -18,3 +18,12 @@ linux:
     name: $EXPORT_NAME-$CI_JOB_NAME
     paths:
       - linux
+
+web:
+  stage: export
+  script:
+    - godot -v --export "HTML5" ./web/index.html
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - web
