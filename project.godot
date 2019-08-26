@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="scripting"
+config/name="IGFS"
 run/main_scene="res://Scenes/Home/Home.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 [autoload]
 
 EventManager="*res://Scripts/EventManager.gd"
+ShipInfo="*res://Scripts/ShipInfo.gd"
 
 [debug]
 
