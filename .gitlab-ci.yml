@@ -5,17 +5,16 @@ stages:
   - deploy
 
 before_script:
-  - mkdir -v -p build/linux
-  - mkdir -v -p build/windows
-  - mkdir -v -p build/mac
-  - mkdir -v -p build/web
+  - mkdir -v -p linux
+  - mkdir -v -p windows
+  - mkdir -v -p mac
+  - mkdir -v -p web
 
 linux:
   stage: export
   script:
-    - godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
-    - tar czf linux.tar.gz ./build/linux/
+    - godot -v --export "Linux/X11" ./linux/$EXPORT_NAME.x86_64
   artifacts:
     name: $EXPORT_NAME-$CI_JOB_NAME
     paths:
-      - linux.tar.gz
+      - linux

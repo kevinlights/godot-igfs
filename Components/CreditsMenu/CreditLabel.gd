@@ -10,6 +10,7 @@ onready var credits = preload("Credits.gd").new().credits
 func _ready():
 	# text = str(credits)
 	connect("meta_clicked", self, "link_clicked")
+	credits.sort_custom(self,"sort_credits_by_title")
 	var res_text = ""
 	for credit in credits:
 		res_text += "[url="+credit.Link+"]"+credit.Title+"[/url]\n"
@@ -31,5 +32,4 @@ func link_clicked(link):
 	OS.shell_open(link)
 
 func sort_credits_by_title(a,b):
-	# if a.Title
-	pass
+	return a.Title < b.Title
