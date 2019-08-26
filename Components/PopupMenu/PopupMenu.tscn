@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Components/CreditsButton/CreditsButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Components/PopupMenu/Main.gd" type="Script" id=2]
 [ext_resource path="res://Components/SettingsButton/SettingsButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/HomeButton/HomeButton.tscn" type="PackedScene" id=4]
@@ -9,6 +10,9 @@
 margin_right = 1920.0
 margin_bottom = 1080.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 673.449
@@ -22,5 +26,8 @@ position = Vector2( 24.9928, -4.54419 )
 [node name="HomeButton" parent="VBoxContainer" instance=ExtResource( 4 )]
 position = Vector2( -2.27209, 81.7948 )
 
+[node name="CreditsButton" parent="VBoxContainer" instance=ExtResource( 1 )]
+position = Vector2( 28.0278, 155.194 )
+
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource( 5 )]
-position = Vector2( 0, 163.59 )
+position = Vector2( 0, 242.704 )

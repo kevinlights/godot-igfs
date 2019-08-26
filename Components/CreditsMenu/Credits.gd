@@ -7,7 +7,7 @@ var credits = [
        "Creator":"Lizard",
        "License_Link":"https://creativecommons.org/licenses/by/4.0/",
        "License":"Creative Commons Attribution",
-       "Modified":"0",
+       "Modified":0,
        "Title":"Darth Jar Jar (Star Wars) Custom Model"
     },
     {
@@ -16,7 +16,7 @@ var credits = [
        "Creator":"StarWars-Universe",
        "License_Link":"http://creativecommons.org/licenses/by-nc-sa/4.0/",
        "License":"CC Attribution-NonCommercial-ShareAlike",
-       "Modified":"0",
+       "Modified":0,
        "Title":"Naboo Cruiser"
     },
     {
@@ -27,6 +27,7 @@ var credits = [
        "Creator_2":"Knut Wantzen",
        "License_Link":"http://www.scifi3d.com/download.asp?intGenreID=10&intCatID=31&filekey=431&key=258",
        "License":"SCIFI 3D Agreement Form",
+       "Modified":0,
        "Title":"Space Station"
     },
     {
@@ -35,6 +36,7 @@ var credits = [
        "Creator":"Olivier Couston",
        "License_Link":"http://www.scifi3d.com/download.asp?intGenreID=10&intCatID=31&filekey=784&key=462",
        "License":"SCIFI 3D Agreement Form",
+       "Modified":0,
        "Title":"Jedi Starfighter Concept (3)"
     },
     {
@@ -43,6 +45,7 @@ var credits = [
        "Creator":"iedalton",
        "License_Link":"http://creativecommons.org/licenses/by/4.0/",
        "License":"Creative Commons Attribution",
+       "Modified":0,
        "Title":"Star Wars Republic Frigate"
     }
  ]
