@@ -14,7 +14,8 @@ linux:
   stage: export
   script:
     - godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+    - tar czf linux.tar.gz ./build/linux/
   artifacts:
     name: $EXPORT_NAME-$CI_JOB_NAME
     paths:
-      - build/linux
+      - linux.tar.gz
