@@ -2,7 +2,7 @@
 
 **IGFS is an open source multiplayer space-flight game made with Godot Engine.**  Explore the galaxy through open space, land in space stations, and play with your friends.
 
-![Sun and planet](https://gitlab.com/pjtsearch/godot-igfs/raw/master/Assets/images/screenshot0.png)
+![Sun and planet](https://gitlab.com/pjtsearch/godot-igfs/raw/master/Assets/images/screenshot0-cropped.png)
 
 ## Goals:
 * Accepting missions, buying goods, and acquiring ships in space stations.
