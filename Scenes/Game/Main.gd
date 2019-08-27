@@ -71,6 +71,7 @@ func connected_ok():
 	print("Connected to server")
 	# Only called on clients, not server. Send my ID and info to all the other peers.
 	yield(get_tree().create_timer(5), "timeout")
+	my_info.ship = ShipInfo.ship
 	rpc("register_player", get_tree().get_network_unique_id(), my_info)
 	# rpc_id(1, "register_player", get_tree().get_network_unique_id(), my_info)
 
@@ -99,11 +100,13 @@ remote func register_player(id, info):
 		player_info[id] = info
 		var player = preload("res://Components/SpaceShipPuppet/SpaceShipPuppet.tscn").instance()
 		# var player = CSGBox.new()
+		player.ship = info.ship
 		player.set_name(str(id))
 		player.set_network_master(id) # Will be explained later
 		get_node("SpaceShips").add_child(player)
 	# If I'm the server, let the new guy know about existing players.
 	if get_tree().is_network_server():
+		my_info.ship = ShipInfo.ship
 		# Send my info to new player
 		rpc_id(id, "register_player", 1, my_info)
 		# Send the info of existing players

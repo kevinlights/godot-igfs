@@ -57,7 +57,7 @@ func load_ship_type(type):
     add_child(shipImport)
     for child in shipImport.get_children():
         shipImport.remove_child(child)
-        add_child(child)
+        if child.get_name() != "Camera": add_child(child)
     shipImport.queue_free()
 
 func addConnections():

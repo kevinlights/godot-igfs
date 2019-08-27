@@ -56,5 +56,4 @@ theme/custom_font="res://Assets/Fonts/googleSans16.tres"
 [rendering]
 
 threads/thread_model=2
-quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"
