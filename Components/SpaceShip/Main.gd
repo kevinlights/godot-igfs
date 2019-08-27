@@ -99,6 +99,7 @@ func _process(delta):
 func reset_ship():
     set_translation(_initial_position)
     speed = 0
+    landing = false
     set_rotation(Vector3(0, 0, 0))
     yield( get_tree().create_timer(0.05), "timeout" )
     health = 100
