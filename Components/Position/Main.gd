@@ -8,6 +8,7 @@ var err = config.load("res://settings.cfg")
 var ship_type = config.get_value("ship_info","ship",0)
 #DEFAULT VALUE
 var SHIP_MAX_SPEED = 250
+var scanner_rotation = 0
 
 
 var update_scanner_bodies_ref = funcref(self, "update_scanner_bodies")
@@ -57,7 +58,8 @@ func _update_coords(pos):
 	var landing = pos.landing
 	get_node("PositionBG/Coords").text = "x:" + str(round(coords.x)) + " y:" + str(round(coords.y)) + " z:" + str(round(coords.z))
 	get_node("PositionBG/Rotation").text = "x:" + str(round(rad2deg(rotation.x))) + " y:" + str(round(rad2deg(rotation.y))) + " z:" + str(round(rad2deg(rotation.z)))
-	get_node("ScannerBG/ScannerViewer").rotation = rotation.y
+	# get_node("ScannerBG/ScannerViewer").rotation = rotation.y
+	scanner_rotation = rotation.y
 	get_node("Viewport/viewCube").set_rotation(rotation);
 	get_node("PositionBG/HealthProgress").value = health
 	get_node("Speed").text = str(round(speed)) + " um/s"
@@ -83,7 +85,21 @@ func update_scanner_bodies(bodies):
 		# print(body)
 		var sprite = ScannerSprite.instance()
 		get_node("ScannerViewport").add_child(sprite)
-		sprite.position.x = (body.position.x / 100) + 100
-		sprite.position.y = (body.position.y / 100) + 100
+		var sprite_pos_x =  (body.position.x / 100) + 100
+		var sprite_pos_y =  (body.position.y / 100) + 100
+
+		var new_pos_vector = rotatePoint(Vector2(sprite_pos_x,sprite_pos_y),Vector2(100,100),scanner_rotation)
+
+		sprite.position.x = new_pos_vector.x
+		sprite.position.y = new_pos_vector.y
 		sprite.name = body.name
 		# print(sprite.position)
+
+
+func rotatePoint(point, center, angle):
+	
+	var rotatedX = cos(angle) * (point.x - center.x) - sin(angle) * (point.y-center.y) + center.x;
+	
+	var rotatedY = sin(angle) * (point.x - center.x) + cos(angle) * (point.y - center.y) + center.y;
+	
+	return Vector2(rotatedX,rotatedY);
