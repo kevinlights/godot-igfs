@@ -29,7 +29,7 @@
     ````
 
 ## Development
-##### Current development branch: refactoring0
+##### Current development branch: master
 ### Setting up:
 1. This project is based on Godot 3.2. If you haven't already, build the latest version of Godot. The instructions are [here](https://docs.godotengine.org/en/3.1/development/compiling/index.html).
 2. Clone the repository:
