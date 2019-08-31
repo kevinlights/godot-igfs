@@ -34,7 +34,6 @@ deploy-github-pages:
     - web
   script:
     - mkdir .public
-    - mv build/web/** .
     - mv -v web/* .public
     - mv .public public
   artifacts:
