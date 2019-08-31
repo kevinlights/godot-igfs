@@ -65,3 +65,13 @@ margin_bottom = 615.0
 
 [node name="QuitButton2" parent="MainGrid/QuitButtonWrapper" instance=ExtResource( 5 )]
 position = Vector2( 680.503, 157.204 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1680.73
+margin_top = 1044.3
+margin_right = 1910.73
+margin_bottom = 1073.3
+text = "Copyright (C) 2019 PJTSearch"
+__meta__ = {
+"_edit_use_anchors_": false
+}
