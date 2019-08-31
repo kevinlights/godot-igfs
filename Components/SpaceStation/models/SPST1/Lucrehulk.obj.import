@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Lucrehulk.obj-317dd2658632aa958b76e5ad46afec2e.mesh"
+
+[deps]
+
+files=[ "res://.import/Lucrehulk.obj-317dd2658632aa958b76e5ad46afec2e.mesh" ]
+
+source_file="res://Components/SpaceStation/models/SPST1/Lucrehulk.obj"
+dest_files=[ "res://.import/Lucrehulk.obj-317dd2658632aa958b76e5ad46afec2e.mesh", "res://.import/Lucrehulk.obj-317dd2658632aa958b76e5ad46afec2e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
