@@ -47,5 +47,14 @@ var credits = [
        "License":"Creative Commons Attribution",
        "Modified":0,
        "Title":"Star Wars Republic Frigate"
+    },
+    {
+      "Link":"https://sketchfab.com/3d-models/lucrehulk-class-battleship-v1-0605e26c148d4686a8451c5d72499fa6",
+      "Creator_Link":"https://sketchfab.com/doctor10",
+      "Creator":"Admiral Tributon",
+      "License_Link":"http://creativecommons.org/licenses/by/4.0/",
+      "License":"Creative Commons Attribution",
+      "Modified":0,
+      "Title":"Lucrehulk Class Battleship V1"
     }
  ]
