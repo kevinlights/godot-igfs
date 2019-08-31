@@ -102,7 +102,7 @@ polygon = PoolVector2Array( -7.03677, 0.0448091, 0, 1, 1, 1, 1, 0 )
 depth = 10.8401
 
 [node name="SPST0" type="MeshInstance" parent="."]
-transform = Transform( 0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 1493.65, 7434.08 )
+transform = Transform( 0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 1493.65, 5855.51 )
 mesh = ExtResource( 6 )
 material/0 = null
 material/1 = null
