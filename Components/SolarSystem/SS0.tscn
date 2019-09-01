@@ -219,11 +219,11 @@ shape = SubResource( 21 )
 transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
 shape = SubResource( 22 )
 
-[node name="Starting Pad" type="StaticBody" parent="."]
+[node name="StartingPad" type="StaticBody" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="Starting Pad"]
+[node name="CollisionShape" type="CollisionShape" parent="StartingPad"]
 shape = SubResource( 23 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Starting Pad"]
+[node name="MeshInstance" type="MeshInstance" parent="StartingPad"]
 mesh = SubResource( 24 )
 material/0 = null
