@@ -47,5 +47,4 @@ deploy-netlify:
   script:
     - apt-get update -yq && apt-get install curl gnupg -yq && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt-get install nodejs -yq
     - npm i -g netlify-cli
-    - cd web
-    - netlify deploy --site "ddedc9d3-a076-4d14-9005-d782ca7ddf60" --auth "2aad1142114bdf13d1c6d6834c746d853d13582f6923d255fe05053e0e065958" --prod
+    - netlify deploy --dir "web" --site "ddedc9d3-a076-4d14-9005-d782ca7ddf60" --auth "2aad1142114bdf13d1c6d6834c746d853d13582f6923d255fe05053e0e065958" --prod
