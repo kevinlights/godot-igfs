@@ -28,7 +28,7 @@ func transition(start,end,amount,power):
 		for index in res.size():
 			if index != 0:
 				res[index] = pow(res[index - 1],1/power)
-	elif start > 0 && start < 10:
+	elif start > 0 && start < 1:
 		for index in res.size():
 			if index != 0:
 				res[index] = pow(res[index - 1],power)

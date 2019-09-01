@@ -6,9 +6,9 @@ extends Node
 
 var ship = 0
 var ships = [
-	{"turn_rate":0.1,"max_speed":250},
-	{"turn_rate":0.1,"max_speed":250},
-	{"turn_rate":0.05,"max_speed":100}
+	{"turn_rate":0.04,"max_speed":250},
+	{"turn_rate":0.04,"max_speed":250},
+	{"turn_rate":0.02,"max_speed":275}
 ]
 
 

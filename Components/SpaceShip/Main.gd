@@ -131,11 +131,14 @@ func stop_ship():
         var speed_power;
         #1.07 is max exponent
         # 252.5/abs(speed) calculates exponent proportional to speed, so if speed is slower, then it will slow down faster
-        if 252.5/abs(speed) < 1.07:
-            speed_power = 252.5/abs(speed)
-        else:
+        speed_power = 252/abs(speed)
+        if speed_power > 1.07:
             speed_power = 1.07
-        
+        elif speed_power < 1.006:
+            speed_power = 1.006
+            
+        print_debug(speed)
+        print_debug(speed_power)
         var speed_transition = TransitionHandler.transition(speed,0,100,speed_power)
         var speed_time = 0.01
         # print(speed_transition)
