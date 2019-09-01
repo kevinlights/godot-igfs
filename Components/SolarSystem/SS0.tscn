@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Components/Planet/images/SS0-P0/texture.jpg" type="Texture" id=1]
 [ext_resource path="res://Components/Planet/images/SS0-P2/texture.png" type="Texture" id=3]
@@ -76,10 +76,16 @@ points = PoolVector3Array( 6211.87, 5519.21, 17886.5, 6211.87, 5519.21, 19393.2,
 [sub_resource type="ConvexPolygonShape" id=22]
 points = PoolVector3Array( -38902.9, 6271.12, -7684.86, -38902.9, 6271.12, -6930.52, -38902.9, 10781.4, -9186.04, -38148.4, 10781.4, -12195.9, -38148.4, 11532.2, -6930.52, -37397.1, 6271.12, -13697.1, -37397.1, 10781.4, -14451.4, -37397.1, 11532.2, -11441.6, -35894.4, 4768.18, -6930.52, -35894.4, 6271.12, -16706.9, -35139.8, 13036.6, -9186.04, -34385.3, 4015.97, -8435.45, -34385.3, 11532.2, -18962.5, -33634, 13788.8, -6930.52, -32885.9, 4015.97, -13697.1, -32885.9, 12285.8, -18962.5, -32134.5, 13788.8, -13697.1, -31383.2, 3263.76, -9186.04, -30631.9, 13788.8, -16706.9, -30173.7, 7325.65, -25125.6, -29877.3, 14541, -9940.38, -29631.3, 10489.6, -25193.3, -29122.8, 14541, -12195.9, -26872, 2511.56, -10691, -26872, 2511.56, -8435.45, -25362.9, 15293.2, -9186.04, -25362.9, 15293.2, -6930.52, -21682.5, 3142.6, -8718.21, -19605.9, 3758.93, -8508.71, -19481.4, 13604.6, -7713.37, -12590.4, 15293.2, -35494.2, -11835.8, 2511.56, -33993, -11835.8, 7777.01, -45270.6, -11835.8, 10029.2, -45270.6, -11087.7, 11532.2, -45270.6, -11087.7, 16045.4, -34743.6, -10333.2, 1759.35, -29482, -10333.2, 6271.12, -45270.6, -9581.85, 12285.8, -45270.6, -8827.28, 1759.35, -24974.7, -8079.2, 12285.8, -45270.6, -7458.46, 3182.32, -33210.7, -7324.63, 16797.6, -27977, -7158.53, 3750.91, -20230.4, -6821.18, 10690.4, -44108.9, -6576.55, 6271.12, -45270.6, -6446.25, 13617.7, -19955.4, -5818.75, 1759.35, -24224.1, -5818.75, 16797.6, -27977, -5818.75, 16797.6, -26475.9 )
 
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 5, 0.1, 5 )
+
+[sub_resource type="CubeMesh" id=24]
+size = Vector3( 10, 0.1, 10 )
+
 [node name="SS0" type="Spatial"]
 
 [node name="SS0-ST0" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, 0, -6461.2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.438, -0.185612, -6461.2 )
 star_texture = ExtResource( 5 )
 
 [node name="SS0-P0" parent="." instance=ExtResource( 8 )]
@@ -212,3 +218,12 @@ shape = SubResource( 21 )
 [node name="CollisionShape" type="CollisionShape" parent="SPST1/ScannerStaticBody"]
 transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
 shape = SubResource( 22 )
+
+[node name="Starting Pad" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Starting Pad"]
+shape = SubResource( 23 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Starting Pad"]
+mesh = SubResource( 24 )
+material/0 = null
