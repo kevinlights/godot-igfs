@@ -1,0 +1,93 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Command",
+"language": "GDScript",
+"path": "res://console/command.gd"
+}, {
+"base": "Reference",
+"class": "CommandRef",
+"language": "GDScript",
+"path": "res://console/command_ref.gd"
+}, {
+"base": "Control",
+"class": "Console",
+"language": "GDScript",
+"path": "res://console/console.gd"
+}, {
+"base": "Reference",
+"class": "ConsoleRights",
+"language": "GDScript",
+"path": "res://console/console_rights.gd"
+}, {
+"base": "Reference",
+"class": "ConsoleUser",
+"language": "GDScript",
+"path": "res://console/console_user.gd"
+}, {
+"base": "Reference",
+"class": "DefaultCommands",
+"language": "GDScript",
+"path": "res://console/default_commands.gd"
+} ]
+_global_script_class_icons={
+"Command": "",
+"CommandRef": "",
+"Console": "",
+"ConsoleRights": "",
+"ConsoleUser": "",
+"DefaultCommands": ""
+}
+
+[application]
+
+config/name="scripting"
+run/main_scene="res://Scenes/Home/Home.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+config/icon="res://icon.png"
+
+[autoload]
+
+EventManager="*res://Scripts/EventManager.gd"
+
+[debug]
+
+settings/fps/force_fps=60
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "godot-git-control.funabab", "vector-icons" )
+
+[gui]
+
+theme/custom="res://Assets/Themes/material2.tres"
+theme/custom_font="res://Assets/Fonts/googleSans16.tres"
+
+[rendering]
+
+threads/thread_model=2
+environment/default_environment="res://default_env.tres"

@@ -1,6 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Components/SpaceShip/models/S1/jedifighter4.3ds.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Components/SpaceShip/Camera.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+params_depth_draw_mode = 1
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( -6.98007, 1.99687, 9.44167, -6.98007, 2.15596, 8.80642, -6.82104, 2.15596, 12.142, -6.82104, 2.31481, 8.1704, -6.82104, 2.95021, 11.3474, -6.82104, 3.10929, 9.12404, -6.79247, 2.0826, 8.31328, -6.68524, 1.88171, 12.334, -6.66222, 3.58538, 8.32979, -6.66222, 3.58538, 11.0298, -6.5034, 1.99687, 8.1704, -6.5034, 1.99687, 11.9827, -6.34469, 2.31481, 9.12404, -6.34469, 4.22054, 8.4888, -6.18587, 4.37986, 10.8708, -6.02705, 4.37986, 10.8708, -5.86801, 3.90284, 8.4888, -5.86801, 3.90284, 10.8708, -5.86801, 4.22054, 10.8708, -5.86801, 4.37986, 8.4888 )
@@ -37,6 +42,7 @@ enabled = true
 
 [node name="S1" type="MeshInstance" parent="."]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+material_override = SubResource( 10 )
 mesh = ExtResource( 1 )
 material/0 = null
 material/1 = null
@@ -100,7 +106,4 @@ spot_attenuation = 0.116629
 spot_angle = 17.5914
 spot_angle_attenuation = 0.101532
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 1.44672, 7.34619 )
-near = 0.01
-far = 20000.0
+[node name="Camera" parent="." instance=ExtResource( 2 )]

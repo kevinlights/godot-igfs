@@ -61,18 +61,29 @@ text = "Glow and HDR"
 flat = true
 align = 1
 
-[node name="AntiAliasing" type="OptionButton" parent="VBoxContainer"]
+[node name="MotionBlur" type="CheckButton" parent="VBoxContainer"]
 margin_top = 138.0
 margin_right = 545.0
 margin_bottom = 180.2
+focus_mode = 0
+custom_fonts/font = ExtResource( 3 )
+enabled_focus_mode = 0
+text = "Motion Blur"
+flat = true
+align = 1
+
+[node name="AntiAliasing" type="OptionButton" parent="VBoxContainer"]
+margin_top = 184.0
+margin_right = 545.0
+margin_bottom = 226.2
 custom_fonts/font = ExtResource( 3 )
 text = "Anti Aliasing"
 align = 1
 
 [node name="FPS" type="OptionButton" parent="VBoxContainer"]
-margin_top = 184.0
+margin_top = 230.0
 margin_right = 545.0
-margin_bottom = 226.2
+margin_bottom = 272.2
 custom_fonts/font = ExtResource( 3 )
 text = "FPS"
 align = 1
