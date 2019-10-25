@@ -88,11 +88,20 @@ func update_scanner_bodies(bodies):
 		var sprite_pos_x =  (body.position.x / 100) + 100
 		var sprite_pos_y =  (body.position.y / 100) + 100
 
+		var img = Image.new()
+		var texture = ImageTexture.new()
+		img.load("res://Components/ScannerSprite/textures/" + body.type + ".png")
+		print_debug("res://Components/ScannerSprite/textures/" + body.type + ".png")
+		texture.create_from_image(img)
+
 		var new_pos_vector = rotatePoint(Vector2(sprite_pos_x,sprite_pos_y),Vector2(100,100),scanner_rotation)
+		
 
 		sprite.position.x = new_pos_vector.x
 		sprite.position.y = new_pos_vector.y
 		sprite.name = body.name
+		sprite.texture = texture
+		
 		# print(sprite.position)
 
 

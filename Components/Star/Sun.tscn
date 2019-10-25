@@ -21,6 +21,7 @@ margin = 0.001
 radius = 4096.0
 
 [node name="Star" type="StaticBody" groups=[
+"scanner_star",
 "star",
 ]]
 script = ExtResource( 1 )

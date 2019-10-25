@@ -22,9 +22,19 @@ func send_scanner_bodies():
 		var combined_position = Vector2(self_position2d.x - position.x, self_position2d.y - position.y)
 		# print(position)
 		var name = body.get_name()
+		var groups = body.get_groups() 
+		# DEFAULT
+		var type = "star"
+
+		for group in groups:
+			if group.find("scanner_") > -1:
+				type = group
+			
+		
 		processed_bodies.append({
 			"position": combined_position,
-			"name":name
+			"name":name,
+			"type":type
 		})
 		# print(name)
 
