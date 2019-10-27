@@ -28,7 +28,7 @@ func send_scanner_bodies():
 
 		for group in groups:
 			if group.find("scanner_") > -1:
-				type = group
+				type = group.replace("scanner_","")
 			
 		
 		processed_bodies.append({
