@@ -101,6 +101,7 @@ func update_scanner_bodies(bodies):
 		sprite.position.y = new_pos_vector.y
 		sprite.name = body.name
 		sprite.texture = load("res://Components/ScannerSprite/textures/" + body.type + ".png")
+		sprite.scale = Vector2(body.size,body.size)
 		
 		# print(sprite.position)
 

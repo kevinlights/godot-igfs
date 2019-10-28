@@ -29,12 +29,21 @@ func send_scanner_bodies():
 		for group in groups:
 			if group.find("scanner_") > -1:
 				type = group.replace("scanner_","")
-			
+
+		var size = 1
+		#								  scanner viewer width     scanner area width    texture image size
+		var constant_of_sprite_scale = (           200         /         10000       )/         20        
+		if body.get_node("CollisionShape"):
+			var shape = body.get_node("CollisionShape").shape
+			if shape is SphereShape:
+				size = (shape.radius)*constant_of_sprite_scale
+				print_debug(size)
 		
 		processed_bodies.append({
 			"position": combined_position,
 			"name":name,
-			"type":type
+			"type":type,
+			"size":size
 		})
 		# print(name)
 
