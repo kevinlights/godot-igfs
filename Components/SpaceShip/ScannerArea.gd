@@ -33,11 +33,11 @@ func send_scanner_bodies():
 		var size = 1
 		# (scanner viewer width / scanner area width) / texture image size
 		var constant_of_sprite_scale = (200/10000)/20
-		if body.get_node("CollisionShape"):
+		if body.has_node("CollisionShape"):
 			var shape = body.get_node("CollisionShape").shape
 			if shape is SphereShape:
 				size = (shape.radius)*0.001
-				print_debug(size)
+				# print_debug(size)
 		
 		processed_bodies.append({
 			"position": combined_position,
