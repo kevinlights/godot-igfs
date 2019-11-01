@@ -18,6 +18,7 @@ var HOST = config.get_value("multiplayer","is_host",true)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	if HOST:
 		var peer = NetworkedMultiplayerENet.new()
 		peer.create_server(5000, 10)
@@ -26,10 +27,18 @@ func _ready():
 		var peer = NetworkedMultiplayerENet.new()
 		peer.create_client(config.get_value("multiplayer","address","127.0.0.1"), config.get_value("multiplayer","port",5000))
 		get_tree().set_network_peer(peer)
+	
 	print("Peer: " + str(get_tree().get_network_peer()))
 	print("Is server: " + str(get_tree().is_network_server()))
 	add_connections()
 	apply_settings()
+
+	var player = preload("res://Components/SpaceShip/SpaceShip.tscn").instance()
+	player.set_name(str(get_tree().get_network_unique_id()))
+	player.set_network_master(get_tree().get_network_unique_id())
+	get_node("SpaceShips").add_child(player)
+	
+
 
 	# yield(get_tree().create_timer(5), "timeout")
 	# print("detected ship parameter:" + str( get_node("SpaceShip").ship))
@@ -46,7 +55,7 @@ func add_connections():
 	get_tree().connect("connection_failed", self, "connected_fail")
 	get_tree().connect("server_disconnected", self, "server_disconnected")
 	get_tree().connect("peer_connected", self, "peer_connected")
-	get_node("SpaceShip").connect("position",self,"update_position_local")
+	# get_node("SpaceShip").connect("position",self,"update_position_local")
 
 func apply_settings():
 	#GlowHDR
@@ -85,8 +94,8 @@ func server_disconnected():
 	get_tree().set_network_peer(null)
 	get_tree().change_scene("res://Scenes/Home/Home.tscn")
 
-func update_position_local(position):
-	rpc("update_position",get_tree().get_network_unique_id(), position)
+# func update_position_local(position):
+# 	rpc("update_position",get_tree().get_network_unique_id(), position)
 	
 # func _on_message(message):
 # 	print("message: " + message)
@@ -96,14 +105,25 @@ func update_position_local(position):
 remote func register_player(id, info):
 	# Store the info
 	print("Registering player, id: " + str(id))
+	print("Player info:")
+	print(info)
 	if id != get_tree().get_network_unique_id():
 		player_info[id] = info
-		var player = preload("res://Components/SpaceShipPuppet/SpaceShipPuppet.tscn").instance()
+		var player = preload("res://Components/SpaceShip/SpaceShip.tscn").instance()
 		# var player = CSGBox.new()
-		player.ship = info.ship
+
+
+
+		#NEED TO ADD BACK	
+
+
+
+		
+		# player.ship = info.ship
 		player.set_name(str(id))
 		player.set_network_master(id) # Will be explained later
 		get_node("SpaceShips").add_child(player)
+		
 	# If I'm the server, let the new guy know about existing players.
 	if get_tree().is_network_server():
 		my_info.ship = ShipInfo.ship

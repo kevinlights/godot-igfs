@@ -225,7 +225,6 @@ transform = Transform( -0.01, 0, 3.25841e-09, 0, 0.01, 0, -3.25841e-09, 0, -0.01
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000817172, 6.58653, 18.3965 )
-current = true
 
 [node name="CollisionShape67" type="CollisionShape" parent="."]
 transform = Transform( -4, 1.58546e-07, 1.98007e-15, 0, -4.5897e-08, 0.3, 6.03983e-07, 1.05, 1.31134e-08, 0.0243454, 1.25626, -8.30588 )

@@ -32,7 +32,7 @@ func initConfig():
 #func _process(delta):
 #	pass
 
-func _process(delta):
+master func _process(delta):
 
 	var SHIP_TURN_RATE = ShipInfo.ships[ShipInfo.ship].turn_rate
 	var SHIP_MAX_SPEED = ShipInfo.ships[ShipInfo.ship].max_speed

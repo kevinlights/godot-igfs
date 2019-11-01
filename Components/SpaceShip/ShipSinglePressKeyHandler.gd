@@ -12,7 +12,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _unhandled_input(event):
+master func _unhandled_input(event):
     if event is InputEventKey:
         if event.pressed and event.scancode == KEY_R:
             get_owner().reset_ship()

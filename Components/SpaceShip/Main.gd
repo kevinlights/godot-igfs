@@ -7,11 +7,14 @@ var _heat_interval;
 var health;
 var landing;
 var speed;
+
+slave var slave_position = Transform(Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0))
+
 ########################
 var settings_location = "res://settings.cfg"
 var config = ConfigFile.new()
 
-onready var TransitionHandler = $"../TransitionHandler"
+onready var TransitionHandler = get_node("/root/Game/TransitionHandler")
 #signals
 signal position(content) 
 
@@ -19,6 +22,8 @@ signal position(content)
 # export(int) var ship;
 
 func _ready():
+
+	# print(get_node("/root/Game"))
 #    set_physics_process(true)
 #    set_gravity_scale(1)
 	_initial_position = get_global_transform().origin
@@ -28,6 +33,25 @@ func _ready():
 	addConnections()
 	addListeners()
 	load_ship_type(config.get_value("ship_info","ship",0))
+	yield( get_tree().create_timer(0.5), "timeout" )
+	if is_network_master():
+		get_node("Camera").set_current(true)
+	else:
+		print("is not network master")
+		var type = 2
+		var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
+		for child in get_children():
+			if child.is_in_group("ShipPart"):
+				remove_child(child)
+				child.queue_free()
+		
+		call_deferred("add_child",shipImport)
+		for child in shipImport.get_children():
+			shipImport.remove_child(child)
+			call_deferred("add_child",child)
+			# child.set_name("ShipPart" + child.get_name())
+			child.add_to_group("ShipPart")
+		shipImport.queue_free()
 	
 
 func setFuncrefs():
@@ -68,38 +92,45 @@ func _exit_tree():
 	removeListeners()
 
 func _process(delta):
-	var SHIP_TURN_RATE = ShipInfo.ships[ShipInfo.ship].turn_rate
-	var SHIP_MAX_SPEED = ShipInfo.ships[ShipInfo.ship].max_speed
+	if is_network_master():
+		var SHIP_TURN_RATE = ShipInfo.ships[ShipInfo.ship].turn_rate
+		var SHIP_MAX_SPEED = ShipInfo.ships[ShipInfo.ship].max_speed
 
-	var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
-	
-	# rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
-	var emit_position;
-	if get_node("LandingRay").is_colliding():
-		var landing_distance = translation.y - get_node("LandingRay").get_collision_point().y;
-		emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":true,"distance":landing_distance,"doing":landing}}
+		var collisionInfo = move_and_slide(global_transform.basis.z * -1 * speed)
+		
+		# rpc_unreliable("update_position",get_tree().get_network_unique_id(),{"coords":translation,"rotation":get_rotation()})
+		var emit_position;
+		if get_node("LandingRay").is_colliding():
+			var landing_distance = translation.y - get_node("LandingRay").get_collision_point().y;
+			emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":true,"distance":landing_distance,"doing":landing}}
+		else:
+			emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":false}}
+
+		emit_signal("position",emit_position)
+
+		if (health <= 0):
+			reset_ship()
+
+		if get_slide_count():
+			if abs(speed) > 30:
+				crash()
+		
+		var TURN_SPEED = get_turn_speed(delta,speed,SHIP_TURN_RATE)
+		# var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
+		
+		if speed > SHIP_MAX_SPEED:
+			speed = SHIP_MAX_SPEED
+
+		print("self position:")
+		print(get_global_transform())
+		rset_unreliable('slave_position', get_global_transform())
 	else:
-		emit_position = {"coords":translation,"rotation":get_rotation(),"health":health,"speed":speed,"landing":{"possible":false}}
+		print("slave position:")
+		print(slave_position)
+		set_global_transform(slave_position)
+			
 
-	emit_signal("position",emit_position)
-
-	if (health <= 0):
-		reset_ship()
-
-	if get_slide_count():
-		if abs(speed) > 30:
-			crash()
-	
-	
-
-	
-	var TURN_SPEED = get_turn_speed(delta,speed,SHIP_TURN_RATE)
-	# var SHIP_TURN_RATE_RECIP = 1/SHIP_TURN_RATE
-	
-	if speed > SHIP_MAX_SPEED:
-		speed = SHIP_MAX_SPEED
-
-func reset_ship():
+master func reset_ship():
 	set_translation(_initial_position)
 	speed = 0
 	landing = false
@@ -107,12 +138,12 @@ func reset_ship():
 	yield( get_tree().create_timer(0.05), "timeout" )
 	health = 100
 
-func crash():
+master func crash():
 	health = 0
 	EventManager.emit("message",{"text":"Crashed!"})
 
 
-func heat_body_enter(body):
+master func heat_body_enter(body):
 	if body.get_groups().has("star"):
 		_heat_interval = true
 		while ( _heat_interval == true ):
@@ -120,16 +151,16 @@ func heat_body_enter(body):
 			health = health - 1
 			# print(health)
 
-func heat_body_exit(body):
+master func heat_body_exit(body):
 	_heat_interval = false
 
-func transition_rotate(speed,vector):
+master func transition_rotate(speed,vector):
 	var rotate_transiton = TransitionHandler.transition(speed,0,100,1.07)
 	for amount in rotate_transiton:
 		rotate_object_local(vector, amount)
 		yield( get_tree().create_timer(0.05), "timeout" )
 
-func stop_ship():
+master func stop_ship():
 	if speed != 0:
 		var speed_power;
 		#1.07 is max exponent
@@ -153,7 +184,7 @@ func stop_ship():
 				speed = 0
 				return
 
-func get_turn_speed(delta,speed,SHIP_TURN_RATE):
+master func get_turn_speed(delta,speed,SHIP_TURN_RATE):
 	var TURN_SPEED = 0;
 	if abs(speed * SHIP_TURN_RATE) <= SHIP_TURN_RATE * 10:
 		TURN_SPEED = delta * abs(speed * SHIP_TURN_RATE)
