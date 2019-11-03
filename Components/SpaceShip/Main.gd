@@ -8,7 +8,9 @@ var health;
 var landing;
 var speed;
 
-slave var slave_position = Transform(Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0))
+export(int) var ship = 0
+
+puppet var slave_position = Transform(Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0))
 
 ########################
 var settings_location = "res://settings.cfg"
@@ -38,20 +40,7 @@ func _ready():
 		get_node("Camera").set_current(true)
 	else:
 		print("is not network master")
-		var type = 2
-		var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
-		for child in get_children():
-			if child.is_in_group("ShipPart"):
-				remove_child(child)
-				child.queue_free()
-		
-		call_deferred("add_child",shipImport)
-		for child in shipImport.get_children():
-			shipImport.remove_child(child)
-			call_deferred("add_child",child)
-			# child.set_name("ShipPart" + child.get_name())
-			child.add_to_group("ShipPart")
-		shipImport.queue_free()
+		load_ship_type(ship)
 	
 
 func setFuncrefs():
@@ -82,7 +71,19 @@ func load_ship_type(type):
 	# SHIP_TURN_RATE = ship_config.get_value("ship_info","turn_rate",0.1)
 	# SHIP_MAX_SPEED = ship_config.get_value("ship_info","max_speed",250) 
 	# SHIP_TURN_RATE = 
-	pass
+	var shipImport = load("res://Components/SpaceShip/S"+str(type)+".tscn").instance()
+	for child in get_children():
+		if child.is_in_group("ShipPart"):
+			remove_child(child)
+			child.queue_free()
+	
+	call_deferred("add_child",shipImport)
+	for child in shipImport.get_children():
+		shipImport.remove_child(child)
+		call_deferred("add_child",child)
+		# child.set_name("ShipPart" + child.get_name())
+		child.add_to_group("ShipPart")
+	shipImport.queue_free()
 
 func _enter_tree():
 	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
@@ -121,12 +122,12 @@ func _process(delta):
 		if speed > SHIP_MAX_SPEED:
 			speed = SHIP_MAX_SPEED
 
-		print("self position:")
-		print(get_global_transform())
+		# print("self position:")
+		# print(get_global_transform())
 		rset_unreliable('slave_position', get_global_transform())
 	else:
-		print("slave position:")
-		print(slave_position)
+		# print("slave position:")
+		# print(slave_position)
 		set_global_transform(slave_position)
 			
 

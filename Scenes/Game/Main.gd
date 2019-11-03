@@ -110,16 +110,7 @@ remote func register_player(id, info):
 	if id != get_tree().get_network_unique_id():
 		player_info[id] = info
 		var player = preload("res://Components/SpaceShip/SpaceShip.tscn").instance()
-		# var player = CSGBox.new()
-
-
-
-		#NEED TO ADD BACK	
-
-
-
-		
-		# player.ship = info.ship
+		player.ship = info.ship
 		player.set_name(str(id))
 		player.set_network_master(id) # Will be explained later
 		get_node("SpaceShips").add_child(player)
