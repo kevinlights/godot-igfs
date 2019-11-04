@@ -15,14 +15,16 @@ func _ready():
 #	pass
 
 func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_SPACE:
-			print_debug("shoot pressed")
-			shoot()
+	if is_network_master():
+		if event is InputEventKey:
+			if event.pressed and event.scancode == KEY_SPACE:
+				print_debug("shoot pressed")
+				shoot()
 
 func shoot():
 	var bullet = Bullet.instance()
-	get_node("/root").add_child(bullet)
+	bullet.set_network_master(get_tree().get_network_unique_id())
+	get_node("/root/Game").add_child(bullet)
 	# var speed = 50
 	
 	bullet.set_global_transform(get_owner().get_global_transform())

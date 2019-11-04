@@ -1,5 +1,6 @@
 extends KinematicBody
 
+puppet var slave_position = Transform(Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0))
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -11,10 +12,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var speed = -0.1
-	var collision = move_and_collide(global_transform.basis.z * -1 * speed)
+	if is_network_master():
+		var speed = 5
+		var collision = move_and_collide(global_transform.basis.z * -1 * speed)
 
-	if collision:
-		print_debug(collision)
-		collision.collider.rpc("bullet_hit")
-		queue_free()
+		if collision:
+			print_debug(collision)
+			collision.collider.rpc("bullet_hit")
+			queue_free()
+	else:
+		set_global_transform(slave_position)
