@@ -12,6 +12,9 @@ var err = config.load("res://settings.cfg")
 
 var HOST = config.get_value("multiplayer","is_host",true)
 
+var send_register_bullet_ref = null
+var send_unregister_bullet_ref = null
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -32,11 +35,16 @@ func _ready():
 	print("Is server: " + str(get_tree().is_network_server()))
 	add_connections()
 	apply_settings()
+	setFuncrefs()
+	addListeners()
 
 	var player = preload("res://Components/SpaceShip/SpaceShip.tscn").instance()
 	player.set_name(str(get_tree().get_network_unique_id()))
 	player.set_network_master(get_tree().get_network_unique_id())
 	get_node("SpaceShips").add_child(player)
+
+func _exit_tree():
+	removeListeners()
 	
 
 
@@ -56,6 +64,20 @@ func add_connections():
 	get_tree().connect("server_disconnected", self, "server_disconnected")
 	get_tree().connect("peer_connected", self, "peer_connected")
 	# get_node("SpaceShip").connect("position",self,"update_position_local")
+	
+
+func addListeners():
+	EventManager.listen("register_bullet",send_register_bullet_ref)
+	EventManager.listen("unregister_bullet",send_unregister_bullet_ref)
+
+func removeListeners():
+	EventManager.ignore("register_bullet",send_register_bullet_ref)
+	EventManager.ignore("unregister_bullet",send_unregister_bullet_ref)
+
+func setFuncrefs():
+	send_register_bullet_ref = funcref(self, "send_register_bullet")
+	send_unregister_bullet_ref = funcref(self, "send_unregister_bullet")
+
 
 func apply_settings():
 	#GlowHDR
@@ -135,6 +157,25 @@ remote func unregister_player(id):
 
 	print("Players: " + str(player_info))
 
+func send_register_bullet(info):
+	rpc("register_bullet",info.owner,info.id)
+
+remote func register_bullet(owner,id):
+	print("register_bullet")
+	print(str(id))
+	if owner != get_tree().get_network_unique_id():
+		var bullet = preload("res://Components/Bullet/Bullet.tscn").instance()
+		bullet.name = id
+		bullet.set_network_master(owner)
+		get_node("/root/Game").add_child(bullet)
+
+func send_unregister_bullet(info):
+	rpc("unregister_bullet",info.id)
+
+remote func unregister_bullet(id):
+	if get_node("/root/Game/" + str(id)):
+		get_node("/root/Game/" + str(id)).queue_free()
+#not used v
 remote func update_position(id,position):
 	# print("Update position of " + str(id) + ": " + str(position))
 	if has_node("SpaceShips/" + str(id)):

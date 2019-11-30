@@ -24,6 +24,7 @@ func _unhandled_input(event):
 func shoot():
 	var bullet = Bullet.instance()
 	bullet.set_network_master(get_tree().get_network_unique_id())
+	bullet.name = str(randi()%10000+1)
 	get_node("/root/Game").add_child(bullet)
 	# var speed = 50
 	

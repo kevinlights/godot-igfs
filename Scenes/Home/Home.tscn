@@ -31,6 +31,9 @@ margin_right = 1916.0
 margin_bottom = 1084.0
 size_flags_stretch_ratio = 0.0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="MainGrid"]
 margin_top = 469.0
